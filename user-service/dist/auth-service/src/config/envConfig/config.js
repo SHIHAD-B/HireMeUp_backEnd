@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RABBITMQ_URL = exports.APP_SECRET = exports.EMAIL = exports.JWT_SECRET = exports.PORT = exports.IP = void 0;
+const dotenv_1 = require("dotenv");
+(0, dotenv_1.config)();
+let IP = String(process.env.IP);
+exports.IP = IP;
+let PORT = Number(process.env.PORT);
+exports.PORT = PORT;
+let JWT_SECRET = String(process.env.JWT_SECRET);
+exports.JWT_SECRET = JWT_SECRET;
+;
+let EMAIL = String(process.env.Email);
+exports.EMAIL = EMAIL;
+let APP_SECRET = String(process.env.APP_SECRET);
+exports.APP_SECRET = APP_SECRET;
+let RABBITMQ_URL = String(process.env.RABBITMQ_URL);
+exports.RABBITMQ_URL = RABBITMQ_URL;
