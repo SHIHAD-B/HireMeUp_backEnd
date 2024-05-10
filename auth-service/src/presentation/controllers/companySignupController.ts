@@ -20,7 +20,7 @@ export const companySignupController = (dependencies: IDependencies) => {
             } else {
                 const data = value
                 const companyExist = await companyEmailExistUseCase(dependencies).execute(data?.email)
-                console.log(companyExist,"response from company exist")
+                console.log(companyExist, "response from company exist")
                 if (companyExist) {
                     return next(ErrorResponse.conflict("company already exists"))
                 }
@@ -33,12 +33,14 @@ export const companySignupController = (dependencies: IDependencies) => {
                             otp: otp
                         }
                         const client = await RabbitMQClient.getInstance();
-                        const result = await client.produce(otpData, "addOtp","toUser");
+                        const result = await client.produce(otpData, "addOtp", "toUser");
                         if (result) {
 
                             await sendOtp(data?.email, otp).then((response) => {
                                 console.log(response)
                                 return res.status(200).send({
+                                    success: true,
+                                    user: data,
                                     message: 'An Otp has been sent to the email'
                                 })
                             })
@@ -47,7 +49,7 @@ export const companySignupController = (dependencies: IDependencies) => {
                 } else {
                     console.log('reached ')
                     const otpVerfication = await verifyOtpUseCase(dependencies).execute(data.email, data?.otp)
-                     console.log(otpVerfication,"otp verification")
+                    console.log(otpVerfication, "otp verification")
                     if (!otpVerfication) {
                         return next(ErrorResponse.unauthorized("incorrect otp"))
                     }
@@ -58,7 +60,7 @@ export const companySignupController = (dependencies: IDependencies) => {
                     } else {
                         data.password = password
                     }
-                     console.log(data,"data in the comp signup")
+                    console.log(data, "data in the comp signup")
                     const user = await companySignupUseCase(dependencies).execute(data)
                     if (!user) {
                         return next(ErrorResponse.notFound('failed to add company'))

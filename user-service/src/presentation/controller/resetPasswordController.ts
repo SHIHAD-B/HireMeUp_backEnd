@@ -10,7 +10,6 @@ export const resetPasswordController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { email, password } = req.body
-            console.log("from reset password", req.body)
             if (!email) {
                 next(ErrorResponse.badRequest("credential is missing"))
             }
@@ -26,12 +25,12 @@ export const resetPasswordController = (dependencies: IDependencies) => {
 
              
 
-                    const hashedPassword = hashPassword(password)
+                    const hashedPassword:any = await hashPassword(password)
                     if (!hashedPassword) {
                         next(ErrorResponse.forbidden("issue in hashing the password"))
                     }
 
-                    const resetPassword = await resetPasswordUseCase(dependencies).execute(email, password)
+                    const resetPassword = await resetPasswordUseCase(dependencies).execute(email, hashedPassword)
                     if (!resetPassword) {
                         return next(ErrorResponse.forbidden("Error occured in resetting the data of user"))
                     } else {

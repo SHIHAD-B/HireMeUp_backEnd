@@ -40,6 +40,7 @@ const UsersSchema: Schema = new Schema({
   deleted: { type: Boolean },
   subscription: [{
      subscriptionId: { type: Schema.Types.ObjectId },
+     createdAt: { type : Date, default: Date.now },
   }],
 });
 

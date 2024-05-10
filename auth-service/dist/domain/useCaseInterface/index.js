@@ -20,3 +20,5 @@ __exportStar(require("./signupUserUseCaseInterface"), exports);
 __exportStar(require("./verifyOtpInterface"), exports);
 __exportStar(require("./companySignupUseCaseinterface"), exports);
 __exportStar(require("./companyEmailExistUseCaseinterface"), exports);
+__exportStar(require("./companySigninUseCaseInterface"), exports);
+__exportStar(require("./adminSigninUseCaseinterface"), exports);

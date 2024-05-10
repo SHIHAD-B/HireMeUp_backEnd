@@ -23,7 +23,7 @@ class MessageHandler {
                     response = yield (0, repositories_1.addUser)(data);
                     break;
                 case "checkEmail":
-                    response = yield (0, repositories_1.fetchUser)(data.email);
+                    response = yield (0, repositories_1.checkUser)(data);
                     break;
                 case "checkOtp":
                     response = yield (0, repositories_1.checkOtp)(data.email, data.otp);
@@ -33,6 +33,9 @@ class MessageHandler {
                     break;
                 case "userSignin":
                     response = yield (0, repositories_1.fetchUser)(data.email);
+                    break;
+                case "adminSignin":
+                    response = yield (0, repositories_1.fetchAdmin)(data.email);
                     break;
                 default:
                     response = { success: false, error: "Unknown operation" };

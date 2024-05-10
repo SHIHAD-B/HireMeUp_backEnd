@@ -8,11 +8,11 @@ export const blockUserController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const userId = req.params.id
-            if (!userId) {
+            const userEmail = req.body.email
+            if (!userEmail) {
                 return next(ErrorResponse.badRequest("User ID is missing."));
             }
-            const blockeddUser = await blockUserUseCase(dependencies).execute(userId)
+            const blockeddUser = await blockUserUseCase(dependencies).execute(userEmail)
             if (!blockeddUser) {
                 return next(ErrorResponse.notFound("User not found or unable to block user."));
             } else {

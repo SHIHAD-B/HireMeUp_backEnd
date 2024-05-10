@@ -1,4 +1,4 @@
 
 export interface IBlockUseCase {
-    execute(id: string): Promise<boolean | null>
+    execute(email: string): Promise<boolean | null>
 }

@@ -13,9 +13,9 @@ exports.emailExistUseCase = void 0;
 const emailExistUseCase = (dependencies) => {
     const { repositories: { emailExist } } = dependencies;
     return {
-        execute: (email) => __awaiter(void 0, void 0, void 0, function* () {
+        execute: (data) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                return yield emailExist(email);
+                return yield emailExist(data);
             }
             catch (error) {
                 throw new Error(error);

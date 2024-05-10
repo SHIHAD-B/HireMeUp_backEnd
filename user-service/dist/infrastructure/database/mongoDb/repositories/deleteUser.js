@@ -14,16 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUser = void 0;
 const userSchema_1 = __importDefault(require("../model/userSchema"));
-const deleteUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteUser = (email) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!id) {
+        if (!email) {
             return null;
         }
-        const user = yield userSchema_1.default.findOne({ _id: id });
+        const user = yield userSchema_1.default.findOne({ email: email });
         if (!user) {
             return null;
         }
-        const deletedUser = yield userSchema_1.default.updateOne({ _id: id }, {
+        const deletedUser = yield userSchema_1.default.updateOne({ email: email }, {
             deleted: true,
             blocked: true
         }, { new: true });

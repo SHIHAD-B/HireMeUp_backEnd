@@ -30,33 +30,35 @@ export const signinUserController = (dependencies: IDependencies) => {
         try {
             const { value, error } = signinValidation.validate(req.body)
             if (error) {
-            
+
                 return next(ErrorResponse.conflict(String(error)))
             } else {
                 const data = value
-                const User = await signinUserUseCase(dependencies).execute(data)
-                if (User==false) {
-                 
+                const User: any = await signinUserUseCase(dependencies).execute(data)
+                if (User == false) {
+
                     return next(ErrorResponse.badRequest('incorrect password'))
                 } else if (User == null) {
 
                     return next(ErrorResponse.notFound('user not found'))
+                } else if (User?.blocked == true || User.deleted == true) {
+                    return next(ErrorResponse.badRequest('user blocked or deleted by admin'))
                 } else {
-              
-                    const accessToken= generateAccessToken(User)
-                       res.cookie('user_token', accessToken, {
-                           httpOnly: true
-                       })
-   
-                       res.status(200).json({
-                           success: true,
-                           user: User,
-                           message: "user authenticated"
-                       })
-                   
+
+                    const accessToken = generateAccessToken(User)
+                    res.cookie('user_token', accessToken, {
+                        httpOnly: true
+                    })
+
+                    res.status(200).json({
+                        success: true,
+                        user: User,
+                        message: "user authenticated"
+                    })
+
                 }
             }
-        } catch (error:any) {
+        } catch (error: any) {
             throw new Error(error)
         }
     }

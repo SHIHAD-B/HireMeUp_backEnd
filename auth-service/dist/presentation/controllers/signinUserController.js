@@ -42,6 +42,9 @@ const signinUserController = (dependencies) => {
                 else if (User == null) {
                     return next(errorResponse_1.default.notFound('user not found'));
                 }
+                else if ((User === null || User === void 0 ? void 0 : User.blocked) == true || User.deleted == true) {
+                    return next(errorResponse_1.default.badRequest('user blocked or deleted by admin'));
+                }
                 else {
                     const accessToken = generateAccessToken(User);
                     res.cookie('user_token', accessToken, {

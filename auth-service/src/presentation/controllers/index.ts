@@ -4,6 +4,10 @@ import { signupUserController } from './signupUserController';
 import { forgotController } from "./forgotController";
 import { companySignupController } from "./companySignupController";
 import { logout } from './logout'
+import { signupGoogleController } from "./signupGoogleController";
+import { companySigninController } from "./companySigninController";
+import { adminSigninController } from "./adminSigninController";
+import { companyForgotController } from "./companyForgotController";
 
 export const controllers = (dependencies: IDependencies) => {
     return {
@@ -11,6 +15,10 @@ export const controllers = (dependencies: IDependencies) => {
         signupUser: signupUserController(dependencies),
         forgot: forgotController(dependencies),
         logout: logout(),
-        companySignup: companySignupController(dependencies)
+        companySignup: companySignupController(dependencies),
+        signupWithGoogle: signupGoogleController(dependencies),
+        companySignin: companySigninController(dependencies),
+        adminSignin: adminSigninController(dependencies),
+        companyForgot: companyForgotController(dependencies)
     }
 }

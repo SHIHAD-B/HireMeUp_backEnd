@@ -18,11 +18,11 @@ const blockUserController = (dependencies) => {
     const { useCases: { blockUserUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const userId = req.params.id;
-            if (!userId) {
+            const userEmail = req.body.email;
+            if (!userEmail) {
                 return next(errorResponse_1.default.badRequest("User ID is missing."));
             }
-            const blockeddUser = yield blockUserUseCase(dependencies).execute(userId);
+            const blockeddUser = yield blockUserUseCase(dependencies).execute(userEmail);
             if (!blockeddUser) {
                 return next(errorResponse_1.default.notFound("User not found or unable to block user."));
             }

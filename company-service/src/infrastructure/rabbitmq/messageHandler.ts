@@ -13,6 +13,9 @@ export default class MessageHandler {
       case "checkEmailcompany":
         response = await checkCompanyExist(data.email)
         break;
+      case "companySignin":
+        response = await checkCompanyExist(data.email)
+        break;
       default:
         response = { success: false, error: "Unknown operation" };
         console.log("Unknown operation:", operation);

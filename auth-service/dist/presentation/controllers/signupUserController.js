@@ -25,17 +25,29 @@ const signupUserController = (dependencies) => {
     const { useCases: { signupUserUseCase, emailExistUseCase, verifyOtpUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
+            console.log("reached user signup");
             const { value, error } = signupValidation_1.signupValidation.validate(req.body);
             if (error) {
                 return next(errorResponse_1.default.conflict(String(error)));
             }
             else {
-                const data = value;
-                const userExist = yield emailExistUseCase(dependencies).execute(data === null || data === void 0 ? void 0 : data.email);
+                const data = {
+                    email: value.email,
+                    phone: value.phone
+                };
+                const userExist = yield emailExistUseCase(dependencies).execute(data);
                 if (userExist) {
-                    return next(errorResponse_1.default.conflict("user already exists"));
+                    let emailerr = "";
+                    let phoneerr = "";
+                    if (userExist.email == value.email) {
+                        emailerr = "user already exists";
+                    }
+                    if (userExist.phone == value.phone) {
+                        phoneerr = "number already used";
+                    }
+                    return next(errorResponse_1.default.conflict(emailerr + phoneerr));
                 }
-                if (!(data === null || data === void 0 ? void 0 : data.otp)) {
+                if (!(value === null || value === void 0 ? void 0 : value.otp)) {
                     const otp = yield (0, generateOtp_1.generateOtp)();
                     if (otp) {
                         const otpData = {
@@ -48,6 +60,8 @@ const signupUserController = (dependencies) => {
                             yield (0, sentOtp_1.sendOtp)(data === null || data === void 0 ? void 0 : data.email, otp).then((response) => {
                                 console.log(response);
                                 return res.status(200).send({
+                                    success: true,
+                                    user: value,
                                     message: 'An Otp has been sent to the email'
                                 });
                             });
@@ -55,18 +69,18 @@ const signupUserController = (dependencies) => {
                     }
                 }
                 else {
-                    const otpVerfication = yield verifyOtpUseCase(dependencies).execute(data.email, data === null || data === void 0 ? void 0 : data.otp);
+                    const otpVerfication = yield verifyOtpUseCase(dependencies).execute(data.email, value === null || value === void 0 ? void 0 : value.otp);
                     if (!otpVerfication) {
                         return next(errorResponse_1.default.unauthorized("incorrect otp"));
                     }
-                    const password = yield (0, hashpassword_1.hashPassword)(data.password);
+                    const password = yield (0, hashpassword_1.hashPassword)(value.password);
                     if (!password) {
                         return next(errorResponse_1.default.forbidden('password required'));
                     }
                     else {
-                        data.password = password;
+                        value.password = password;
                     }
-                    const user = yield signupUserUseCase(dependencies).execute(data);
+                    const user = yield signupUserUseCase(dependencies).execute(value);
                     if (!user) {
                         return next(errorResponse_1.default.notFound('failed to add user'));
                     }

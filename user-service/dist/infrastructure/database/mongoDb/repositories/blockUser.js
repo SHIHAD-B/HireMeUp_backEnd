@@ -14,23 +14,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.blockUser = void 0;
 const userSchema_1 = __importDefault(require("../model/userSchema"));
-const blockUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
+const blockUser = (email) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!id) {
+        if (!email) {
             return null;
         }
-        const user = yield userSchema_1.default.findOne({ _id: id });
+        const user = yield userSchema_1.default.findOne({ email: email });
         if (!user) {
             return null;
         }
-        const blockedUser = yield userSchema_1.default.updateOne({ _id: id }, {
+        const blockedUser = yield userSchema_1.default.updateOne({ email: email }, {
             blocked: true
         }, { new: true });
         return blockedUser.modifiedCount > 0 ? true : false;
     }
     catch (error) {
-        console.error('Error deleting user:', error);
-        throw new Error('Failed to delete user.');
+        console.error('Error blocking user:', error);
+        throw new Error('Failed to block user.');
     }
 });
 exports.blockUser = blockUser;

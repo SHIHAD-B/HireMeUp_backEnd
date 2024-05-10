@@ -1,18 +1,18 @@
 
 import Users from "../model/userSchema";
 
-export const deleteUser = async (id: string): Promise<boolean | null> => {
+export const deleteUser = async (email: string): Promise<boolean | null> => {
     try {
-        if (!id) {
+        if (!email) {
           return null
         }
 
-        const user = await Users.findOne({ _id: id })
+        const user = await Users.findOne({ email: email })
         if (!user) {
            return null
         }
 
-        const deletedUser = await Users.updateOne({ _id: id }, {
+        const deletedUser = await Users.updateOne({ email: email }, {
             deleted: true,
             blocked: true
         }, { new: true })

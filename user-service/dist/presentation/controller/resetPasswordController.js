@@ -21,7 +21,6 @@ const resetPasswordController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const { email, password } = req.body;
-            console.log("from reset password", req.body);
             if (!email) {
                 next(errorResponse_1.default.badRequest("credential is missing"));
             }
@@ -34,11 +33,11 @@ const resetPasswordController = (dependencies) => {
                 next(errorResponse_1.default.badRequest(errors.message));
             }
             else {
-                const hashedPassword = (0, hashpassword_1.hashPassword)(password);
+                const hashedPassword = yield (0, hashpassword_1.hashPassword)(password);
                 if (!hashedPassword) {
                     next(errorResponse_1.default.forbidden("issue in hashing the password"));
                 }
-                const resetPassword = yield resetPasswordUseCase(dependencies).execute(email, password);
+                const resetPassword = yield resetPasswordUseCase(dependencies).execute(email, hashedPassword);
                 if (!resetPassword) {
                     return next(errorResponse_1.default.forbidden("Error occured in resetting the data of user"));
                 }

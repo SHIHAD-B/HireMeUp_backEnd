@@ -30,7 +30,7 @@ const AdminSchema = new mongoose_1.Schema({
     access: { type: String, enum: ['can-view', 'can-edit'] },
     role: { type: String },
     blocked: { type: Boolean },
-    createdAt: { type: Date },
+    createdAt: { type: Date, default: Date.now },
 });
 const Admin = mongoose_1.default.model('Admin', AdminSchema);
 exports.default = Admin;

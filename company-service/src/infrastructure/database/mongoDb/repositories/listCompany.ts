@@ -12,6 +12,6 @@ export const listCompany = async (): Promise<ICompany[] | null> => {
         return companyList;
     } catch (error: any) {
         console.error('Error listing companies:', error.message);
-        throw new Error('Failed to list companies.'); // Provide a generic error message
+        throw new Error('Failed to list companies.'); 
     }
 };

@@ -21,7 +21,7 @@ const emailExist = (email) => __awaiter(void 0, void 0, void 0, function* () {
             email: email
         };
         const result = yield client.produce(data, "checkEmail", "toUser");
-        return result ? true : false;
+        return result;
     }
     catch (error) {
         throw new Error(error);

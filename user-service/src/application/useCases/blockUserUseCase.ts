@@ -4,9 +4,9 @@ export const blockUserUseCase = (dependencies: IDependencies) => {
     const { repositories: { blockUser } } = dependencies
 
     return {
-        execute: async (id: string) => {
+        execute: async (email: string) => {
             try {
-                return await blockUser(id)
+                return await blockUser(email)
             } catch (error: any) {
                 throw new Error(error)
             }

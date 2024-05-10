@@ -1,4 +1,4 @@
-import { ICompany } from "../../../../domain/entities";
+import { ICompany, IRequests } from "../../../../domain/entities";
 import Company from "../model/companySchema";
 import Requests from "../model/requestSchema";
 
@@ -8,13 +8,20 @@ export const approveRequest = async (data: ICompany): Promise<boolean | null> =>
             return null;
         }
 
-        const company = await Company.create(data);
+        const request: any = await Requests.findOne({ email: data.email });
+        const company = await Company.create({
+            email: request?.email,
+            password: request?.password,
+            status: 'active',
+            approval: 'approved',
+            deleted: false,
+            company_name: request?.companyname,
+        })
 
         if (!company) {
             return null;
         }
 
-        const request = await Requests.findOne({ email: data.email });
 
         if (!request) {
             return null;

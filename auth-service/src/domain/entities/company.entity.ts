@@ -1,33 +1,33 @@
 import { Types } from "mongoose";
 
 export interface ICompany {
-    _id: Types.ObjectId;
-    email: String | null;
-    password: String | null;
-    website?: String | null;
-    description?: String | null;
-    status?: String | null;
-    tech_stack?: String[] | null;
-    images?: String[] | null;
-    titile?: String | null;
-    approval?: String | null;
+    _id?: Types.ObjectId;
+    email?: string | null;
+    password: string ;
+    website?: string | null;
+    description?: string | null;
+    status?: string | null;
+    tech_stack?: string[] | null;
+    images?: string[] | null;
+    titile?: string | null;
+    approval?: string | null;
     noOfEmployees?: Number | null;
     contact?: {
-       email: String | null;
-       facebook: String | null;
-       instagram: String | null;
-       linkedin: String | null;
+       email: string | null;
+       facebook: string | null;
+       instagram: string | null;
+       linkedin: string | null;
        phone: Number | null;
-       twitter: String | null;
-       youtube: String | null;
+       twitter: string | null;
+       youtube: string | null;
     };
-    industry?: String | null;
+    industry?: string | null;
     benefits?: {
     }[];
-    icon?: String | null;
-    location?: String[] | null;
+    icon?: string | null;
+    location?: string[] | null;
     founded?: Date | null;
-    companyname?: String | null;
+    companyname?: string | null;
     employees?: Types.ObjectId[] | null;
     createdAt?: Date | null;
     otp?:string;

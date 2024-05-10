@@ -25,6 +25,9 @@ class MessageHandler {
                 case "checkEmailcompany":
                     response = yield (0, repositories_1.checkCompanyExist)(data.email);
                     break;
+                case "companySignin":
+                    response = yield (0, repositories_1.checkCompanyExist)(data.email);
+                    break;
                 default:
                     response = { success: false, error: "Unknown operation" };
                     console.log("Unknown operation:", operation);

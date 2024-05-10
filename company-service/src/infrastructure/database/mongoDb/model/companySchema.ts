@@ -7,6 +7,7 @@ const CompanySchema: Schema = new Schema({
     website: { type: String },
     description: { type: String },
     status: { type: String, enum: ['active', 'blocked'] },
+    deleted: { type: Boolean},
     tech_stack: [{ type: String, }],
     images: [{ type: String, }],
     titile: { type: String },

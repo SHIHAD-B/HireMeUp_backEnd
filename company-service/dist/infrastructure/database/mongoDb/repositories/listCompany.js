@@ -24,7 +24,7 @@ const listCompany = () => __awaiter(void 0, void 0, void 0, function* () {
     }
     catch (error) {
         console.error('Error listing companies:', error.message);
-        throw new Error('Failed to list companies.'); // Provide a generic error message
+        throw new Error('Failed to list companies.');
     }
 });
 exports.listCompany = listCompany;

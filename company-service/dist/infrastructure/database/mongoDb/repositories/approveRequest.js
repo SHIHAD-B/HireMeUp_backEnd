@@ -20,11 +20,18 @@ const approveRequest = (data) => __awaiter(void 0, void 0, void 0, function* () 
         if (!data) {
             return null;
         }
-        const company = yield companySchema_1.default.create(data);
+        const request = yield requestSchema_1.default.findOne({ email: data.email });
+        const company = yield companySchema_1.default.create({
+            email: request === null || request === void 0 ? void 0 : request.email,
+            password: request === null || request === void 0 ? void 0 : request.password,
+            status: 'active',
+            approval: 'approved',
+            deleted: false,
+            company_name: request === null || request === void 0 ? void 0 : request.companyname,
+        });
         if (!company) {
             return null;
         }
-        const request = yield requestSchema_1.default.findOne({ email: data.email });
         if (!request) {
             return null;
         }

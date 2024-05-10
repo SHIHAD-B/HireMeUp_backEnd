@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.companyRoutes = void 0;
+const express_1 = require("express");
+const controller_1 = require("../../presentation/controller");
+const companyRoutes = (dependencies) => {
+    const { listRequests, approveRequest, rejectRequest, listCompany, blockCompany, recoverCompany, deleteCompany, unblockCompany, fetchCompany, resetPassword } = (0, controller_1.controller)(dependencies);
+    const router = (0, express_1.Router)();
+    router.route('/fetchrequests').get(listRequests);
+    router.route('/approverequest').post(approveRequest);
+    router.route('/rejectRequest').post(rejectRequest);
+    router.route('/companylist').get(listCompany);
+    router.route('/blockcompany').patch(blockCompany);
+    router.route('/unblockcompany').patch(unblockCompany);
+    router.route('/deletecompany').patch(deleteCompany);
+    router.route('/recovercompany').patch(recoverCompany);
+    router.route('/fetchcompany').get(fetchCompany);
+    router.route('/resetpassword').patch(resetPassword);
+    return router;
+};
+exports.companyRoutes = companyRoutes;

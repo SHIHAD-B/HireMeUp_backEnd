@@ -1,18 +1,18 @@
 
 import Users from "../model/userSchema";
 
-export const blockUser = async (id: string): Promise<boolean | null> => {
+export const blockUser = async (email: string): Promise<boolean | null> => {
     try {
-        if (!id) {
+        if (!email) {
           return null
         }
 
-        const user = await Users.findOne({ _id: id })
+        const user = await Users.findOne({ email: email })
         if (!user) {
            return null
         }
 
-        const blockedUser = await Users.updateOne({ _id: id }, {
+        const blockedUser = await Users.updateOne({ email: email }, {
             blocked: true
         }, { new: true })
 
@@ -20,8 +20,8 @@ export const blockUser = async (id: string): Promise<boolean | null> => {
 
 
     } catch (error: any) {
-        console.error('Error deleting user:', error);
-        throw new Error('Failed to delete user.');
+        console.error('Error blocking user:', error);
+        throw new Error('Failed to block user.');
     }
 
 }

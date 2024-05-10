@@ -27,7 +27,7 @@ const forgotController = (dependencies) => {
                 return next(errorResponse_1.default.conflict(error.message));
             }
             const { email, otp } = value;
-            const userExist = yield emailExistUseCase(dependencies).execute(email);
+            const userExist = yield emailExistUseCase(dependencies).execute({ email: email });
             if (!userExist) {
                 return next(errorResponse_1.default.badRequest("User not found"));
             }
@@ -47,6 +47,8 @@ const forgotController = (dependencies) => {
                 }
                 yield (0, sentOtp_1.sendOtp)(email, generatedOtp);
                 return res.status(200).send({
+                    success: true,
+                    user: { email: email },
                     message: 'An OTP has been sent to the email'
                 });
             }

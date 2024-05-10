@@ -11,7 +11,7 @@ export const forgotController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-           
+
             const { error, value } = emailValidation.validate(req.body);
 
             if (error) {
@@ -19,8 +19,7 @@ export const forgotController = (dependencies: IDependencies) => {
             }
 
             const { email, otp } = value;
-            const userExist = await emailExistUseCase(dependencies).execute(email);
-      
+            const userExist = await emailExistUseCase(dependencies).execute({email:email});
 
             if (!userExist) {
                 return next(ErrorResponse.badRequest("User not found"));
@@ -39,14 +38,16 @@ export const forgotController = (dependencies: IDependencies) => {
                 };
 
                 const client = await RabbitMQClient.getInstance();
-                const result = await client.produce(otpData, "addOtp","toUser");
-        
+                const result = await client.produce(otpData, "addOtp", "toUser");
+
                 if (!result) {
                     return next(ErrorResponse.internalError("Failed to send OTP"));
                 }
 
                 await sendOtp(email, generatedOtp);
                 return res.status(200).send({
+                    success: true,
+                    user: { email: email },
                     message: 'An OTP has been sent to the email'
                 });
             } else {
@@ -58,7 +59,7 @@ export const forgotController = (dependencies: IDependencies) => {
 
                 return res.status(200).send({
                     success: true,
-                    data:userExist,
+                    data: userExist,
                     message: "OTP verified"
                 });
             }

@@ -1,5 +1,6 @@
-
+import { IUserExist } from "../entities"
+import { IUsersResult } from "../entities/user.result.entity"
 
 export interface IEmailExistUserUseCase {
-    execute(email: String): Promise<boolean | null>
+    execute(data:IUserExist): Promise<IUsersResult |boolean | null>
 }

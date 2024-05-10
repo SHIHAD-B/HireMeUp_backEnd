@@ -16,9 +16,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./addUserUseCase"), exports);
 __exportStar(require("./blockUserUseCase"), exports);
+__exportStar(require("./unblockUserUseCase"), exports);
 __exportStar(require("./deletUserUseCase"), exports);
+__exportStar(require("./recoverUserUseCase"), exports);
 __exportStar(require("./fetchUserUseCase"), exports);
 __exportStar(require("./listUserUseCase"), exports);
 __exportStar(require("./updateUserUseCase"), exports);
 __exportStar(require("./resetPasswordUseCase"), exports);
 __exportStar(require("./addOtpUseCase"), exports);
+__exportStar(require("./fetchAdminUseCase"), exports);

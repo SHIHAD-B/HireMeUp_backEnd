@@ -25,7 +25,7 @@ const listUserController = (dependencies) => {
             else {
                 return res.status(200).json({
                     success: true,
-                    users: users,
+                    user: users,
                     message: "Users listed successfully."
                 });
             }

@@ -14,6 +14,7 @@ const logout = () => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             res.clearCookie('user_token');
+            res.clearCookie('Company_token');
             res.status(200).json({ success: true, message: "User logged out successfully" });
         }
         catch (error) {

@@ -8,7 +8,7 @@ const AdminSchema: Schema = new Schema({
   access: { type: String, enum: [ 'can-view', 'can-edit' ] },
   role: { type: String },
   blocked: { type: Boolean },
-  createdAt: { type: Date },
+  createdAt: { type : Date, default: Date.now },
 });
 
 const Admin = mongoose.model<IAdmin>('Admin', AdminSchema);

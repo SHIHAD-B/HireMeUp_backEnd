@@ -22,3 +22,5 @@ __exportStar(require("./fetchUseCaseInterface"), exports);
 __exportStar(require("./listUseCaseInterface"), exports);
 __exportStar(require("./resetUseCaseInterface"), exports);
 __exportStar(require("./addOtpUseCase"), exports);
+__exportStar(require("./recoverUseCaseinterface"), exports);
+__exportStar(require("./fetchAdminUseCaseinterface"), exports);

@@ -2,8 +2,8 @@ import express, { Request, Response, Application, NextFunction } from "express";
 import { PORT } from "../config/envConfig/config";
 import cookieParser from "cookie-parser";
 import { errorHandler } from "../utils/error/errorHandler";
-// import { userRoutes } from "../infrastructure/routes/user.routes";
-// import { dependencies } from "../config/dependencies";
+import { companyRoutes } from "../infrastructure/routes/company.routes";
+import { dependencies } from "../config/dependencies";
 import RabbitMQClient from "../infrastructure/rabbitmq/client";
 
 
@@ -16,7 +16,7 @@ app.use(cookieParser())
 
 
 
-// app.use('/', userRoutes(dependencies))
+app.use('/', companyRoutes(dependencies))
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
     res.status(404).send("api not found : company service")

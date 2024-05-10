@@ -48,6 +48,8 @@ const companySignupController = (dependencies) => {
                             yield (0, sentOtp_1.sendOtp)(data === null || data === void 0 ? void 0 : data.email, otp).then((response) => {
                                 console.log(response);
                                 return res.status(200).send({
+                                    success: true,
+                                    user: data,
                                     message: 'An Otp has been sent to the email'
                                 });
                             });

@@ -13,9 +13,9 @@ exports.deleteUserUseCase = void 0;
 const deleteUserUseCase = (dependencies) => {
     const { repositories: { deleteUser } } = dependencies;
     return {
-        execute: (id) => __awaiter(void 0, void 0, void 0, function* () {
+        execute: (email) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                return yield deleteUser(id);
+                return yield deleteUser(email);
             }
             catch (error) {
                 throw new Error(error);

@@ -8,11 +8,11 @@ export const deleteUserController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const userId = req.params.id
-            if (!userId) {
-                return next(ErrorResponse.badRequest("User ID is missing."));
+            const userEmail = req.body.email
+            if (!userEmail) {
+                return next(ErrorResponse.badRequest("User email is missing."));
             }
-            const deletedUser = await deleteUserUseCase(dependencies).execute(userId)
+            const deletedUser = await deleteUserUseCase(dependencies).execute(userEmail)
             if (!deletedUser) {
                 return next(ErrorResponse.notFound("User not found or unable to delete user."));
             } else {

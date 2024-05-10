@@ -18,11 +18,11 @@ const deleteUserController = (dependencies) => {
     const { useCases: { deleteUserUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const userId = req.params.id;
-            if (!userId) {
-                return next(errorResponse_1.default.badRequest("User ID is missing."));
+            const userEmail = req.body.email;
+            if (!userEmail) {
+                return next(errorResponse_1.default.badRequest("User email is missing."));
             }
-            const deletedUser = yield deleteUserUseCase(dependencies).execute(userId);
+            const deletedUser = yield deleteUserUseCase(dependencies).execute(userEmail);
             if (!deletedUser) {
                 return next(errorResponse_1.default.notFound("User not found or unable to delete user."));
             }

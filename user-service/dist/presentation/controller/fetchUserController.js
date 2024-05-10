@@ -20,7 +20,6 @@ const fetchUserController = (dependencies) => {
     const { useCases: { fetchUserUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            console.log("reached fetch user");
             const { user_token } = req.cookies;
             if (!user_token) {
                 return next(errorResponse_1.default.badRequest("User token is missing."));
@@ -33,11 +32,18 @@ const fetchUserController = (dependencies) => {
             });
             const { email } = deToken;
             if (!email) {
-                return next(errorResponse_1.default.badRequest("User ID is missing."));
+                return next(errorResponse_1.default.badRequest("User email is missing."));
             }
             const user = yield fetchUserUseCase(dependencies).execute(email);
             if (!user) {
                 return next(errorResponse_1.default.notFound("User not found or unable to fetch user."));
+            }
+            else if (user.blocked == true || user.deleted == true) {
+                return res.status(200).json({
+                    success: false,
+                    user: null,
+                    message: "user is blocked or deleted"
+                });
             }
             else {
                 return res.status(200).json({

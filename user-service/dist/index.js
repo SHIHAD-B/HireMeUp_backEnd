@@ -20,11 +20,12 @@ const dbConnection_1 = __importDefault(require("./infrastructure/database/dbConn
         server_1.default;
         console.log(`user Server is running on port ${config_1.PORT}`);
         yield (0, dbConnection_1.default)()
-            .catch((error) => {
-            if (error) {
-                console.log(error);
-            }
-            console.log(`user-service is connected the database`);
+            .then(() => {
+            console.log("user-service is connected to the database");
+        })
+            .catch(error => {
+            console.error("Error connecting to the database:", error);
+            throw new Error("Error connecting to the database");
         });
     }
     catch (error) {

@@ -61,6 +61,7 @@ const UsersSchema = new mongoose_1.Schema({
     deleted: { type: Boolean },
     subscription: [{
             subscriptionId: { type: mongoose_1.Schema.Types.ObjectId },
+            createdAt: { type: Date, default: Date.now },
         }],
 });
 const Users = mongoose_1.default.model('Users', UsersSchema);
