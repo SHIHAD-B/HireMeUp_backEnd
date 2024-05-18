@@ -12,7 +12,8 @@ export const companySignupController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            console.log("reached company signup controller")
+            console.log(req.body,"reached company signup controller")
+           
             const { value, error } = addRequestValidation.validate(req.body)
 
             if (error) {

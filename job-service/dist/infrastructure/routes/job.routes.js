@@ -1,0 +1,23 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.jobRoutes = void 0;
+const express_1 = require("express");
+const controller_1 = require("../../presentation/controller");
+const jobRoutes = (dependencies) => {
+    const { addCategory, addJob, addApplicant, applicantList, categoryList, deleteApplicant, deleteCategory, deleteJob, editCategory, editJob, jobList, fetchJob } = (0, controller_1.controller)(dependencies);
+    const router = (0, express_1.Router)();
+    router.route('/addcategory').post(addCategory);
+    router.route('/addjob').post(addJob);
+    router.route('/addapplicant').post(addApplicant);
+    router.route('/applicantlist').get(applicantList);
+    router.route('/categorylist').get(categoryList);
+    router.route('/joblist').get(jobList);
+    router.route('/deleteapplicant').patch(deleteApplicant);
+    router.route('/deletecategory').patch(deleteCategory);
+    router.route('/deletejob').patch(deleteJob);
+    router.route('/editcategory').patch(editCategory);
+    router.route('/editjob').patch(editJob);
+    router.route('/fetchjob/:id');
+    return router;
+};
+exports.jobRoutes = jobRoutes;

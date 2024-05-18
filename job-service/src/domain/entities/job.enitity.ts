@@ -14,7 +14,7 @@ export interface IJobs {
     type: String | null;
     benifts: {
        description: String | null;
-       icon: String | null;
+       icon: number | null;
        name: String | null;
     }[];
     qualification: String | null;

@@ -9,7 +9,7 @@ export const listRequest = async (): Promise<IRequests[] | null> => {
             return null;
         }
 
-        return requestList;
+        return requestList.reverse();
     } catch (error: any) {
         console.error('Error listing companies:', error.message);
         throw new Error('Failed to list requests.');

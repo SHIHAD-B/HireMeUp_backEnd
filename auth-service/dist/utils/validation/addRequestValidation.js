@@ -30,11 +30,7 @@ exports.addRequestValidation = joi_1.default.object({
         'string.pattern.base': 'Password is too weak',
         'string.empty': 'password is required',
     }),
-    document: joi_1.default.string()
-        .min(3)
-        .required()
-        .messages({
-        'string.empty': 'document is required',
-        'string.min': 'invalid document path',
+    document: joi_1.default.any().required().messages({
+        'any.required': 'Document is required',
     }),
 }).options({ abortEarly: false }).unknown(true);

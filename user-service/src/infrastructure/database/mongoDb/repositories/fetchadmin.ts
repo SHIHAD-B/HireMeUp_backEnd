@@ -1,6 +1,6 @@
 import Admin from "../model/adminSchema";
-import { IUsers } from "../../../../domain/entities/user.entity";
-export const fetchAdmin = async (email: string): Promise<IUsers | null> => {
+import { IAdmin } from "../../../../domain/entities";
+export const fetchAdmin = async (email: string): Promise<IAdmin | null> => {
     try {
 
 

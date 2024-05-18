@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 
-export interface IApplicants extends Document {
+export interface IApplicants {
     _id: Types.ObjectId;
     jobId: Types.ObjectId | null;
     schedule: {

@@ -21,7 +21,7 @@ const listRequest = () => __awaiter(void 0, void 0, void 0, function* () {
         if (requestList.length === 0) {
             return null;
         }
-        return requestList;
+        return requestList.reverse();
     }
     catch (error) {
         console.error('Error listing companies:', error.message);

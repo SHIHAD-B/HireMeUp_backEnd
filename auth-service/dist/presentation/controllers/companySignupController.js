@@ -23,7 +23,7 @@ const companySignupController = (dependencies) => {
     const { useCases: { companySignupUseCase, companyEmailExistUseCase, verifyOtpUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            console.log("reached company signup controller");
+            console.log(req.body, "reached company signup controller");
             const { value, error } = addRequestValidation_1.addRequestValidation.validate(req.body);
             if (error) {
                 return next(errorResponse_1.default.conflict(String(error)));
