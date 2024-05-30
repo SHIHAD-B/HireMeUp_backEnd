@@ -26,4 +26,4 @@ jobs:
         with:
           context: ./job-service/
           push: true
-          tags: shihadb/hireMeUp-job-service:latest
+          tags: shihadb/hiremeup-job-service:latest

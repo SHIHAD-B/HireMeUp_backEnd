@@ -26,4 +26,4 @@ jobs:
         with:
           context: ./subscription-service/
           push: true
-          tags: shihadb/hireMeUp-subscription-service:latest
+          tags: shihadb/hiremeup-subscription-service:latest

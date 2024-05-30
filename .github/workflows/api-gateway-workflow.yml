@@ -26,4 +26,4 @@ jobs:
         with:
           context: ./api-gateway/
           push: true
-          tags: shihadb/hireMeUp-api-gateway:latest
+          tags: shihadb/hiremeup-api-gateway:latest
