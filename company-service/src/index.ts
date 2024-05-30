@@ -15,6 +15,6 @@ import dbConnection from './infrastructure/database/dbConnection';
         })
     } catch (error: any) {
         console.error("Issue in running the server:", error);
-        throw new Error("Issue in running the server...");
+        throw new Error("Issue in running the server....");
     }
 })();
