@@ -21,10 +21,16 @@ const editUserController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const data = req.body;
+            console.log(data, "data in the back end");
+            if (data.__v) {
+                console.log("camed");
+                delete data.__v;
+            }
+            console.log(data, "data in the back end");
             if (!data) {
                 return next(errorResponse_1.default.badRequest("data is required"));
             }
-            const { value, error } = editUserValidation_1.editUserValidation.validate(req.body);
+            const { value, error } = editUserValidation_1.editUserValidation.validate(data);
             if (error) {
                 return next(errorResponse_1.default.badRequest(error.message));
             }

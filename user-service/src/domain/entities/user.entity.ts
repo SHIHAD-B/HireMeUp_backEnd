@@ -2,41 +2,41 @@ import { Types } from "mongoose";
 
 export interface IUsers  {
     _id: Types.ObjectId;
-    phone: Number | null;
-    name: String | null;
-    gender: String | null;
-    password: String | null;
-    email: String | null;
-    dob: Date | null;
-    profile: String | null;
-    skills: String[] | null;
+    phone: number ;
+    username: string ;
+    gender: string ;
+    password: string ;
+    email: string ;
+    dob: Date ;
+    profile: string ;
+    skills: string[] ;
     education: {
-       description: String | null;
-       from: String | null;
-       grade: String | null;
-       to: String | null;
+       description: string ;
+       from: string ;
+       grade: string ;
+       to: string ;
     };
-    cv: String | null;
-    about: String | null;
+    cv: string ;
+    about: string ;
     experiences: {
-       description: String | null;
-       designation: String | null;
-       from: Date | null;
-       location: String | null;
-       to: Date | null;
+       description: string ;
+       designation: string ;
+       from: Date ;
+       location: string ;
+       to: Date ;
     };
     contacts: {
-       email: String | null;
-       instagram: String | null;
-       linkedin: String | null;
-       phone: String | null;
-       portfolio: String | null;
-       twitter: String | null;
+       email: string ;
+       instagram: string ;
+       linkedin: string ;
+       phone: string ;
+       portfolio: string ;
+       twitter: string ;
     };
-    onlineStatus: String | null;
-    blocked: Boolean | null;
-    deleted: Boolean | null;
+    onlineStatus: string ;
+    blocked: Boolean ;
+    deleted: Boolean ;
     subscription: {
-       subscriptionId: Types.ObjectId | null;
+       subscriptionId: Types.ObjectId ;
     }[];
   }

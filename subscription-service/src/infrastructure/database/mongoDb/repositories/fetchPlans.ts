@@ -4,7 +4,7 @@ import Plans from "../model/planSchema";
 export const fetchPlans = async (): Promise<IPlans[] | null> => {
     try {
        
-        const plans = await Plans.find({ })
+        const plans = await Plans.find()
         
         return plans;
     } catch (error: any) {

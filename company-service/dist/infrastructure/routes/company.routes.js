@@ -4,9 +4,10 @@ exports.companyRoutes = void 0;
 const express_1 = require("express");
 const controller_1 = require("../../presentation/controller");
 const companyRoutes = (dependencies) => {
-    const { listRequests, approveRequest, rejectRequest, listCompany, blockCompany, recoverCompany, deleteCompany, unblockCompany, fetchCompany, resetPassword } = (0, controller_1.controller)(dependencies);
+    const { listRequests, approveRequest, rejectRequest, listCompany, blockCompany, recoverCompany, deleteCompany, unblockCompany, fetchCompany, resetPassword, editCompany, resetProfilePassword, viewRequestDocument, addEmployee, deleteEmployee, editEmployee, listEmployee, addCompany, editAdCompany } = (0, controller_1.controller)(dependencies);
     const router = (0, express_1.Router)();
     router.route('/fetchrequests').get(listRequests);
+    router.route('/resetprofilepassword').patch(resetProfilePassword);
     router.route('/approverequest').post(approveRequest);
     router.route('/rejectRequest').post(rejectRequest);
     router.route('/companylist').get(listCompany);
@@ -16,6 +17,14 @@ const companyRoutes = (dependencies) => {
     router.route('/recovercompany').patch(recoverCompany);
     router.route('/fetchcompany').get(fetchCompany);
     router.route('/resetpassword').patch(resetPassword);
+    router.route('/editcompany').patch(editCompany);
+    router.route('/viewdocument').patch(viewRequestDocument);
+    router.route('/listemployee').get(listEmployee);
+    router.route('/addemployee').post(addEmployee);
+    router.route('/editemployee').patch(editEmployee);
+    router.route('/deleteemployee').patch(deleteEmployee);
+    router.route('/addcompany').post(addCompany);
+    router.route('/editadcompany').patch(editAdCompany);
     return router;
 };
 exports.companyRoutes = companyRoutes;

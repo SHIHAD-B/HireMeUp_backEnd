@@ -31,7 +31,7 @@ export const jobRoutes = (dependencies: IDependencies) => {
     router.route('/deletejob').patch(deleteJob)
     router.route('/editcategory').patch(editCategory)
     router.route('/editjob').patch(editJob)
-    router.route('/fetchjob/:id')
+    router.route('/fetchjob/:id').get(fetchJob)
 
 
     return router

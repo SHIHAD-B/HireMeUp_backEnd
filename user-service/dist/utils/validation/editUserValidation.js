@@ -6,7 +6,48 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.editUserValidation = void 0;
 const joi_1 = __importDefault(require("joi"));
 exports.editUserValidation = joi_1.default.object({
-    username: joi_1.default.string().min(20).required(),
+    _id: joi_1.default.string().required(),
+    username: joi_1.default.string().min(3).required(),
+    phone: joi_1.default.number().optional(),
     email: joi_1.default.string().email().required(),
-    password: joi_1.default.string().pattern(new RegExp(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/)).required()
+    password: joi_1.default.string().pattern(new RegExp(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/))
+        .required()
+        .messages({
+        'string.pattern.base': 'Password is too weak',
+        'string.empty': 'password is required',
+    }).optional(),
+    gender: joi_1.default.string().optional(),
+    dob: joi_1.default.date().optional(),
+    profile: joi_1.default.string().optional(),
+    skills: joi_1.default.array().items(joi_1.default.string()).optional(),
+    education: joi_1.default.object({
+        description: joi_1.default.string().optional(),
+        from: joi_1.default.string().optional(),
+        grade: joi_1.default.string().optional(),
+        to: joi_1.default.string().optional()
+    }).optional(),
+    cv: joi_1.default.string().optional(),
+    about: joi_1.default.string().optional(),
+    experiences: joi_1.default.object({
+        description: joi_1.default.string().optional(),
+        designation: joi_1.default.string().optional(),
+        from: joi_1.default.date().optional(),
+        location: joi_1.default.string().optional(),
+        to: joi_1.default.date().optional()
+    }).optional(),
+    contacts: joi_1.default.object({
+        email: joi_1.default.string().email().optional(),
+        instagram: joi_1.default.string().optional(),
+        linkedin: joi_1.default.string().optional(),
+        phone: joi_1.default.string().optional(),
+        portfolio: joi_1.default.string().optional(),
+        twitter: joi_1.default.string().optional()
+    }).optional(),
+    onlineStatus: joi_1.default.string().optional(),
+    blocked: joi_1.default.boolean().optional(),
+    __v: joi_1.default.number().optional(),
+    deleted: joi_1.default.boolean().optional(),
+    subscription: joi_1.default.array().items(joi_1.default.object({
+        subscriptionId: joi_1.default.string().optional()
+    })).optional()
 });

@@ -10,8 +10,11 @@ export const addJobController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-
-            const { value, error } = addJobValidation.validate(req.body)
+                const data={
+                    ...req.body
+                }
+                delete data.createdAt
+            const { value, error } = addJobValidation.validate(data)
 
             if (error) {
                 return next(ErrorResponse.conflict(String(error)))

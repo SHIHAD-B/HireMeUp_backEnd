@@ -24,7 +24,7 @@ const JobsSchema: Schema = new Schema({
   slot: { type: Number },
   start_date: { type: Date },
   end_date: { type: Date },
-  level: { type: String, enum: ['entry', 'mid', 'director', 'vp or above'] },
+  level: { type: String, enum: ['entry', 'mid', 'director','senior', 'vp or above'] },
   createdAt: { type: Date, default: Date.now },
   expires: {
     type: Date, default: function () {

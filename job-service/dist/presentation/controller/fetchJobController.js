@@ -19,8 +19,17 @@ const fetchJobController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const id = req.params.id;
+            console.log(typeof id);
+            function isValidObjectId(id) {
+                const objectIdPattern = /^[0-9a-fA-F]{24}$/;
+                return objectIdPattern.test(id);
+            }
+            if (!isValidObjectId(id)) {
+                return next(errorResponse_1.default.badRequest("invalid company id..."));
+            }
             const job = yield fetchJobsUseCase(dependencies).execute(id);
             if (!job) {
+                console.log("else not job");
                 return next(errorResponse_1.default.badRequest("failed to fetch job.."));
             }
             else {

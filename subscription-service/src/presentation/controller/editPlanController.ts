@@ -11,6 +11,7 @@ export const editPlanController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const data = req.body
+            console.log(req.body,"body in subscription")
             if (!data) {
                 return next(ErrorResponse.badRequest("data is required"))
             }
@@ -26,7 +27,10 @@ export const editPlanController = (dependencies: IDependencies) => {
            
 
             const editedPlan = await editPlansUseCase(dependencies).execute(value)
-            if (!editedPlan) {
+            if(editedPlan==false){
+                return next(ErrorResponse.conflict("plan already exist"))
+
+            }else if(!editedPlan) {
                 return next(ErrorResponse.forbidden("Error occured in editing the data of plan"))
             } else {
                 return res.status(200).send({

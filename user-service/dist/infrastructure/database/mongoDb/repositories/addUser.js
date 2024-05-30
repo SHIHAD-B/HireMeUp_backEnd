@@ -21,6 +21,15 @@ const addUser = (data) => __awaiter(void 0, void 0, void 0, function* () {
             return null;
         }
         data = Object.assign(Object.assign({}, data), { blocked: (_a = data === null || data === void 0 ? void 0 : data.blocked) !== null && _a !== void 0 ? _a : false, deleted: (_b = data === null || data === void 0 ? void 0 : data.deleted) !== null && _b !== void 0 ? _b : false });
+        const userExist = yield userSchema_1.default.findOne({
+            $or: [
+                { email: data.email },
+                { phone: data.phone }
+            ]
+        });
+        if (userExist) {
+            return false;
+        }
         const user = yield userSchema_1.default.create(data);
         return user;
     }

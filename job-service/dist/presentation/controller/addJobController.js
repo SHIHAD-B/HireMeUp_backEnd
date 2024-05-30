@@ -19,7 +19,9 @@ const addJobController = (dependencies) => {
     const { useCases: { addJobUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const { value, error } = addJobValidation_1.addJobValidation.validate(req.body);
+            const data = Object.assign({}, req.body);
+            delete data.createdAt;
+            const { value, error } = addJobValidation_1.addJobValidation.validate(data);
             if (error) {
                 return next(errorResponse_1.default.conflict(String(error)));
             }

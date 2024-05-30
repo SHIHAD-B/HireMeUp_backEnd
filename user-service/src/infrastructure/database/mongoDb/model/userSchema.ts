@@ -6,7 +6,7 @@ import { IUsers } from '../../../../domain/entities/user.entity';
 const UsersSchema: Schema = new Schema({
   phone: { type: Number },
   username: { type: String },
-  gender: { type: String },
+  gender: { type: String ,enum: [ 'Male', 'Female','Other' ] },
   password: { type: String },
   email: { type: String },
   dob: { type: Date },

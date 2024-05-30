@@ -27,7 +27,7 @@ const mongoose_1 = __importStar(require("mongoose"));
 const UsersSchema = new mongoose_1.Schema({
     phone: { type: Number },
     username: { type: String },
-    gender: { type: String },
+    gender: { type: String, enum: ['Male', 'Female', 'Other'] },
     password: { type: String },
     email: { type: String },
     dob: { type: Date },

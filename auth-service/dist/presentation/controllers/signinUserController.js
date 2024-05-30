@@ -40,7 +40,7 @@ const signinUserController = (dependencies) => {
                     return next(errorResponse_1.default.badRequest('incorrect password'));
                 }
                 else if (User == null) {
-                    return next(errorResponse_1.default.notFound('user not found'));
+                    return next(errorResponse_1.default.badRequest('user not found'));
                 }
                 else if ((User === null || User === void 0 ? void 0 : User.blocked) == true || User.deleted == true) {
                     return next(errorResponse_1.default.badRequest('user blocked or deleted by admin'));

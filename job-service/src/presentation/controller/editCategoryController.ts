@@ -10,7 +10,6 @@ export const editCategoryController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-
             const { value, error } = editCategoryValidation.validate(req.body)
 
             if (error) {
@@ -18,8 +17,11 @@ export const editCategoryController = (dependencies: IDependencies) => {
             } else {
 
                 const category: any = await editCategoryUseCase(dependencies).execute(value)
-                if (!category) {
-                    return next(ErrorResponse.conflict("failed to edit category"))
+                if (category == false) {
+                    return next(ErrorResponse.conflict("Category already exists"))
+                } else if (!category) {
+                    return next(ErrorResponse.conflict("Failed to edit category"))
+
                 } else {
                     return res.status(200).json({
                         success: true,

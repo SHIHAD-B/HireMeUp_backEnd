@@ -1,7 +1,8 @@
-import joi from "joi";
+import Joi from "joi";
 
-export const editCategoryValidation = joi.object({
-    id: joi.string().required(),
-    description: joi.string().min(5),
-    category: joi.string().min(4).max(20)
-}).xor('description', 'category').with('description', 'category').with('category', 'description').error(new Error('Either description or category must be provided'));
+
+export const editCategoryValidation = Joi.object({
+    _id: Joi.string().min(5).required(),
+    description: Joi.string().min(5).required(),
+    category: Joi.string().min(4).max(40).required(),
+});

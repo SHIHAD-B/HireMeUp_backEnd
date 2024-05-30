@@ -16,6 +16,7 @@ exports.updateUser = void 0;
 const userSchema_1 = __importDefault(require("../model/userSchema"));
 const updateUser = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        console.log(data, "data in the edit repo");
         if (!data) {
             return null;
         }

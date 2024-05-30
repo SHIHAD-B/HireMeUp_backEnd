@@ -16,7 +16,7 @@ exports.listJobs = void 0;
 const jobSchema_1 = __importDefault(require("../model/jobSchema"));
 const listJobs = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const jobList = yield jobSchema_1.default.find();
+        const jobList = yield jobSchema_1.default.find({ deleted: false });
         return jobList ? jobList : null;
     }
     catch (error) {

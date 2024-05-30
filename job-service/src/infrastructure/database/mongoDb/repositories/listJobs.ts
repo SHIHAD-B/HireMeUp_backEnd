@@ -3,7 +3,7 @@ import Jobs from "../model/jobSchema";
 
 export const listJobs = async (): Promise<IJobs[] | null> => {
     try {
-        const jobList = await Jobs.find()
+        const jobList = await Jobs.find({deleted:false})
         return jobList ? jobList : null
 
     } catch (error: any) {

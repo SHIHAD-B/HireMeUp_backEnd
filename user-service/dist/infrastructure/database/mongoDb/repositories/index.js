@@ -28,3 +28,4 @@ __exportStar(require("./addOtp"), exports);
 __exportStar(require("./checkUser"), exports);
 __exportStar(require("./recoverUser"), exports);
 __exportStar(require("./fetchadmin"), exports);
+__exportStar(require("./editUser"), exports);

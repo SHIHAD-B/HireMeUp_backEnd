@@ -7,7 +7,7 @@ export interface IRepositories {
     listCategory: () => Promise<ICategory[] | null>
     listApplicants: () => Promise<IApplicants[] | null>
     editJob: (data: IJobs) => Promise<IJobs | null>
-    editCategory: (data: ICategory) => Promise<ICategory | null>
+    editCategory: (data: ICategory) => Promise<ICategory | null| boolean>
     deleteJob: (id: string) => Promise<boolean | null>
     deleteCategory: (id: string) => Promise<boolean | null>
     deleteApplicant: (id: string) => Promise<boolean | null>

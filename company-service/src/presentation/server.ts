@@ -19,7 +19,7 @@ app.use(cookieParser())
 app.use('/', companyRoutes(dependencies))
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
-    res.status(404).send("api not found : company service")
+    res.status(404).send("api not found: company service")
 })
 
 app.use(errorHandler)

@@ -3,6 +3,7 @@ import { IUsers } from "../../../../domain/entities/user.entity";
 
 export const updateUser = async (data: IUsers): Promise<IUsers | null> => {
     try {
+        console.log(data,"data in the edit repo")
         if (!data) {
             return null
         }

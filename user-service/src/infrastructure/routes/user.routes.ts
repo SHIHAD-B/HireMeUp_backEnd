@@ -11,7 +11,9 @@ export const userRoutes = (dependencies: IDependencies) => {
         listUser,
         unblockUser,
         recoverUser,
-        fetchAdmin
+        fetchAdmin,
+        resetProfilePassword,
+        addUser
     } = controller(dependencies)
 
     const router = Router()
@@ -25,6 +27,8 @@ export const userRoutes = (dependencies: IDependencies) => {
     router.route('/resetPassword').patch(resetPassword)
     router.route('/listusers').get(listUser)
     router.route('/fetchadmin').get(fetchAdmin)
+    router.route('/profileresetpassword').patch(resetProfilePassword)
+    router.route('/addUser').post(addUser)
 
 
     return router

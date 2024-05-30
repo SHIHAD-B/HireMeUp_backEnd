@@ -4,7 +4,7 @@ import { IAdmin } from "../entities";
 
 
 export interface IRepositories {
-    addUser: (data: IUsers) => Promise<IUsers | null>
+    addUser: (data: IUsers) => Promise<IUsers | null | boolean>
     blockUser: (email: string) => Promise<boolean | null>
     unBlockUser: (email: string) => Promise<boolean | null>
     deleteUser: (email: string) => Promise<boolean | null>
@@ -15,4 +15,5 @@ export interface IRepositories {
     resetPassword: (email: string, password: string) => Promise<boolean | null>
     addOtp: (email:string,otp:string) => Promise<IOtp | null>
     fetchAdmin :(email: string)=> Promise<IAdmin | null>
+   
 }

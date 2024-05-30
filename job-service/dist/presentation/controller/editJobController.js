@@ -13,13 +13,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.editJobController = void 0;
-const addCategoryValidation_1 = require("../../utils/validation/addCategoryValidation");
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+const editJobValidation_1 = require("../../utils/validation/editJobValidation");
 const editJobController = (dependencies) => {
     const { useCases: { editJobUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const { value, error } = addCategoryValidation_1.addCategoryValidation.validate(req.body);
+            const eData = req.body;
+            delete eData.deleted;
+            delete eData.__v;
+            delete eData.createdAt;
+            delete eData.expires;
+            const { value, error } = editJobValidation_1.editJobValidation.validate(req.body);
             if (error) {
                 return next(errorResponse_1.default.conflict(String(error)));
             }

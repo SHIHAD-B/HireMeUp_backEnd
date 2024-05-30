@@ -8,6 +8,9 @@ import { listUserController } from "./listUserController";
 import { unblockUserController } from "./unblockUserController";
 import { recoverUserController } from "./recoverUserController";
 import { fetchAdminController } from "./fetchAdminController";
+import { resetProfilePasswordController } from "./resetProfilePassword";
+import { addUserController } from "./addUserController";
+
 
 
 export const controller = (dependencies: IDependencies) => {
@@ -20,6 +23,8 @@ export const controller = (dependencies: IDependencies) => {
         fetchUser: fetchUserController(dependencies),
         resetPassword: resetPasswordController(dependencies),
         listUser: listUserController(dependencies),
-        fetchAdmin:fetchAdminController(dependencies)
+        fetchAdmin: fetchAdminController(dependencies),
+        resetProfilePassword: resetProfilePasswordController(dependencies),
+        addUser: addUserController(dependencies)
     }
 }

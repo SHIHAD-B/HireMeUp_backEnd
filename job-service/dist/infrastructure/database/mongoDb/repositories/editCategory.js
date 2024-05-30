@@ -19,6 +19,15 @@ const editCategory = (data) => __awaiter(void 0, void 0, void 0, function* () {
         if (!data) {
             return null;
         }
+        const categoryRegex = new RegExp(`^${data.category}$`, 'i');
+        const queryConditions = {
+            category: categoryRegex,
+            _id: { $ne: data._id }
+        };
+        const existingCategory = yield categorySchema_1.default.findOne(queryConditions);
+        if (existingCategory) {
+            return false;
+        }
         const editedCategory = yield categorySchema_1.default.updateOne({ _id: data._id }, data, { new: true });
         if (editedCategory.modifiedCount === 0) {
             return null;

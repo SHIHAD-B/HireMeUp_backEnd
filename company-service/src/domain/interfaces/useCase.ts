@@ -9,7 +9,14 @@ import {
     IRecoverCompanyUseCase,
     IUnBlockCompanyUseCase,
     IFetchCompanyUseCase,
-    IResetUseCase
+    IResetUseCase,
+    IEditCompanyUseCase,
+    IViewRequestDocument,
+    IAddEmployee,
+    IDeleteEmployeeUseCase,
+    IListEmployee,
+    IEditEmployeeUseCase,
+    IAddCompany
 } from '../useCaseInterface'
 
 import { IDependencies } from './dependencies'
@@ -25,5 +32,12 @@ export interface IUseCase {
     deleteCompanyUseCase: (dependencies: IDependencies) => IDeleteCompanyUseCase
     recoverCompanyUseCase: (dependencies: IDependencies) => IRecoverCompanyUseCase
     fetchCompanyUseCase: (dependencies: IDependencies) => IFetchCompanyUseCase
-    resetPasswordUseCase :(dependencies: IDependencies) => IResetUseCase
+    resetPasswordUseCase: (dependencies: IDependencies) => IResetUseCase
+    editCompanyUseCase: (dependencies: IDependencies) => IEditCompanyUseCase
+    viewRequestDocumentUseCase: (dependencies: IDependencies) => IViewRequestDocument
+    listEmployeeUseCase: (dependencies: IDependencies) => IListEmployee
+    editEmployeeUseCase: (dependencies: IDependencies) => IEditEmployeeUseCase
+    deleteEmployeeUseCase: (dependencies: IDependencies) => IDeleteEmployeeUseCase
+    addEmployeeUseCase: (dependencies: IDependencies) => IAddEmployee
+    addCompanyUseCase: (dependencies: IDependencies) => IAddCompany
 }

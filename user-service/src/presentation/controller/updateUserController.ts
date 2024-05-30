@@ -12,11 +12,18 @@ export const editUserController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const data = req.body
+            console.log(data,"data in the back end")
+            if(data.__v){
+                console.log("camed")
+                delete data.__v
+            }
+            console.log(data,"data in the back end")
+    
             if (!data) {
                 return next(ErrorResponse.badRequest("data is required"))
             }
 
-            const { value, error } = editUserValidation.validate(req.body)
+            const { value, error } = editUserValidation.validate(data)
             if (error) {
                 return next(ErrorResponse.badRequest(error.message))
             }

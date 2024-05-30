@@ -28,6 +28,7 @@ export const signinUserController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
+            
             const { value, error } = signinValidation.validate(req.body)
             if (error) {
 
@@ -39,8 +40,7 @@ export const signinUserController = (dependencies: IDependencies) => {
 
                     return next(ErrorResponse.badRequest('incorrect password'))
                 } else if (User == null) {
-
-                    return next(ErrorResponse.notFound('user not found'))
+                    return next(ErrorResponse.badRequest('user not found'))
                 } else if (User?.blocked == true || User.deleted == true) {
                     return next(ErrorResponse.badRequest('user blocked or deleted by admin'))
                 } else {

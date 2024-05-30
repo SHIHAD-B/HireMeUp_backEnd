@@ -16,7 +16,7 @@ exports.fetchPlans = void 0;
 const planSchema_1 = __importDefault(require("../model/planSchema"));
 const fetchPlans = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const plans = yield planSchema_1.default.find({});
+        const plans = yield planSchema_1.default.find();
         return plans;
     }
     catch (error) {

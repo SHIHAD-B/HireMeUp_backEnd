@@ -10,18 +10,27 @@ export const fetchJobController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
 
-            const id=req.params.id
+            const id = req.params.id
+            console.log(typeof id)
+            function isValidObjectId(id: string) {
+                const objectIdPattern = /^[0-9a-fA-F]{24}$/;
+                return objectIdPattern.test(id);
+            }
+            if (!isValidObjectId(id)) {
+                return next(ErrorResponse.badRequest("invalid company id..."))
+            }
 
-                const job: any = await fetchJobsUseCase(dependencies).execute(id)
-                if (!job) {
-                    return next(ErrorResponse.badRequest("failed to fetch job.."))
-                } else {
-                    return res.status(200).json({
-                        success: true,
-                        user: job,
-                        message: "job fetched successfully..."
-                    })
-                }
+            const job: any = await fetchJobsUseCase(dependencies).execute(id)
+            if (!job) {
+                console.log("else not job")
+                return next(ErrorResponse.badRequest("failed to fetch job.."))
+            } else {
+                return res.status(200).json({
+                    success: true,
+                    user: job,
+                    message: "job fetched successfully..."
+                })
+            }
         }
 
         catch (error) {

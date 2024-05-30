@@ -20,6 +20,7 @@ const editPlanController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const data = req.body;
+            console.log(req.body, "body in subscription");
             if (!data) {
                 return next(errorResponse_1.default.badRequest("data is required"));
             }
@@ -32,7 +33,10 @@ const editPlanController = (dependencies) => {
                 return next(errorResponse_1.default.badRequest(error.message));
             }
             const editedPlan = yield editPlansUseCase(dependencies).execute(value);
-            if (!editedPlan) {
+            if (editedPlan == false) {
+                return next(errorResponse_1.default.conflict("plan already exist"));
+            }
+            else if (!editedPlan) {
                 return next(errorResponse_1.default.forbidden("Error occured in editing the data of plan"));
             }
             else {

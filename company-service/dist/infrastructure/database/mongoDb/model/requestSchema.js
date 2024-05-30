@@ -28,6 +28,7 @@ const RequestsSchema = new mongoose_1.Schema({
     approval: { type: String, enum: ['approved', 'inProgress', 'rejected'] },
     status: { type: String, enum: ['firstAttempt', 'secondAttempt', 'completed'] },
     companyname: { type: String },
+    viewdocument: { type: Boolean, default: false },
     email: { type: String },
     address: { type: String },
     document: { type: String },

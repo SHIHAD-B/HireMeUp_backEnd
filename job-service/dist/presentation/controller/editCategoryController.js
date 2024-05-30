@@ -25,8 +25,11 @@ const editCategoryController = (dependencies) => {
             }
             else {
                 const category = yield editCategoryUseCase(dependencies).execute(value);
-                if (!category) {
-                    return next(errorResponse_1.default.conflict("failed to edit category"));
+                if (category == false) {
+                    return next(errorResponse_1.default.conflict("Category already exists"));
+                }
+                else if (!category) {
+                    return next(errorResponse_1.default.conflict("Failed to edit category"));
                 }
                 else {
                     return res.status(200).json({

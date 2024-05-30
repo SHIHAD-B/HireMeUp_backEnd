@@ -25,3 +25,4 @@ __exportStar(require("./updateUserUseCase"), exports);
 __exportStar(require("./resetPasswordUseCase"), exports);
 __exportStar(require("./addOtpUseCase"), exports);
 __exportStar(require("./fetchAdminUseCase"), exports);
+__exportStar(require("./editUserUseCase"), exports);
