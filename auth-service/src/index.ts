@@ -7,6 +7,6 @@ import { PORT } from './config/envConfig/config';
         console.log(`Server is running on port ${PORT}`);
     } catch (error: any) {
         console.error("Issue in running the server:", error);
-        throw new Error("Issue in running the server");
+        throw new Error("Issue in running the server..");
     }
 })();

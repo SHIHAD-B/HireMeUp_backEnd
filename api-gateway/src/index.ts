@@ -30,7 +30,7 @@ app.use('/subscription', proxy(process.env.IP + "4007"))
 
 
 app.listen(PORT, () => {
-    console.log(`API gateway is running `);
+    console.log(`API gateway is running... `);
 });
 
 
