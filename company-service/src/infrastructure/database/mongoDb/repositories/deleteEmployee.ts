@@ -1,17 +1,18 @@
 import Employee from "../model/employeeSchema"
 
-export const deleteEmployee = async (email: string): Promise<boolean | null> => {
+export const deleteEmployee = async (id: string): Promise<boolean | null> => {
     try {
-        if (!email) {
+   
+        if (!id) {
             return null
         }
 
-        const employee = await Employee.findOne({ email: email })
+        const employee = await Employee.findOne({ _id: id })
         if (!employee) {
             return null
         }
 
-        const blockedEmployee = await Employee.updateOne({ email: email }, {
+        const blockedEmployee = await Employee.updateOne({ _id: id }, {
             isActive: false,
             deleted: true
         }, { new: true })

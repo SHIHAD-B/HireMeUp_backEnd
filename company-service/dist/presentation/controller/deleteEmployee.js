@@ -18,11 +18,11 @@ const deleteEmployeeController = (dependencies) => {
     const { useCases: { deleteEmployeeUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const employeeEmail = req.body.email;
-            if (!employeeEmail) {
-                return next(errorResponse_1.default.badRequest("Employee email is missing."));
+            const employeeId = req.body.id;
+            if (!employeeId) {
+                return next(errorResponse_1.default.badRequest("Employee id is missing."));
             }
-            const deletededdUser = yield deleteEmployeeUseCase(dependencies).execute(employeeEmail);
+            const deletededdUser = yield deleteEmployeeUseCase(dependencies).execute(employeeId);
             if (!deletededdUser) {
                 return next(errorResponse_1.default.notFound("Employee not found or unable to delete Employee."));
             }

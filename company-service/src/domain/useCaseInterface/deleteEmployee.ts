@@ -1,3 +1,3 @@
 export interface IDeleteEmployeeUseCase {
-    execute(email: string): Promise<boolean | null>
+    execute(id: string): Promise<boolean | null>
 }

@@ -4,9 +4,9 @@ export const deleteEmployeeUseCase = (dependencies: IDependencies) => {
     const { repositories: { deleteEmployee } } = dependencies
 
     return {
-        execute: async (email: string) => {
+        execute: async (id: string) => {
             try {
-                return await deleteEmployee(email)
+                return await deleteEmployee(id)
             } catch (error: any) {
                 throw new Error(error)
             }

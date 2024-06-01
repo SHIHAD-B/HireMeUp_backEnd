@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchPlansController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const fetchPlansController = (dependencies) => {
+    console.log("reached fetch plans controller");
     const { useCases: { fetchPlansUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {

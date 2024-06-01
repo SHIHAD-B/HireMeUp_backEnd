@@ -14,25 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchUserController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const config_1 = require("../../config/envConfig/config");
 const fetchUserController = (dependencies) => {
     const { useCases: { fetchUserUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const { user_token } = req.cookies;
-            if (!user_token) {
-                return next(errorResponse_1.default.badRequest("User token is missing."));
-            }
-            const deToken = jsonwebtoken_1.default.verify(user_token, config_1.JWT_SECRET, (error, decode) => {
-                if (error) {
-                    return null;
-                }
-                return decode;
-            });
-            const { email } = deToken;
+            const { email } = req.user || {};
             if (!email) {
-                return next(errorResponse_1.default.badRequest("User email is missing."));
+                return next(errorResponse_1.default.badRequest("User email is missing.....(controller)"));
             }
             const user = yield fetchUserUseCase(dependencies).execute(email);
             if (!user) {

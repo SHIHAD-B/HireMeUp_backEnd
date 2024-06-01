@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-app.use('/auth', proxy(process.env.ip + "4001"))
+app.use('/auth', proxy(process.env.IP + "4001"))
 app.use('/user', proxy(process.env.IP + "4002"))
 app.use('/chat', proxy(process.env.IP + "4003"))
 app.use('/notification', proxy(process.env.IP + "4004"))

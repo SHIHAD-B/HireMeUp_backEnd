@@ -1,35 +1,30 @@
 import { Router } from "express";
 import { IDependencies } from "../../domain/interfaces";
 import { controller } from "../../presentation/controller";
+import { userAuthMiddleware } from "../../utils/middlewares/userAuth";
+import { adminAuthMiddleware } from "../../utils/middlewares/adminAuth";
+
+
 
 export const userRoutes = (dependencies: IDependencies) => {
-    const { blockUser,
-        deleteUser,
-        editUser,
+    const {
         fetchUser,
         resetPassword,
-        listUser,
-        unblockUser,
-        recoverUser,
-        fetchAdmin,
         resetProfilePassword,
-        addUser
+        updateUser
     } = controller(dependencies)
 
     const router = Router()
 
-    router.route('/blockUser').patch(blockUser)
-    router.route('/unblockUser').patch(unblockUser)
-    router.route('/deleteUser').patch(deleteUser)
-    router.route('/recoverUser').patch(recoverUser)
-    router.route('/editUser').patch(editUser)
-    router.route('/fetchUser').get(fetchUser)
+    
+
+
+    router.route('/editUser').patch(userAuthMiddleware, updateUser)
+    router.route('/fetchUser').get(userAuthMiddleware, fetchUser)
     router.route('/resetPassword').patch(resetPassword)
-    router.route('/listusers').get(listUser)
-    router.route('/fetchadmin').get(fetchAdmin)
-    router.route('/profileresetpassword').patch(resetProfilePassword)
-    router.route('/addUser').post(addUser)
-
-
+    router.route('/profileresetpassword').patch(userAuthMiddleware, resetProfilePassword)
+  
     return router
 }
+
+

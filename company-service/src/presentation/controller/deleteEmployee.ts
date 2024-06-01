@@ -8,11 +8,11 @@ export const deleteEmployeeController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const employeeEmail = req.body.email
-            if (!employeeEmail) {
-                return next(ErrorResponse.badRequest("Employee email is missing."));
+            const employeeId = req.body.id
+            if (!employeeId) {
+                return next(ErrorResponse.badRequest("Employee id is missing."));
             }
-            const deletededdUser = await deleteEmployeeUseCase(dependencies).execute(employeeEmail)
+            const deletededdUser = await deleteEmployeeUseCase(dependencies).execute(employeeId)
             if (!deletededdUser) {
                 return next(ErrorResponse.notFound("Employee not found or unable to delete Employee."));
             } else {

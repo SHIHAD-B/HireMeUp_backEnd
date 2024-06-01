@@ -6,7 +6,7 @@ import { hashPassword } from "../../utils/hash/hashpassword";
 
 
 
-export const editUserController = (dependencies: IDependencies) => {
+export const updateUserController = (dependencies: IDependencies) => {
     const { useCases: { updateUserUseCase } } = dependencies
 
     return async (req: Request, res: Response, next: NextFunction) => {

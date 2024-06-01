@@ -5,6 +5,8 @@ import { errorHandler } from "../utils/error/errorHandler";
 import { companyRoutes } from "../infrastructure/routes/company.routes";
 import { dependencies } from "../config/dependencies";
 import RabbitMQClient from "../infrastructure/rabbitmq/client";
+import { adminRoutes } from "../infrastructure/routes/admin.routes";
+import { userRoutes } from "../infrastructure/routes/user.routes";
 
 
 const app: Application = express()
@@ -16,7 +18,9 @@ app.use(cookieParser())
 
 
 
-app.use('/', companyRoutes(dependencies))
+app.use('/company', companyRoutes(dependencies))
+app.use('/admin', adminRoutes(dependencies))
+app.use('/user', userRoutes(dependencies))
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
     res.status(404).send("api not found: company service")

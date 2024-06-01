@@ -4,6 +4,7 @@ import ErrorResponse from "../../utils/error/errorResponse";
 
 
 export const fetchPlansController = (dependencies: IDependencies) => {
+    console.log("reached fetch plans controller")
     const { useCases: { fetchPlansUseCase } } = dependencies
 
     return async (req: Request, res: Response, next: NextFunction) => {

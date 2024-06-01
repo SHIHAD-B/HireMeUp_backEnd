@@ -21,6 +21,6 @@ const config_1 = require("./config/envConfig/config");
     }
     catch (error) {
         console.error("Issue in running the server:", error);
-        throw new Error("Issue in running the server");
+        throw new Error("Issue in running the server....");
     }
 }))();

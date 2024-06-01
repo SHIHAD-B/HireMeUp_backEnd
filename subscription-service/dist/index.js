@@ -30,6 +30,6 @@ const dbConnection_1 = __importDefault(require("./infrastructure/database/dbConn
     }
     catch (error) {
         console.error("Issue in running the server:", error);
-        throw new Error("Issue in running the server");
+        throw new Error("Issue in running the server......");
     }
 }))();

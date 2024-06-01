@@ -18,7 +18,7 @@ const controller = (dependencies) => {
         unblockUser: (0, unblockUserController_1.unblockUserController)(dependencies),
         deleteUser: (0, deleteUserController_1.deleteUserController)(dependencies),
         recoverUser: (0, recoverUserController_1.recoverUserController)(dependencies),
-        editUser: (0, updateUserController_1.editUserController)(dependencies),
+        updateUser: (0, updateUserController_1.updateUserController)(dependencies),
         fetchUser: (0, fetchUserController_1.fetchUserController)(dependencies),
         resetPassword: (0, resetPasswordController_1.resetPasswordController)(dependencies),
         listUser: (0, listUserController_1.listUserController)(dependencies),

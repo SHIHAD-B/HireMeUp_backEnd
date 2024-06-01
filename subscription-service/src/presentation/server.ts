@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import { errorHandler } from "../utils/error/errorHandler";
 import { subscriptionRoutes } from "../infrastructure/routes/subscription.routes";
 import { dependencies } from "../config/dependencies";
+import { adminRoutes } from "../infrastructure/routes/admin.routes";
 
 
 const app: Application = express()
@@ -16,7 +17,8 @@ app.use(cookieParser())
 
 
 
-app.use('/', subscriptionRoutes(dependencies))
+app.use('/user', subscriptionRoutes(dependencies))
+app.use('/admin',adminRoutes(dependencies))
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
     res.status(404).send("api not found : subscription service")

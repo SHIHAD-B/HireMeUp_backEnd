@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PORT = exports.DB_URL = void 0;
+exports.JWT_SECRET = exports.PORT = exports.DB_URL = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const MONGODB_USERNAME = String(process.env.MONGODB_USERNAME);
@@ -12,3 +12,5 @@ const DB_URL = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.r
 exports.DB_URL = DB_URL;
 const PORT = Number(process.env.PORT);
 exports.PORT = PORT;
+const JWT_SECRET = String(process.env.JWT_SECRET);
+exports.JWT_SECRET = JWT_SECRET;

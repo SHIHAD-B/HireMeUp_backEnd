@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.adminRoutes = void 0;
+const express_1 = require("express");
+const controller_1 = require("../../presentation/controller");
+const adminAuth_1 = require("../../utils/middlewares/adminAuth");
+const adminRoutes = (dependencies) => {
+    const { updateUser, addUser, blockUser, unblockUser, deleteUser, recoverUser, fetchAdmin, listUser } = (0, controller_1.controller)(dependencies);
+    const router = (0, express_1.Router)();
+    router.use(adminAuth_1.adminAuthMiddleware);
+    router.route('/editUser').patch(updateUser);
+    router.route('/blockUser').patch(blockUser);
+    router.route('/unblockUser').patch(unblockUser);
+    router.route('/deleteUser').patch(deleteUser);
+    router.route('/recoverUser').patch(recoverUser);
+    router.route('/listusers').get(listUser);
+    router.route('/fetchadmin').get(fetchAdmin);
+    router.route('/addUser').post(addUser);
+    return router;
+};
+exports.adminRoutes = adminRoutes;

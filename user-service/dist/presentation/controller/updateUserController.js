@@ -12,11 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.editUserController = void 0;
+exports.updateUserController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const editUserValidation_1 = require("../../utils/validation/editUserValidation");
 const hashpassword_1 = require("../../utils/hash/hashpassword");
-const editUserController = (dependencies) => {
+const updateUserController = (dependencies) => {
     const { useCases: { updateUserUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
@@ -60,4 +60,4 @@ const editUserController = (dependencies) => {
         }
     });
 };
-exports.editUserController = editUserController;
+exports.updateUserController = updateUserController;

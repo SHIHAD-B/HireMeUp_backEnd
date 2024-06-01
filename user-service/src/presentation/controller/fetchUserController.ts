@@ -1,28 +1,17 @@
 import { Response, Request, NextFunction } from "express";
 import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
-import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../../config/envConfig/config";
+import { JwtPayload } from "jsonwebtoken";
 
 export const fetchUserController = (dependencies: IDependencies) => {
     const { useCases: { fetchUserUseCase } } = dependencies
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const { user_token } = req.cookies;
-            if (!user_token) {
-                return next(ErrorResponse.badRequest("User token is missing."));
-            }
-            const deToken: any = jwt.verify(user_token, JWT_SECRET, (error: any, decode: any) => {
-                if (error) {
-                    return null
-                }
-                return decode
-            });
-            const { email } = deToken
+            const { email } = (req.user as JwtPayload) || {};
 
             if (!email) {
-                return next(ErrorResponse.badRequest("User email is missing."));
+                return next(ErrorResponse.badRequest("User email is missing.....(controller)"));
             }
             const user = await fetchUserUseCase(dependencies).execute(email)
             if (!user) {
