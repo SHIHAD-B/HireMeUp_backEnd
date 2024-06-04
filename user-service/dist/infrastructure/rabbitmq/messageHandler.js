@@ -37,6 +37,9 @@ class MessageHandler {
                 case "adminSignin":
                     response = yield (0, repositories_1.fetchAdmin)(data.email);
                     break;
+                case "addSubscription":
+                    response = yield (0, repositories_1.addSubscription)(data);
+                    break;
                 default:
                     response = { success: false, error: "Unknown operation" };
                     console.log("Unknown operation:", operation);

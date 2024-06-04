@@ -19,3 +19,4 @@ __exportStar(require("./addPlans"), exports);
 __exportStar(require("./deletePlans"), exports);
 __exportStar(require("./editPlans"), exports);
 __exportStar(require("./planExists"), exports);
+__exportStar(require("./upgradeSubscription"), exports);

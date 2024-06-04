@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -10,19 +19,22 @@ const errorHandler_1 = require("../utils/error/errorHandler");
 const subscription_routes_1 = require("../infrastructure/routes/subscription.routes");
 const dependencies_1 = require("../config/dependencies");
 const admin_routes_1 = require("../infrastructure/routes/admin.routes");
+const path_1 = __importDefault(require("path"));
+const client_1 = __importDefault(require("../infrastructure/rabbitmq/client"));
 const app = (0, express_1.default)();
 const PORTNUMBER = Number(config_1.PORT);
-console.log(config_1.PORT, "port number");
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
+app.use(express_1.default.static(path_1.default.join(__dirname, '../public')));
 app.use('/user', (0, subscription_routes_1.subscriptionRoutes)(dependencies_1.dependencies));
 app.use('/admin', (0, admin_routes_1.adminRoutes)(dependencies_1.dependencies));
 app.use("*", (req, res, next) => {
     res.status(404).send("api not found : subscription service");
 });
 app.use(errorHandler_1.errorHandler);
-app.listen(config_1.PORT, () => {
+app.listen(config_1.PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`connected to subscription service at ${PORTNUMBER}`);
-});
+    yield client_1.default.getInstance();
+}));
 exports.default = app;

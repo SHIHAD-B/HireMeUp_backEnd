@@ -21,12 +21,10 @@ const updateUserController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const data = req.body;
-            console.log(data, "data in the back end");
             if (data.__v) {
                 console.log("camed");
                 delete data.__v;
             }
-            console.log(data, "data in the back end");
             if (!data) {
                 return next(errorResponse_1.default.badRequest("data is required"));
             }
@@ -45,9 +43,13 @@ const updateUserController = (dependencies) => {
             }
             const editedUser = yield updateUserUseCase(dependencies).execute(value);
             if (!editedUser) {
+                console.log('====================================');
+                console.log("no edit happened");
+                console.log('====================================');
                 return next(errorResponse_1.default.forbidden("Error occured in editing the data of user"));
             }
             else {
+                console.log("edit successfull");
                 return res.status(200).send({
                     success: true,
                     user: value,

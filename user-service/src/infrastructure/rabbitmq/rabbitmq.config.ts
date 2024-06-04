@@ -6,7 +6,8 @@ export default {
         queues:{
             authQueue: "authQueue",
             userQueue: "userQueue",
-            companyQueue: "companyQueue"
+            companyQueue: "companyQueue",
+            subscriptionQueue:"subscriptionQueue"
         },
     },
 };

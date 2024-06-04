@@ -54,7 +54,7 @@ export const signupGoogleController = (dependencies: IDependencies) => {
 
                         const user = await signupUserUseCase(dependencies).execute(userData)
                         if (!user) {
-                            return next(ErrorResponse.notFound('failed to add user'))
+                            return next(ErrorResponse.internalError('failed to add user'))
                         }
                         const payload = {
                             _id: String(user._id),

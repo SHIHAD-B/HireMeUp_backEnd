@@ -5,7 +5,6 @@ import { adminAuthMiddleware } from "../../utils/middlewares/adminAuth";
 
 
 export const adminRoutes = (dependencies: IDependencies) => {
- console.log("admin routes")
     const {
         addPlan,
         deletePlan,

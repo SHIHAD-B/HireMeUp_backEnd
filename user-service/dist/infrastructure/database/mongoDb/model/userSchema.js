@@ -59,10 +59,22 @@ const UsersSchema = new mongoose_1.Schema({
     online_status: { type: String, enum: ['online', 'offline'] },
     blocked: { type: Boolean },
     deleted: { type: Boolean },
-    subscription: [{
+    subscription: {
+        subscriptionId: { type: mongoose_1.Schema.Types.ObjectId },
+        planId: { type: mongoose_1.Schema.Types.ObjectId },
+        name: { type: String },
+        start_date: { type: Date },
+        end_date: { type: Date },
+        createdAt: { type: Date }
+    },
+    expiredSubscriptions: [{
             subscriptionId: { type: mongoose_1.Schema.Types.ObjectId },
-            createdAt: { type: Date, default: Date.now },
-        }],
+            planId: { type: mongoose_1.Schema.Types.ObjectId },
+            name: { type: String },
+            start_date: { type: Date },
+            end_date: { type: Date },
+            createdAt: { type: Date }
+        }]
 });
 const Users = mongoose_1.default.model('Users', UsersSchema);
 exports.default = Users;

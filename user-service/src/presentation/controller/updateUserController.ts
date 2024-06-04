@@ -12,12 +12,10 @@ export const updateUserController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const data = req.body
-            console.log(data,"data in the back end")
             if(data.__v){
                 console.log("camed")
                 delete data.__v
             }
-            console.log(data,"data in the back end")
     
             if (!data) {
                 return next(ErrorResponse.badRequest("data is required"))
@@ -39,8 +37,12 @@ export const updateUserController = (dependencies: IDependencies) => {
 
             const editedUser = await updateUserUseCase(dependencies).execute(value)
             if (!editedUser) {
+                console.log('====================================');
+                console.log("no edit happened");
+                console.log('====================================');
                 return next(ErrorResponse.forbidden("Error occured in editing the data of user"))
             } else {
+                console.log("edit successfull");
                 return res.status(200).send({
                     success: true,
                     user: value,

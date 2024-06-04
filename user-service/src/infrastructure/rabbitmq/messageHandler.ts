@@ -1,5 +1,5 @@
 import RabbitMQClient from "./client";
-import { addUser, checkOtp, fetchUser, checkUser, addOtp,fetchAdmin } from "../database/mongoDb/repositories";
+import { addUser, checkOtp, fetchUser, checkUser, addOtp, fetchAdmin, addSubscription } from "../database/mongoDb/repositories";
 
 
 export default class MessageHandler {
@@ -24,6 +24,9 @@ export default class MessageHandler {
         break;
       case "adminSignin":
         response = await fetchAdmin(data.email)
+        break;
+      case "addSubscription":
+        response = await addSubscription(data)
         break;
       default:
         response = { success: false, error: "Unknown operation" };

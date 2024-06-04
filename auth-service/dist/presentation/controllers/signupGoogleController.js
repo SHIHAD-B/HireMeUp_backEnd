@@ -60,7 +60,7 @@ const signupGoogleController = (dependencies) => {
                         userData.username = credentials.given_name;
                         const user = yield signupUserUseCase(dependencies).execute(userData);
                         if (!user) {
-                            return next(errorResponse_1.default.notFound('failed to add user'));
+                            return next(errorResponse_1.default.internalError('failed to add user'));
                         }
                         const payload = {
                             _id: String(user._id),

@@ -1,4 +1,5 @@
 import Joi from "joi";
+import { Types } from "mongoose";
 
 
 export const editUserValidation = Joi.object({
@@ -43,9 +44,16 @@ export const editUserValidation = Joi.object({
     blocked: Joi.boolean().optional(),
     __v:Joi.number().optional(),
     deleted: Joi.boolean().optional(),
-    subscription: Joi.array().items(
-        Joi.object({
-            subscriptionId: Joi.string().optional()
-        })
-    ).optional()
+    subscription: Joi.object({
+        _id: Joi.string().custom((value, helpers) => {
+            if (!Types.ObjectId.isValid(value)) {
+                return helpers.error('any.invalid');
+            }
+            return value;
+        }, 'ObjectId validation').optional(),
+        name: Joi.string().optional(),
+        start_date: Joi.date().optional(),
+        end_date: Joi.date().optional(),
+        createdAt: Joi.date().optional()
+    }).optional()
 })

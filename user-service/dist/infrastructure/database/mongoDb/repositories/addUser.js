@@ -20,13 +20,17 @@ const addUser = (data) => __awaiter(void 0, void 0, void 0, function* () {
         if (!data) {
             return null;
         }
+        console.log(data, "data when add user data");
         data = Object.assign(Object.assign({}, data), { blocked: (_a = data === null || data === void 0 ? void 0 : data.blocked) !== null && _a !== void 0 ? _a : false, deleted: (_b = data === null || data === void 0 ? void 0 : data.deleted) !== null && _b !== void 0 ? _b : false });
-        const userExist = yield userSchema_1.default.findOne({
-            $or: [
-                { email: data.email },
-                { phone: data.phone }
-            ]
-        });
+        let userExist = null;
+        if ((data === null || data === void 0 ? void 0 : data.phone) !== undefined && (data === null || data === void 0 ? void 0 : data.phone) !== null) {
+            userExist = yield userSchema_1.default.findOne({
+                $or: [
+                    { email: data.email },
+                    { phone: data.phone }
+                ]
+            });
+        }
         if (userExist) {
             return false;
         }

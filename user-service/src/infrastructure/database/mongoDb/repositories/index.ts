@@ -12,4 +12,5 @@ export * from './addOtp'
 export * from './checkUser'
 export * from './recoverUser'
 export * from './fetchadmin'
+export * from './addSubscription'
 

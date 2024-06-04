@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.editUserValidation = void 0;
 const joi_1 = __importDefault(require("joi"));
+const mongoose_1 = require("mongoose");
 exports.editUserValidation = joi_1.default.object({
     _id: joi_1.default.string().required(),
     username: joi_1.default.string().min(3).required(),
@@ -47,7 +48,16 @@ exports.editUserValidation = joi_1.default.object({
     blocked: joi_1.default.boolean().optional(),
     __v: joi_1.default.number().optional(),
     deleted: joi_1.default.boolean().optional(),
-    subscription: joi_1.default.array().items(joi_1.default.object({
-        subscriptionId: joi_1.default.string().optional()
-    })).optional()
+    subscription: joi_1.default.object({
+        _id: joi_1.default.string().custom((value, helpers) => {
+            if (!mongoose_1.Types.ObjectId.isValid(value)) {
+                return helpers.error('any.invalid');
+            }
+            return value;
+        }, 'ObjectId validation').optional(),
+        name: joi_1.default.string().optional(),
+        start_date: joi_1.default.date().optional(),
+        end_date: joi_1.default.date().optional(),
+        createdAt: joi_1.default.date().optional()
+    }).optional()
 });

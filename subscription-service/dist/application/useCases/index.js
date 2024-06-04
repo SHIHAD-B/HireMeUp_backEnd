@@ -19,3 +19,4 @@ __exportStar(require("./addPlansUseCase"), exports);
 __exportStar(require("./deletePlanUseCase"), exports);
 __exportStar(require("./editPlanUseCase"), exports);
 __exportStar(require("./planExistsUseCase"), exports);
+__exportStar(require("./upgradeSubscriptionUseCase"), exports);

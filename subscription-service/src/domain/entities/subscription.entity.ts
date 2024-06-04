@@ -1,11 +1,12 @@
 import { Types } from "mongoose";
 
 export interface ISubscriptions {
-    _id: Types.ObjectId;
-    UserId: Types.ObjectId | null;
-    PlanId: Types.ObjectId | null;
-    End_date: Date | null;
-    Start_date: Date | null;
-    CreatedAt: Date | null;
-    Status: String | null;
+    _id?: Types.ObjectId;
+    userId?: Types.ObjectId ;
+    planId?: Types.ObjectId ;
+    end_date?: Date ;
+    start_date?: Date ;
+    paymentId?:string;
+    createdAt?: Date ;
+    status?: String ;
   }

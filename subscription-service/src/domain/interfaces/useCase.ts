@@ -3,7 +3,8 @@ import {
     IAddUseCase,
     IDeleteUseCase,
     IEditUseCase,
-    IPlanExistUseCase
+    IPlanExistUseCase,
+    IupgradeSubscriptionUseCase
 
 } from '../useCaseinterface'
 
@@ -15,5 +16,6 @@ export interface IUseCases {
     deletePlansUseCase: (dependencies: IDependencies) => IDeleteUseCase
     editPlansUseCase: (dependencies: IDependencies) => IEditUseCase
     PlanExistsUseCase: (dependencies: IDependencies) => IPlanExistUseCase
+    upgradeSubscriptionUseCase :(dependencies: IDependencies) =>IupgradeSubscriptionUseCase
 
 }
