@@ -55,9 +55,57 @@ exports.editUserValidation = joi_1.default.object({
             }
             return value;
         }, 'ObjectId validation').optional(),
+        subscriptionId: joi_1.default.string().custom((value, helpers) => {
+            if (!mongoose_1.Types.ObjectId.isValid(value)) {
+                return helpers.error('any.invalid');
+            }
+            return value;
+        }, 'ObjectId validation').optional(),
+        planId: joi_1.default.string().custom((value, helpers) => {
+            if (!mongoose_1.Types.ObjectId.isValid(value)) {
+                return helpers.error('any.invalid');
+            }
+            return value;
+        }, 'ObjectId validation').optional(),
+        userId: joi_1.default.string().custom((value, helpers) => {
+            if (!mongoose_1.Types.ObjectId.isValid(value)) {
+                return helpers.error('any.invalid');
+            }
+            return value;
+        }, 'ObjectId validation').optional(),
         name: joi_1.default.string().optional(),
         start_date: joi_1.default.date().optional(),
         end_date: joi_1.default.date().optional(),
         createdAt: joi_1.default.date().optional()
-    }).optional()
+    }).optional(),
+    expiredSubscriptions: joi_1.default.array().items(joi_1.default.object({
+        _id: joi_1.default.string().custom((value, helpers) => {
+            if (!mongoose_1.Types.ObjectId.isValid(value)) {
+                return helpers.error('any.invalid');
+            }
+            return value;
+        }, 'ObjectId validation').optional(),
+        subscriptionId: joi_1.default.string().custom((value, helpers) => {
+            if (!mongoose_1.Types.ObjectId.isValid(value)) {
+                return helpers.error('any.invalid');
+            }
+            return value;
+        }, 'ObjectId validation').optional(),
+        planId: joi_1.default.string().custom((value, helpers) => {
+            if (!mongoose_1.Types.ObjectId.isValid(value)) {
+                return helpers.error('any.invalid');
+            }
+            return value;
+        }, 'ObjectId validation').optional(),
+        userId: joi_1.default.string().custom((value, helpers) => {
+            if (!mongoose_1.Types.ObjectId.isValid(value)) {
+                return helpers.error('any.invalid');
+            }
+            return value;
+        }, 'ObjectId validation').optional(),
+        name: joi_1.default.string().optional(),
+        start_date: joi_1.default.date().optional(),
+        end_date: joi_1.default.date().optional(),
+        createdAt: joi_1.default.date().optional()
+    })).optional()
 });

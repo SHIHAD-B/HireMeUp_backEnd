@@ -11,7 +11,8 @@ export const userRoutes = (dependencies: IDependencies) => {
         fetchUser,
         resetPassword,
         resetProfilePassword,
-        updateUser
+        updateUser,
+        listUser
     } = controller(dependencies)
 
     const router = Router()
@@ -22,6 +23,7 @@ export const userRoutes = (dependencies: IDependencies) => {
     router.route('/editUser').patch(userAuthMiddleware, updateUser)
     router.route('/fetchUser').get(userAuthMiddleware, fetchUser)
     router.route('/resetPassword').patch(resetPassword)
+    router.route('/listusers').get(listUser)
     router.route('/profileresetpassword').patch(userAuthMiddleware, resetProfilePassword)
   
     return router
