@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userRoutes = void 0;
+exports.companyRoutes = void 0;
 const express_1 = require("express");
 const controller_1 = require("../../presentation/controller");
-const userRoutes = (dependencies) => {
-    const { listCompany } = (0, controller_1.controller)(dependencies);
+const companyRoutes = (dependencies) => {
+    const { listUser } = (0, controller_1.controller)(dependencies);
     const router = (0, express_1.Router)();
-    router.route('/companylist').get(listCompany);
+    router.route('/listusers').get(listUser);
     return router;
 };
-exports.userRoutes = userRoutes;
+exports.companyRoutes = companyRoutes;

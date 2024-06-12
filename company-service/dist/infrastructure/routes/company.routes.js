@@ -8,7 +8,7 @@ const companyRoutes = (dependencies) => {
     const { fetchCompany, resetPassword, editCompany, resetProfilePassword, addEmployee, deleteEmployee, editEmployee, listEmployee, } = (0, controller_1.controller)(dependencies);
     const router = (0, express_1.Router)();
     router.route('/resetprofilepassword').patch(companyAuth_1.companyAuthMiddleware, resetProfilePassword);
-    router.route('/fetchcompany').get(companyAuth_1.companyAuthMiddleware, fetchCompany);
+    router.route('/fetchcompany').get(fetchCompany);
     router.route('/resetpassword').patch(resetPassword);
     router.route('/editcompany').patch(companyAuth_1.companyAuthMiddleware, editCompany);
     router.route('/listemployee').get(companyAuth_1.companyAuthMiddleware, listEmployee);

@@ -2,22 +2,23 @@ import { Types } from "mongoose";
 
 export interface IApplicants {
     _id: Types.ObjectId;
-    jobId: Types.ObjectId | null;
+    jobId: Types.ObjectId ;
     schedule: {
-       date: Date | null;
-       feedback: String | null;
-       status: String | null;
-       time: String | null;
-       title: String | null;
+       date: Date ;
+       feedback: string ;
+       status: string ;
+       time: string ;
+       title: string ;
     }[];
-    userId: Types.ObjectId | null;
-    createdAt: Date | null;
-    hiring_status: String | null;
-    resume: String | null;
+    userId: Types.ObjectId ;
+    createdAt: Date ;
+    hiring_status: string ;
+    resume: string ;
+    answers: object[],
     hiring_info: {
-       date: Date | null;
-       interviewer: String | null;
-       notes: String | null;
-       status: String | null;
+       date: Date ;
+       interviewer: string ;
+       notes: string ;
+       status: string ;
     }[];
   }

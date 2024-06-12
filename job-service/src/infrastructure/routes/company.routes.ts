@@ -10,7 +10,8 @@ export const companyRoutes = (dependencies: IDependencies) => {
         jobList,
         deleteJob,
         editJob,
-        fetchJob
+        fetchJob,
+        fetchApplicants
     } = controller(dependencies)
 
     const router = Router()
@@ -22,6 +23,7 @@ export const companyRoutes = (dependencies: IDependencies) => {
     router.route('/deletejob').patch(deleteJob)
     router.route('/editjob').patch(editJob)
     router.route('/fetchjob/:id').get(fetchJob)
+    router.route('/fetchapplicants/:id').get(fetchApplicants)
    
     return router
 }

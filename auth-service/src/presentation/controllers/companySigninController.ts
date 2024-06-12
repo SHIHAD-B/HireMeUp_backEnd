@@ -28,7 +28,7 @@ export const companySigninController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            console.log(req.body,"body from back end")
+         
             const { value, error } = signinValidation.validate(req.body)
             if (error) {
 

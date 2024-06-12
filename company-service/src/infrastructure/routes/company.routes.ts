@@ -18,7 +18,7 @@ export const companyRoutes = (dependencies: IDependencies) => {
     const router = Router()
   
     router.route('/resetprofilepassword').patch(companyAuthMiddleware, resetProfilePassword)
-    router.route('/fetchcompany').get(companyAuthMiddleware, fetchCompany)
+    router.route('/fetchcompany').get(fetchCompany)
     router.route('/resetpassword').patch(resetPassword)
     router.route('/editcompany').patch(companyAuthMiddleware, editCompany)
     router.route('/listemployee').get(companyAuthMiddleware, listEmployee)

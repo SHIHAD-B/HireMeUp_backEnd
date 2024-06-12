@@ -2,24 +2,25 @@ import { Types } from "mongoose";
 
 export interface IJobs {
     _id: Types.ObjectId;
-    companyId: Types.ObjectId | null;
-    description: String | null;
-    salary_from: Number | null;
-    responsibilities: String | null;
-    required_skills: String | null;
-    requirements: String | null;
-    category: Types.ObjectId | null;
-    salary_to: String | null;
-    job_title: String | null;
-    type: String | null;
+    companyId: Types.ObjectId ;
+    description: string ;
+    salary_from: number ;
+    responsibilities: string ;
+    questions: string[] ;
+    required_skills: string[] ;
+    requirements: string ;
+    category: Types.ObjectId ;
+    salary_to: string ;
+    job_title: string ;
+    type: string ;
     benifts: {
-       description: String | null;
-       icon: number | null;
-       name: String | null;
+       description: string ;
+       icon: number ;
+       name: string ;
     }[];
-    qualification: String | null;
-    slot: Number | null;
-    start_date: Date | null;
-    end_date: Date | null;
-    level: String | null;
+    qualification: string ;
+    slot: number ;
+    start_date: Date ;
+    end_date: Date ;
+    level: string ;
   }

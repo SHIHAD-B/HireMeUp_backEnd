@@ -11,6 +11,7 @@ const user_routes_1 = require("../infrastructure/routes/user.routes");
 const dependencies_1 = require("../config/dependencies");
 const client_1 = __importDefault(require("../infrastructure/rabbitmq/client"));
 const admin_routes_1 = require("../infrastructure/routes/admin.routes");
+const company_routes_1 = require("../infrastructure/routes/company.routes");
 // console.log(userRoutes(dependencies))
 const app = (0, express_1.default)();
 const PORTNUMBER = Number(config_1.PORT);
@@ -18,6 +19,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
 app.use('/', (0, user_routes_1.userRoutes)(dependencies_1.dependencies));
+app.use('/company', (0, company_routes_1.companyRoutes)(dependencies_1.dependencies));
 app.use('/admin', (0, admin_routes_1.adminRoutes)(dependencies_1.dependencies));
 app.use("*", (req, res, next) => {
     res.status(404).send("api not found : user service");

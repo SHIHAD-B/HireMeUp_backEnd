@@ -11,6 +11,7 @@ import { jobListController } from "./jobListController"
 import { applicantListController } from "./applicantListController"
 import { categoryListController } from "./categoryListController"
 import { fetchJobController } from "./fetchJobController"
+import { fetchApplicantsController } from "./fetchApplicantsController"
 
 export const controller = (dependencies: IDependencies) => {
     return {
@@ -25,6 +26,7 @@ export const controller = (dependencies: IDependencies) => {
         jobList: jobListController(dependencies),
         applicantList: applicantListController(dependencies),
         categoryList: categoryListController(dependencies),
-        fetchJob: fetchJobController(dependencies)
+        fetchJob: fetchJobController(dependencies),
+        fetchApplicants: fetchApplicantsController(dependencies)
     }
 }

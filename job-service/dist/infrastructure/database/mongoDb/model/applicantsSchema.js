@@ -25,6 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
 const ApplicantsSchema = new mongoose_1.Schema({
+    companyId: { type: mongoose_1.Schema.Types.ObjectId },
     jobId: { type: mongoose_1.Schema.Types.ObjectId },
     deleted: { type: Boolean, default: false },
     schedule: [{
@@ -36,8 +37,9 @@ const ApplicantsSchema = new mongoose_1.Schema({
         }],
     userId: { type: mongoose_1.Schema.Types.ObjectId },
     createdAt: { type: Date, default: Date.now },
-    hiring_status: { type: String, enum: ['in-review', 'shortlisted', 'interview', 'hired', 'rejected'] },
+    hiring_status: { type: String, enum: ['in-review', 'shortlisted', 'interview', 'hired', 'rejected'], default: 'in-review' },
     resume: { type: String },
+    answers: { type: Array },
     hiring_info: [{
             date: { type: Date },
             interviewer: { type: String },

@@ -17,21 +17,24 @@ export const editUserValidation = Joi.object({
     dob: Joi.date().optional(),
     profile: Joi.string().optional(),
     skills: Joi.array().items(Joi.string()).optional(),
-    education: Joi.object({
+    education: Joi.array().items(Joi.object({
+        university: Joi.string().optional(),
+        course: Joi.string().optional(),
         description: Joi.string().optional(),
         from: Joi.string().optional(),
         grade: Joi.string().optional(),
         to: Joi.string().optional()
-    }).optional(),
+    })).optional(),
     cv: Joi.string().optional(),
     about: Joi.string().optional(),
-    experiences: Joi.object({
+    experiences: Joi.array().items(Joi.object({
         description: Joi.string().optional(),
+        company: Joi.string().optional(),
         designation: Joi.string().optional(),
         from: Joi.date().optional(),
         location: Joi.string().optional(),
         to: Joi.date().optional()
-    }).optional(),
+    })).optional(),
     contacts: Joi.object({
         email: Joi.string().email().optional(),
         instagram: Joi.string().optional(),

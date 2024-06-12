@@ -21,21 +21,24 @@ exports.editUserValidation = joi_1.default.object({
     dob: joi_1.default.date().optional(),
     profile: joi_1.default.string().optional(),
     skills: joi_1.default.array().items(joi_1.default.string()).optional(),
-    education: joi_1.default.object({
+    education: joi_1.default.array().items(joi_1.default.object({
+        university: joi_1.default.string().optional(),
+        course: joi_1.default.string().optional(),
         description: joi_1.default.string().optional(),
         from: joi_1.default.string().optional(),
         grade: joi_1.default.string().optional(),
         to: joi_1.default.string().optional()
-    }).optional(),
+    })).optional(),
     cv: joi_1.default.string().optional(),
     about: joi_1.default.string().optional(),
-    experiences: joi_1.default.object({
+    experiences: joi_1.default.array().items(joi_1.default.object({
         description: joi_1.default.string().optional(),
+        company: joi_1.default.string().optional(),
         designation: joi_1.default.string().optional(),
         from: joi_1.default.date().optional(),
         location: joi_1.default.string().optional(),
         to: joi_1.default.date().optional()
-    }).optional(),
+    })).optional(),
     contacts: joi_1.default.object({
         email: joi_1.default.string().email().optional(),
         instagram: joi_1.default.string().optional(),

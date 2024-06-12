@@ -12,22 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkCompanyExist = void 0;
-const companySchema_1 = __importDefault(require("../model/companySchema"));
-const checkCompanyExist = (email) => __awaiter(void 0, void 0, void 0, function* () {
+exports.fetchApplicants = void 0;
+const applicantsSchema_1 = __importDefault(require("../model/applicantsSchema"));
+const fetchApplicants = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!email) {
-            return null;
+        const applicantsListCompany = yield applicantsSchema_1.default.find({ companyId: id });
+        if (!applicantsListCompany) {
+            const applicantListUser = yield applicantsSchema_1.default.find({ userId: id });
+            return applicantListUser ? applicantListUser : null;
         }
-        const user = yield companySchema_1.default.findOne({ email: email });
-        if (!user) {
-            return null;
-        }
-        return user;
+        return applicantsListCompany ? applicantsListCompany : null;
     }
     catch (error) {
-        console.error('Error fetching  user:', error);
-        throw new Error('Failed to fetch user.');
+        console.error('error in listing the application', error);
+        throw new Error('Failed to list the applicants..');
     }
 });
-exports.checkCompanyExist = checkCompanyExist;
+exports.fetchApplicants = fetchApplicants;

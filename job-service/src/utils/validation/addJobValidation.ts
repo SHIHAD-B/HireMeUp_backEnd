@@ -6,6 +6,7 @@ export const addJobValidation = joi.object({
     salary_from: joi.number().min(0).required(),
     salary_to: joi.number().min(joi.ref('salary_from')).required(),
     responsibilities: joi.string().min(5).required(),
+    questions: joi.array().items(joi.string()).min(0).optional(),
     required_skills: joi.array().items(joi.string()).min(1).required(),
     requirements: joi.string().min(5).required(),
     category: joi.string().required(),

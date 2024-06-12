@@ -2,6 +2,7 @@ import joi from 'joi'
 
 export const addApplicantsValidation = joi.object({
     jobId: joi.string().required(),
+    companyId: joi.string().required(),
     schedule: joi.array().items(joi.object({
         date: joi.date().allow(null).optional(),
         feedback: joi.string().allow(null).optional(),
@@ -12,6 +13,7 @@ export const addApplicantsValidation = joi.object({
 
     userId: joi.string().required(),
     hiring_status: joi.string().allow(null).optional(),
+    answers:joi.array().items(joi.object()).optional(),
     resume: joi.string().required(),
     hiring_info: joi.array().items(joi.object({
         date: joi.date().allow(null).optional(),

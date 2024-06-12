@@ -32,11 +32,13 @@ export const checkoutSubscriptionController = (dependencies: IDependencies) => {
             if (!selectedPlan) {
                 return next(ErrorResponse.badRequest("Plan not found"));
             }
+            const discountAmount = (selectedPlan.price * selectedPlan.discount) / 100;
+            const finalPrice = selectedPlan.price - discountAmount;
+            
             const unitAmountInCents = Math.max(
-                Math.round((selectedPlan?.price ?? 0) * 100), 
+                Math.floor(finalPrice * 100), 
                 50 
             );
-
         
             const unitAmountInDollars = unitAmountInCents / 100;
 

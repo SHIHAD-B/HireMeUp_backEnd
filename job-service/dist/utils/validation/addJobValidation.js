@@ -11,6 +11,7 @@ exports.addJobValidation = joi_1.default.object({
     salary_from: joi_1.default.number().min(0).required(),
     salary_to: joi_1.default.number().min(joi_1.default.ref('salary_from')).required(),
     responsibilities: joi_1.default.string().min(5).required(),
+    questions: joi_1.default.array().items(joi_1.default.string()).min(0).optional(),
     required_skills: joi_1.default.array().items(joi_1.default.string()).min(1).required(),
     requirements: joi_1.default.string().min(5).required(),
     category: joi_1.default.string().required(),

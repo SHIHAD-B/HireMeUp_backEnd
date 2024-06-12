@@ -34,6 +34,8 @@ const UsersSchema = new mongoose_1.Schema({
     profile: { type: String },
     skills: [{ type: String, }],
     education: {
+        university: { type: String },
+        course: { type: String },
         description: { type: String },
         from: { type: String },
         grade: { type: String },
@@ -41,13 +43,14 @@ const UsersSchema = new mongoose_1.Schema({
     },
     cv: { type: String },
     about: { type: String },
-    experiences: {
-        description: { type: String },
-        designation: { type: String },
-        from: { type: Date },
-        location: { type: String },
-        to: { type: Date },
-    },
+    experiences: [{
+            description: { type: String },
+            designation: { type: String },
+            company: { type: String },
+            from: { type: Date },
+            location: { type: String },
+            to: { type: Date },
+        }],
     contacts: {
         email: { type: String },
         instagram: { type: String },

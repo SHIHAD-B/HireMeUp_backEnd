@@ -26,3 +26,4 @@ __exportStar(require("./listApplicants"), exports);
 __exportStar(require("./listCategory"), exports);
 __exportStar(require("./listJobs"), exports);
 __exportStar(require("./fetchJob"), exports);
+__exportStar(require("./fetchApplicants"), exports);

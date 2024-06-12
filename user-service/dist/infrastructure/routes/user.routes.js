@@ -12,6 +12,7 @@ const userRoutes = (dependencies) => {
     router.route('/resetPassword').patch(resetPassword);
     router.route('/listusers').get(listUser);
     router.route('/profileresetpassword').patch(userAuth_1.userAuthMiddleware, resetProfilePassword);
+    router.route('/listusers').get(listUser);
     return router;
 };
 exports.userRoutes = userRoutes;

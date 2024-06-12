@@ -29,7 +29,6 @@ const companySigninController = (dependencies) => {
     };
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            console.log(req.body, "body from back end");
             const { value, error } = loginValidation_1.signinValidation.validate(req.body);
             if (error) {
                 return next(errorResponse_1.default.conflict(String(error)));

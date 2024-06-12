@@ -11,6 +11,8 @@ export interface IUsers {
    profile: string;
    skills: string[];
    education: {
+      university: string;
+      course: string;
       description: string;
       from: string;
       grade: string;
@@ -18,13 +20,14 @@ export interface IUsers {
    };
    cv: string;
    about: string;
-   experiences: {
+   experiences: [{
       description: string;
       designation: string;
+      company: string;
       from: Date;
       location: string;
       to: Date;
-   };
+   }];
    contacts: {
       email: string;
       instagram: string;

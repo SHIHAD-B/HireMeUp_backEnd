@@ -25,6 +25,7 @@ export const userRoutes = (dependencies: IDependencies) => {
     router.route('/resetPassword').patch(resetPassword)
     router.route('/listusers').get(listUser)
     router.route('/profileresetpassword').patch(userAuthMiddleware, resetProfilePassword)
+    router.route('/listusers').get(listUser)
   
     return router
 }

@@ -9,6 +9,7 @@ const JobsSchema: Schema = new Schema({
   deleted: { type: Boolean, default: false },
   salary_from: { type: Number },
   responsibilities: { type: String },
+  questions: { type: [String] },
   required_skills: { type: [String] },
   requirements: { type: String },
   category: { type: Schema.Types.ObjectId },

@@ -7,6 +7,7 @@ import { dependencies } from "../config/dependencies";
 import RabbitMQClient from "../infrastructure/rabbitmq/client";
 import { controller } from "./controller";
 import { adminRoutes } from "../infrastructure/routes/admin.routes";
+import { companyRoutes } from "../infrastructure/routes/company.routes";
 
 // console.log(userRoutes(dependencies))
 
@@ -19,6 +20,7 @@ app.use(cookieParser())
 
 
 app.use('/', userRoutes(dependencies))
+app.use('/company',companyRoutes(dependencies))
 app.use('/admin', adminRoutes(dependencies))
 
 

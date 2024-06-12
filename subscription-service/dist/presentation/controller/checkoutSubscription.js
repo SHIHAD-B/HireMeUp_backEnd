@@ -24,7 +24,6 @@ const stripe = new stripe_1.default(config_1.STRIPE_SECRET_KEY, { apiVersion: '2
 const checkoutSubscriptionController = (dependencies) => {
     const { useCases: { fetchPlansUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-        var _a;
         try {
             const { data } = req.body;
             if (!data) {
@@ -38,7 +37,9 @@ const checkoutSubscriptionController = (dependencies) => {
             if (!selectedPlan) {
                 return next(errorResponse_1.default.badRequest("Plan not found"));
             }
-            const unitAmountInCents = Math.max(Math.round(((_a = selectedPlan === null || selectedPlan === void 0 ? void 0 : selectedPlan.price) !== null && _a !== void 0 ? _a : 0) * 100), 50);
+            const discountAmount = (selectedPlan.price * selectedPlan.discount) / 100;
+            const finalPrice = selectedPlan.price - discountAmount;
+            const unitAmountInCents = Math.max(Math.floor(finalPrice * 100), 50);
             const unitAmountInDollars = unitAmountInCents / 100;
             const lineItem = {
                 price_data: {

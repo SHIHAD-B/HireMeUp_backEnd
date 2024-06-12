@@ -8,7 +8,7 @@ export const userRoutes = (dependencies: IDependencies) => {
     const { listCompany} = controller(dependencies)
 
     const router = Router()
-    router.use(userAuthMiddleware)
+    
     router.route('/companylist').get(listCompany)
     return router
 }

@@ -8,26 +8,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkCompanyExist = void 0;
-const companySchema_1 = __importDefault(require("../model/companySchema"));
-const checkCompanyExist = (email) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        if (!email) {
-            return null;
-        }
-        const user = yield companySchema_1.default.findOne({ email: email });
-        if (!user) {
-            return null;
-        }
-        return user;
-    }
-    catch (error) {
-        console.error('Error fetching  user:', error);
-        throw new Error('Failed to fetch user.');
-    }
-});
-exports.checkCompanyExist = checkCompanyExist;
+exports.fetchApplicantsUseCase = void 0;
+const fetchApplicantsUseCase = (dependencies) => {
+    const { repositories: { fetchApplicants } } = dependencies;
+    return {
+        execute: (id) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                return yield fetchApplicants(id);
+            }
+            catch (error) {
+                throw new Error(error);
+            }
+        })
+    };
+};
+exports.fetchApplicantsUseCase = fetchApplicantsUseCase;

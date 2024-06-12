@@ -13,6 +13,8 @@ const UsersSchema: Schema = new Schema({
    profile: { type: String },
    skills: [{ type: String, }],
    education: {
+      university: { type: String },
+      course: { type: String },
       description: { type: String },
       from: { type: String },
       grade: { type: String },
@@ -20,13 +22,14 @@ const UsersSchema: Schema = new Schema({
    },
    cv: { type: String },
    about: { type: String },
-   experiences: {
+   experiences: [{
       description: { type: String },
       designation: { type: String },
+      company: { type: String },
       from: { type: Date },
       location: { type: String },
       to: { type: Date },
-   },
+   }],
    contacts: {
       email: { type: String },
       instagram: { type: String },
@@ -46,7 +49,7 @@ const UsersSchema: Schema = new Schema({
       end_date: { type: Date },
       createdAt: { type: Date }
    },
-   expiredSubscriptions:[{
+   expiredSubscriptions: [{
       subscriptionId: { type: Schema.Types.ObjectId },
       planId: { type: Schema.Types.ObjectId },
       name: { type: String },

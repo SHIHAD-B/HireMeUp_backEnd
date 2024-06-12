@@ -30,6 +30,7 @@ const JobsSchema = new mongoose_1.Schema({
     deleted: { type: Boolean, default: false },
     salary_from: { type: Number },
     responsibilities: { type: String },
+    questions: { type: [String] },
     required_skills: { type: [String] },
     requirements: { type: String },
     category: { type: mongoose_1.Schema.Types.ObjectId },
