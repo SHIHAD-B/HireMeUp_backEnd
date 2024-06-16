@@ -14,6 +14,7 @@ const applicantListController_1 = require("./applicantListController");
 const categoryListController_1 = require("./categoryListController");
 const fetchJobController_1 = require("./fetchJobController");
 const fetchApplicantsController_1 = require("./fetchApplicantsController");
+const updateStatusController_1 = require("./updateStatusController");
 const controller = (dependencies) => {
     return {
         addCategory: (0, addCategoryController_1.addCategoryController)(dependencies),
@@ -28,7 +29,8 @@ const controller = (dependencies) => {
         applicantList: (0, applicantListController_1.applicantListController)(dependencies),
         categoryList: (0, categoryListController_1.categoryListController)(dependencies),
         fetchJob: (0, fetchJobController_1.fetchJobController)(dependencies),
-        fetchApplicants: (0, fetchApplicantsController_1.fetchApplicantsController)(dependencies)
+        fetchApplicants: (0, fetchApplicantsController_1.fetchApplicantsController)(dependencies),
+        updateStatus: (0, updateStatusController_1.updateStatusController)(dependencies)
     };
 };
 exports.controller = controller;

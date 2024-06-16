@@ -5,7 +5,6 @@ import { JWT_SECRET } from '../../config/envConfig/config';
 
 export const userAuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
     try {
-       
         const { user_token } = req.cookies;
 
         if (!user_token) {

@@ -13,7 +13,6 @@ export const updateUserController = (dependencies: IDependencies) => {
         try {
             const data = req.body
             if(data.__v){
-                console.log("camed")
                 delete data.__v
             }
     
@@ -37,12 +36,9 @@ export const updateUserController = (dependencies: IDependencies) => {
 
             const editedUser = await updateUserUseCase(dependencies).execute(value)
             if (!editedUser) {
-                console.log('====================================');
-                console.log("no edit happened");
-                console.log('====================================');
+
                 return next(ErrorResponse.forbidden("Error occured in editing the data of user"))
             } else {
-                console.log("edit successfull");
                 return res.status(200).send({
                     success: true,
                     user: value,

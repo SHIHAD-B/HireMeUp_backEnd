@@ -4,7 +4,6 @@ import cookieParser from "cookie-parser";
 import { errorHandler } from "../utils/error/errorHandler";
 import { jobRoutes } from "../infrastructure/routes/job.routes";
 import { dependencies } from "../config/dependencies";
-import { controller } from "./controller";
 import { companyRoutes } from "../infrastructure/routes/company.routes";
 import { adminRoutes } from "../infrastructure/routes/admin.routes";
 
@@ -14,8 +13,6 @@ const PORTNUMBER: number = Number(PORT)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
-
-console.log(controller(dependencies))
 
 app.use('/user', jobRoutes(dependencies))
 app.use('/company', companyRoutes(dependencies))

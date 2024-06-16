@@ -2,6 +2,7 @@ import { IJobs } from "../entities"
 import { ICategory } from "../entities"
 import { IApplicants } from "../entities"
 
+
 export interface IRepositories {
     listJobs: () => Promise<IJobs[] | null>
     listCategory: () => Promise<ICategory[] | null>
@@ -16,5 +17,6 @@ export interface IRepositories {
     addApplicants: (data: IApplicants) => Promise<IApplicants | null>
     fetchJobs: (id: string) => Promise<IJobs[] | null>
     fetchApplicants: (id: string) => Promise<IApplicants[] | null>
+    updateStatus :(id: string, status: string)=> Promise<IApplicants[] | null> 
 
 }

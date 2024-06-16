@@ -12,6 +12,7 @@ import { applicantListController } from "./applicantListController"
 import { categoryListController } from "./categoryListController"
 import { fetchJobController } from "./fetchJobController"
 import { fetchApplicantsController } from "./fetchApplicantsController"
+import { updateStatusController } from "./updateStatusController"
 
 export const controller = (dependencies: IDependencies) => {
     return {
@@ -27,6 +28,7 @@ export const controller = (dependencies: IDependencies) => {
         applicantList: applicantListController(dependencies),
         categoryList: categoryListController(dependencies),
         fetchJob: fetchJobController(dependencies),
-        fetchApplicants: fetchApplicantsController(dependencies)
+        fetchApplicants: fetchApplicantsController(dependencies),
+        updateStatus: updateStatusController(dependencies)
     }
 }

@@ -4,7 +4,7 @@ import Applicants from "../model/applicantsSchema";
 export const fetchApplicants = async (id: string): Promise<IApplicants[] | null> => {
     try {
         const applicantsListCompany = await Applicants.find({ companyId: id })
-        if (!applicantsListCompany) {
+        if (!applicantsListCompany.length) {
             const applicantListUser = await Applicants.find({ userId: id })
             return applicantListUser ? applicantListUser : null
         }

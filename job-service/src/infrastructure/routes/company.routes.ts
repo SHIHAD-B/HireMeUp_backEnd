@@ -11,11 +11,12 @@ export const companyRoutes = (dependencies: IDependencies) => {
         deleteJob,
         editJob,
         fetchJob,
-        fetchApplicants
+        fetchApplicants,
+        updateStatus
     } = controller(dependencies)
 
     const router = Router()
-    
+
     router.use(companyAuthMiddleware)
     router.route('/addjob').post(addJob)
     router.route('/categorylist').get(categoryList)
@@ -24,6 +25,6 @@ export const companyRoutes = (dependencies: IDependencies) => {
     router.route('/editjob').patch(editJob)
     router.route('/fetchjob/:id').get(fetchJob)
     router.route('/fetchapplicants/:id').get(fetchApplicants)
-   
+    router.route('/updatestatus').patch(updateStatus)
     return router
 }

@@ -51,6 +51,16 @@ exports.editUserValidation = joi_1.default.object({
     blocked: joi_1.default.boolean().optional(),
     __v: joi_1.default.number().optional(),
     deleted: joi_1.default.boolean().optional(),
+    address: joi_1.default.object({
+        houseNumber: joi_1.default.string().optional(),
+        locality: joi_1.default.string().optional(),
+        city: joi_1.default.string().optional(),
+        state: joi_1.default.string().optional(),
+        pin: joi_1.default.number().optional(),
+        country: joi_1.default.string().optional(),
+    }).optional(),
+    totalExperience: joi_1.default.number().optional(),
+    currentJobTitle: joi_1.default.string().optional(),
     subscription: joi_1.default.object({
         _id: joi_1.default.string().custom((value, helpers) => {
             if (!mongoose_1.Types.ObjectId.isValid(value)) {

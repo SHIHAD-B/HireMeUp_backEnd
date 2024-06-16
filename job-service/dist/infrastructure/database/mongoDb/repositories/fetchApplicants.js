@@ -17,7 +17,7 @@ const applicantsSchema_1 = __importDefault(require("../model/applicantsSchema"))
 const fetchApplicants = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const applicantsListCompany = yield applicantsSchema_1.default.find({ companyId: id });
-        if (!applicantsListCompany) {
+        if (!applicantsListCompany.length) {
             const applicantListUser = yield applicantsSchema_1.default.find({ userId: id });
             return applicantListUser ? applicantListUser : null;
         }

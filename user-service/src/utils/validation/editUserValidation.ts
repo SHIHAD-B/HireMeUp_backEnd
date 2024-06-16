@@ -47,6 +47,17 @@ export const editUserValidation = Joi.object({
     blocked: Joi.boolean().optional(),
     __v: Joi.number().optional(),
     deleted: Joi.boolean().optional(),
+    address: Joi.object({
+        houseNumber: Joi.string().optional(),
+        locality: Joi.string().optional(),
+        city: Joi.string().optional(),
+        state: Joi.string().optional(),
+        pin: Joi.number().optional(),
+        country: Joi.string().optional(),
+    }).optional()
+    ,
+    totalExperience: Joi.number().optional(),
+    currentJobTitle: Joi.string().optional(),
     subscription: Joi.object({
         _id: Joi.string().custom((value, helpers) => {
             if (!Types.ObjectId.isValid(value)) {

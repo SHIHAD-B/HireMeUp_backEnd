@@ -27,3 +27,4 @@ __exportStar(require("./listCategoryUseCaseinterface"), exports);
 __exportStar(require("./listJobUseCaseinterface"), exports);
 __exportStar(require("./fetchJobUseCaseinterface"), exports);
 __exportStar(require("./fetchApplicantsUseCase"), exports);
+__exportStar(require("./updateStatusUseCase"), exports);

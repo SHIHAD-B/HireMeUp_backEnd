@@ -11,15 +11,24 @@ const UsersSchema: Schema = new Schema({
    email: { type: String },
    dob: { type: Date },
    profile: { type: String },
-   skills: [{ type: String, }],
-   education: {
+   language: [],
+   address: {
+      houseNumber: { type: String },
+      locality: { type: String },
+      city: { type: String },
+      state: { type: String },
+      pin: { type: Number },
+      country: { type: String }
+   },
+   skills: [{ type: String }],
+   education: [{
       university: { type: String },
       course: { type: String },
       description: { type: String },
       from: { type: String },
       grade: { type: String },
       to: { type: String },
-   },
+   }],
    cv: { type: String },
    about: { type: String },
    experiences: [{
@@ -30,6 +39,8 @@ const UsersSchema: Schema = new Schema({
       location: { type: String },
       to: { type: Date },
    }],
+   totalExperience: { type: Number },
+   currentJobTitle: { type: String },
    contacts: {
       email: { type: String },
       instagram: { type: String },

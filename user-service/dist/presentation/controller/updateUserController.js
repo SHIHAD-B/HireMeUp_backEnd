@@ -22,7 +22,6 @@ const updateUserController = (dependencies) => {
         try {
             const data = req.body;
             if (data.__v) {
-                console.log("camed");
                 delete data.__v;
             }
             if (!data) {
@@ -43,13 +42,9 @@ const updateUserController = (dependencies) => {
             }
             const editedUser = yield updateUserUseCase(dependencies).execute(value);
             if (!editedUser) {
-                console.log('====================================');
-                console.log("no edit happened");
-                console.log('====================================');
                 return next(errorResponse_1.default.forbidden("Error occured in editing the data of user"));
             }
             else {
-                console.log("edit successfull");
                 return res.status(200).send({
                     success: true,
                     user: value,
