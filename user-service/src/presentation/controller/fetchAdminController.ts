@@ -4,6 +4,23 @@ import ErrorResponse from "../../utils/error/errorResponse";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../../config/envConfig/config";
 
+
+/**
+ * fetchAdminController - Controller function to fetch details of an admin user.
+ * 
+ * This controller:
+ * 1. Retrieves the `admin_token` from cookies in the incoming request (`req`).
+ *    - Returns a bad request error if `admin_token` is missing.
+ * 2. Verifies the `admin_token` using JWT and extracts the `email` of the admin.
+ *    - Returns a bad request error if JWT verification fails or if `email` is missing.
+ * 3. Calls the `fetchAdminUseCase` to execute fetching the admin details using the `email`.
+ *    - Returns a not found error if admin is not found or unable to fetch.
+ *    - Returns a success response with the fetched admin details if not blocked.
+ *    - Returns a response indicating admin is blocked or deleted if `user.blocked` is true.
+ * 4. Handles and logs any caught errors during the execution.
+ */
+
+
 export const fetchAdminController = (dependencies: IDependencies) => {
     const { useCases: { fetchAdminUseCase } } = dependencies
 

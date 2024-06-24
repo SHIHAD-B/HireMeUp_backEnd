@@ -18,7 +18,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-
+//redirecting the api calls to the respective services
 
 app.use('/auth', proxy(process.env.IP + "4001"))
 app.use('/user', proxy(process.env.IP + "4002"))

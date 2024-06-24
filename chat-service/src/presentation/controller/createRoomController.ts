@@ -3,6 +3,17 @@ import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
 
 
+/**
+ * createRoomController - Handles the creation of a chat room between users.
+ * 
+ * This controller:
+ * 1. Receives data from the request body containing sender and receiver information.
+ * 2. Validates if the required data (sender and receiver) are present.
+ * 3. Executes the createRoomUseCase to create a room with the provided sender and receiver.
+ * 4. Returns an error response if the required data is missing or if the room creation fails.
+ * 5. Returns a success response with the created room details if successful.
+ * 6. Passes any caught errors to the error handler middleware.
+ */
 
 
 export const createRoomController = (dependencies: IDependencies) => {

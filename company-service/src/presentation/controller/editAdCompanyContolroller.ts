@@ -4,6 +4,24 @@ import ErrorResponse from "../../utils/error/errorResponse";
 import { editCompanyValidation } from "../../utils/validation/editAdCompany";
 import { hashPassword } from "../../utils/hash/hashpassword";
 
+/**
+ * editAdCompanyController - Controller function to edit an advertising company's details.
+ * 
+ * Steps:
+ * 1. Retrieves company data from the request body.
+ * 2. Validates that company data is provided; otherwise, returns a bad request error.
+ * 3. Removes sensitive fields from the company data to avoid unintended updates.
+ * 4. Validates the edited company data format using editCompanyValidation.
+ *    - If validation fails, returns a bad request error with the validation message.
+ * 5. If a new password is provided in the data, hashes the password using hashPassword utility function.
+ *    - Returns a forbidden error if hashing fails; otherwise, updates the password in the data.
+ * 6. Executes the editCompanyUseCase to update the company details based on the edited data.
+ * 7. Returns a not found error if the company is not found or unable to be edited.
+ * 8. Returns a success response with the updated company's information upon successful edit.
+ * 9. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
+
+
 export const editAdCompanyController = (dependencies: IDependencies) => {
     const { useCases: { editCompanyUseCase } } = dependencies;
 

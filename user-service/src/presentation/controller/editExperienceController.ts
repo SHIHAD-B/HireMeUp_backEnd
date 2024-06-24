@@ -3,6 +3,18 @@ import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
 import { experienceValidation } from "../../utils/validation/addExperinceValidation";
 
+/**
+ * editExperienceController - Controller function to handle editing a user's experience details.
+ * 
+ * This controller:
+ * 1. Extracts and validates the incoming request body (`datas`).
+ *    - Checks if `datas` contains `id` and `data`.
+ *    - Validates `datas.data` using `experienceValidation`.
+ *    - Returns a bad request error if `datas` or its fields are missing, or validation fails.
+ * 2. Calls the `editExperienceUseCase` to execute the edit operation using `id` and `data`.
+ *    - If the operation fails, returns a forbidden error.
+ * 3. Returns a success response with the edited user's experience details upon successful edit.
+ */
 
 
 export const editExperienceController = (dependencies: IDependencies) => {

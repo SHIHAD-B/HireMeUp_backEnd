@@ -3,6 +3,17 @@ import ErrorResponse from "../../utils/error/errorResponse";
 import { IDependencies } from "../../domain/interfaces/dependencies";
 
 
+/**
+ * fetchNotificationController - Controller function to handle fetching notifications for a user.
+ * 
+ * This controller:
+ * 1. Retrieves the user id from request parameters.
+ *    - If id is missing, returns a bad request error.
+ * 2. Executes fetchNotificationUseCase to fetch notifications for the specified user id.
+ *    - If fetching notifications fails, returns a forbidden error with details.
+ *    - If fetching notifications succeeds, returns a success response with the fetched notifications.
+ * 3. Passes any errors encountered during the process to the error handling middleware.
+ */
 
 
 

@@ -3,6 +3,17 @@ import { IDependencies } from "../../domain/interface";
 import ErrorResponse from "../../utils/error/errorResponse";
 import { IApplicants } from "../../domain/entities";
 
+/**
+ * updateStatusController - Controller function to handle updating applicant status using updateStatusUseCase.
+ * 
+ * This controller:
+ * 1. Checks if status and id are present in the request body, if not, returns a conflict error.
+ * 2. Executes updateStatusUseCase to update the status of the applicant.
+ *    - If updating fails, returns a conflict error with details.
+ *    - If updating succeeds, returns a success response with the updated applicant details.
+ * 3. Passes any errors encountered during the process to the error handling middleware.
+ */
+
 
 export const updateStatusController = (dependencies: IDependencies) => {
     const { useCases: { updateStatusUseCase } } = dependencies

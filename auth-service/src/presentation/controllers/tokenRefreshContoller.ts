@@ -7,6 +7,25 @@ import { IUserEntity, ICompany, IAdminEntity } from "../../domain/entities";
 import { JWT_SECRET } from "../../config/envConfig/config";
 import RefreshToken from "../../infrastructure/database/mongoDB/model/refreshTokenSchema";
 
+
+/**
+ * tokenRefreshController - Handles access token refresh process.
+ * 
+ * This controller:
+ * 1. Determines the type of token (user, company, or admin) based on the cookie present in the request.
+ * 2. Verifies the validity of the access token using JWT_SECRET.
+ * 3. If the access token is valid:
+ *    - Returns a success response indicating the access token is still valid.
+ * 4. If the access token is expired or invalid:
+ *    - Handles TokenExpiredError and JsonWebTokenError appropriately and returns corresponding error responses.
+ *    - Decodes the access token to extract user information if verification fails.
+ *    - Retrieves refresh token data from the database using the user's ID.
+ *    - Checks if the refresh token exists and is not expired.
+ *    - Generates a new access token and stores it in an HTTP-only cookie.
+ *    - Returns a success response with the refreshed access token and user details.
+ * 5. Catches and forwards any errors that occur during the process to the error handler middleware.
+ */
+
 export const tokenRefreshController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {

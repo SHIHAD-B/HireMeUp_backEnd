@@ -3,6 +3,18 @@ import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
 
 
+/**
+ * deletePlanController - Controller function to handle deletion of a plan.
+ * 
+ * This controller:
+ * 1. Validates the incoming request for `id`.
+ *    - If `id` is missing, returns a bad request error.
+ * 2. Calls the deletePlansUseCase to delete the plan with the provided `id`.
+ *    - If deletion fails or the plan is not found, returns a not found error.
+ * 3. Returns a success response with the deleted plan upon successful deletion.
+ */
+
+
 export const deletePlanController = (dependencies: IDependencies) => {
     const { useCases: { deletePlansUseCase } } = dependencies
 

@@ -4,6 +4,18 @@ import ErrorResponse from "../../utils/error/errorResponse";
 import { hashPassword } from "../../utils/hash/hashpassword";
 import { addUserValidation } from "../../utils/validation/addUserValidation";
 
+/**
+ * addUserController - Controller function to handle adding a new user.
+ * 
+ * This controller:
+ * 1. Validates the incoming request body for required fields (`email` and `password`).
+ *    - If validation fails (missing data), returns a bad request error.
+ * 2. Hashes the user's password using the `hashPassword` utility function.
+ *    - If hashing fails, returns a forbidden error.
+ * 3. Calls the `addUserUseCase` to add the user with validated and hashed data.
+ *    - If adding user fails (e.g., email or phone already exists), returns a conflict or forbidden error.
+ * 4. Returns a success response with the added user object upon successful addition.
+ */
 
 
 export const addUserController = (dependencies: IDependencies) => {

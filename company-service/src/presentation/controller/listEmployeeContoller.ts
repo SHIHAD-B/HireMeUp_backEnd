@@ -3,6 +3,17 @@ import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
 
 
+/**
+ * listEmployeeController - Controller function to list all employees using the listEmployeeUseCase.
+ * 
+ * Steps:
+ * 1. Executes the listEmployeeUseCase to retrieve the list of employees.
+ * 2. Returns a not found error if the list of employees is empty or cannot be retrieved.
+ * 3. Returns a success response with the list of employees upon successful retrieval.
+ * 4. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
+
+
 export const listEmployeeController = (dependencies: IDependencies) => {
     const { useCases: { listEmployeeUseCase } } = dependencies
 

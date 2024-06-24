@@ -1,8 +1,19 @@
-import { NextFunction, Request, Response, response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { IDependencies } from "../../domain/interface";
 import ErrorResponse from "../../utils/error/errorResponse";
 import { IApplicants } from "../../domain/entities";
 
+/**
+ * fetchApplicantsController - Controller function to handle fetching applicants by ID using fetchApplicantsUseCase.
+ * 
+ * This controller:
+ * 1. Retrieves the ID parameter from the request params.
+ *    - If ID is missing or undefined, returns a bad request error.
+ * 2. Executes fetchApplicantsUseCase to retrieve applicants based on the ID.
+ *    - If fetching fails, returns a bad request error.
+ * 3. Returns a success response with the fetched applicants if successful.
+ * 4. Passes any errors encountered during the process to the error handling middleware.
+ */
 
 
 export const fetchApplicantsController = (dependencies: IDependencies) => {

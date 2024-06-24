@@ -3,6 +3,17 @@ import { IDependencies } from "../../domain/interface";
 import ErrorResponse from "../../utils/error/errorResponse";
 import { ISchedule } from "../../domain/entities/schedule.entity";
 
+/**
+ * updateScheduleStatusController - Controller function to handle updating schedule status using updateScheduleStatusUseCase.
+ * 
+ * This controller:
+ * 1. Checks if status and id are present in the request body, if not, returns a conflict error.
+ * 2. Executes updateScheduleStatusUseCase to update the status of the schedule.
+ *    - If updating fails, returns a conflict error with details.
+ *    - If updating succeeds, returns a success response with the updated schedule details.
+ * 3. Passes any errors encountered during the process to the error handling middleware.
+ */
+
 
 export const updateScheduleStatusController = (dependencies: IDependencies) => {
     const { useCases: { updateScheduleStatusUseCase } } = dependencies

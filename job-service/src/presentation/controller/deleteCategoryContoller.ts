@@ -1,8 +1,19 @@
-import { NextFunction, Request, Response, response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { IDependencies } from "../../domain/interface";
 import ErrorResponse from "../../utils/error/errorResponse";
 import { ICategory } from "../../domain/entities";
 
+/**
+ * deleteCategoryController - Controller function to handle deleting a category using deleteCategoryUseCase.
+ * 
+ * This controller:
+ * 1. Extracts the category ID from the request body.
+ *    - If ID is missing, returns a bad request error.
+ * 2. Executes deleteCategoryUseCase to delete the category based on the ID.
+ *    - If deletion fails or category is not found, returns a forbidden error.
+ * 3. Returns a success response with the deleted category if deletion is successful.
+ * 4. Passes any errors encountered during the process to the error handling middleware.
+ */
 
 
 export const deleteCategoryController = (dependencies: IDependencies) => {

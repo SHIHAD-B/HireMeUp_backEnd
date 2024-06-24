@@ -3,7 +3,17 @@ import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
 import { updateProfileValidation } from "../../utils/validation/updateProfileValidation";
 
-
+/**
+ * updateProfileController - Controller function to update user profile data.
+ * 
+ * This controller:
+ * 1. Validates the request body `datas` to ensure required fields are present and valid using `updateProfileValidation`.
+ *    - Returns a bad request error if validation fails.
+ * 2. Calls the `updateProfielUseCase` to execute updating the user profile based on the provided `id`, `data`, and `field`.
+ *    - Returns a forbidden error if updating the user profile fails.
+ * 3. Returns a success response with the updated user's details upon successful profile update.
+ * 4. Handles and logs any caught errors during the execution.
+ */
 
 export const updateProfileController = (dependencies: IDependencies) => {
     const { useCases: { updateProfielUseCase } } = dependencies

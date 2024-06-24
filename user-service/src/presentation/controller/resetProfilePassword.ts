@@ -5,6 +5,28 @@ import { hashPassword } from "../../utils/hash/hashpassword";
 import { compare } from "bcrypt";
 import { profilePasswordValidation } from "../../utils/validation/profilePassworValidation";
 
+
+/**
+ * resetProfilePasswordController - Controller function to reset user's profile password.
+ * 
+ * This controller:
+ * 1. Retrieves email, current password, and new password from the request body.
+ *    - Returns a bad request error if email is missing.
+ * 2. Fetches the user using `fetchUserUseCase` based on the provided email.
+ *    - Returns a not found error if user is not found.
+ * 3. Compares the provided current password with the hashed password stored in the database.
+ *    - Returns a bad request error if current password is incorrect.
+ * 4. Validates the new password using `profilePasswordValidation` utility.
+ *    - Returns a bad request error if validation fails.
+ * 5. Hashes the new password using `hashPassword` utility.
+ *    - Returns an internal server error if hashing fails.
+ * 6. Calls the `resetPasswordUseCase` to execute resetting the user's password.
+ *    - Returns an internal server error if resetting fails.
+ *    - Returns a success response if password is reset successfully.
+ * 7. Handles and logs any caught errors during the execution.
+ */
+
+
 export const resetProfilePasswordController = (dependencies: IDependencies) => {
     const { useCases: { fetchUserUseCase, resetPasswordUseCase } } = dependencies;
 

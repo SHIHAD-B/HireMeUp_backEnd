@@ -4,7 +4,20 @@ import ErrorResponse from "../../utils/error/errorResponse";
 import { editUserValidation } from "../../utils/validation/editUserValidation";
 import { hashPassword } from "../../utils/hash/hashpassword";
 
-
+/**
+ * updateUserController - Controller function to update user details.
+ * 
+ * This controller:
+ * 1. Deletes the `__v` field from the request body `data` if present.
+ * 2. Validates the request body `data` to ensure required fields are present and valid using `editUserValidation`.
+ *    - Returns a bad request error if validation fails.
+ * 3. Hashes the password field in `data` if present using `hashPassword`.
+ *    - Returns a forbidden error if hashing fails.
+ * 4. Calls the `updateUserUseCase` to execute updating the user details based on the validated and hashed `value`.
+ *    - Returns a forbidden error if updating the user details fails.
+ * 5. Returns a success response with the updated user's details upon successful update.
+ * 6. Handles and logs any caught errors during the execution.
+ */
 
 export const updateUserController = (dependencies: IDependencies) => {
     const { useCases: { updateUserUseCase } } = dependencies

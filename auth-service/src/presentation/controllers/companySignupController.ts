@@ -7,13 +7,27 @@ import ErrorResponse from "../../utils/error/errorResponse";
 import { addRequestValidation } from "../../utils/validation/addRequestValidation";
 import RabbitMQClient from "../../infrastructure/rabbitmq/client";
 
+/**
+ * companySignupController - Handles the company sign-up process.
+ * 
+ * This controller:
+ * 1. Validates the request data.
+ * 2. Checks if the company email already exists.
+ * 3. If no OTP is provided:
+ *    - Generates and sends an OTP via email.
+ *    - Returns a success response indicating the OTP was sent.
+ * 4. If an OTP is provided:
+ *    - Verifies the OTP.
+ *    - Hashes the password and saves the company details.
+ *    - Returns a success response upon successful registration.
+ */
+
 export const companySignupController = (dependencies: IDependencies) => {
     const { useCases: { companySignupUseCase, companyEmailExistUseCase, verifyOtpUseCase } } = dependencies
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
           
-           
             const { value, error } = addRequestValidation.validate(req.body)
 
             if (error) {

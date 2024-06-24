@@ -3,6 +3,18 @@ import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
 
 
+/**
+ * deleteUserController - Controller function to handle deleting a user by email.
+ * 
+ * This controller:
+ * 1. Validates the incoming request body for `email` (user email).
+ *    - If `email` is missing, returns a bad request error.
+ * 2. Calls the `deleteUserUseCase` to perform the deletion operation.
+ *    - If the operation fails (user not found or unable to delete user), returns a not found error.
+ * 3. Returns a success response with the deleted user object upon successful deletion.
+ */
+
+
 export const deleteUserController = (dependencies: IDependencies) => {
     const { useCases: { deleteUserUseCase } } = dependencies
 

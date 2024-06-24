@@ -3,6 +3,20 @@ import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
 import { addEmployeeValidation } from "../../utils/validation/addEmployeeValidation";
 
+/**
+ * addEmployeeController - Handles the addition of an employee using the addEmployeeUseCase.
+ * 
+ * This controller:
+ * 1. Validates the incoming request body data using addEmployeeValidation.
+ * 2. Returns a bad request error if validation fails, including all validation errors.
+ * 3. Executes the addEmployeeUseCase to add a new employee based on the provided data.
+ * 4. Returns a bad request error if the employee already exists.
+ * 5. Returns an internal server error if adding the employee fails.
+ * 6. Returns a success response with the added employee details upon successful addition.
+ * 7. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
+
+
 export const addEmployeeController = (dependencies: IDependencies) => {
     const { useCases: { addEmployeeUseCase } } = dependencies;
 

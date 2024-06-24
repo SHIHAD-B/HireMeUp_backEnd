@@ -3,6 +3,17 @@ import ErrorResponse from "../../utils/error/errorResponse";
 import { IDependencies } from "../../domain/interfaces/dependencies";
 
 
+/**
+ * updateReadStatusController - Controller function to handle updating read status of notifications for a user.
+ * 
+ * This controller:
+ * 1. Retrieves the notification id from request body.
+ *    - If id is missing, returns a bad request error.
+ * 2. Executes updateReadStatusUseCase to update the read status for the specified notification id.
+ *    - If updating read status fails, returns a forbidden error with details.
+ *    - If updating read status succeeds, returns a success response indicating the status update.
+ * 3. Passes any errors encountered during the process to the error handling middleware.
+ */
 
 
 

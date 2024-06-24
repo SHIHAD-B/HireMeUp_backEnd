@@ -6,6 +6,24 @@ import { IRefreshToken, IUserEntity } from "../../domain/entities";
 import { generateAccessToken } from "../../utils/generateToken/accessToken";
 import { generateRefreshToken } from "../../utils/generateToken/refreshToken";
 
+/**
+ * signinUserController - Handles user sign-in process.
+ * 
+ * This controller:
+ * 1. Validates the request data using signinValidation.
+ * 2. Checks if the user exists and the credentials are correct using signinUserUseCase.
+ * 3. If the credentials are incorrect or the user is not found:
+ *    - Returns appropriate error responses.
+ * 4. If the user is blocked or deleted:
+ *    - Returns an error response indicating the user is blocked or deleted by admin.
+ * 5. If the credentials are correct:
+ *    - Generates an access token and a refresh token.
+ *    - Stores the refresh token using storeRefreshTokenUseCase.
+ *    - Sets the access token in an HTTP-only cookie.
+ *    - Returns a success response with the user details, access token, and refresh token.
+ */
+
+
 export const signinUserController = (dependencies: IDependencies) => {
     const { useCases: { signinUserUseCase, storeRefreshTokenUseCase } } = dependencies;
 

@@ -2,6 +2,16 @@ import { Response, Request, NextFunction } from "express";
 import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
 
+/**
+ * listRequestController - Controller function to list all requests using the listRequestUseCase.
+ * 
+ * Steps:
+ * 1. Executes the listRequestUseCase to retrieve the list of requests.
+ * 2. Returns a not found error if the list of requests is empty or cannot be retrieved.
+ * 3. Returns a success response with the list of requests upon successful retrieval.
+ * 4. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
+
 
 export const listRequestController = (dependencies: IDependencies) => {
     const { useCases: { listRequestUseCase } } = dependencies

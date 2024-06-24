@@ -2,6 +2,16 @@ import { Response, Request, NextFunction } from "express";
 import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
 
+/**
+ * listCompanyController - Controller function to list all companies using the listCompanyUseCase.
+ * 
+ * Steps:
+ * 1. Executes the listCompanyUseCase to retrieve the list of companies.
+ * 2. Returns a not found error if the list of companies is empty or cannot be retrieved.
+ * 3. Returns a success response with the list of companies upon successful retrieval.
+ * 4. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
+
 
 export const listCompanyController = (dependencies: IDependencies) => {
     const { useCases: { listCompanyUseCase } } = dependencies

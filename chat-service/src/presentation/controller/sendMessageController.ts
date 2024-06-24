@@ -3,6 +3,17 @@ import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
 
 
+/**
+ * sendMessageController - Sends a message using the sendMessageUseCase.
+ * 
+ * This controller:
+ * 1. Retrieves message data from the request body.
+ * 2. Validates if message data is provided.
+ * 3. Executes the sendMessageUseCase to send the message using the provided data.
+ * 4. Returns an error response if message data is missing or if sending the message fails.
+ * 5. Returns a success response with the sent message details if successful.
+ * 6. Passes any caught errors to the error handler middleware.
+ */
 
 
 export const sendMessageController = (dependencies: IDependencies) => {

@@ -4,6 +4,20 @@ import ErrorResponse from "../../utils/error/errorResponse";
 import { sendApprovalNotification } from "../../utils/otp/sentAck";
 import { addCompanyValidation } from "../../utils/validation/addCompanyValidation";
 
+/**
+ * addCompanyController - Handles the addition of a company using the addCompanyUseCase.
+ * 
+ * This controller:
+ * 1. Validates the incoming request body data using addCompanyValidation.
+ * 2. Returns a bad request error if validation fails, including all validation errors.
+ * 3. Executes the addCompanyUseCase to add a new company based on the provided data.
+ * 4. Returns a not found error if adding the company fails.
+ * 5. Sends an approval notification email using sendApprovalNotification if successful.
+ * 6. Returns a success response with the added company details upon successful addition.
+ * 7. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
+
+
 export const addCompanyController = (dependencies: IDependencies) => {
     const { useCases: { addCompanyUseCase } } = dependencies
 

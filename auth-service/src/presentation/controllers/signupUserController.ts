@@ -4,12 +4,30 @@ import { generateOtp } from "../../utils/otp/generateOtp";
 import { sendOtp } from "../../utils/otp/sentOtp";
 import { hashPassword } from "../../utils/hash/hashpassword";
 import ErrorResponse from "../../utils/error/errorResponse";
-import Jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../../config/envConfig/config";
 import { signupValidation } from "../../utils/validation/signupValidation";
 import RabbitMQClient from "../../infrastructure/rabbitmq/client";
-import { IUserEntity, IUsersResult } from "../../domain/entities";
 import { generateAccessToken } from "../../utils/generateToken/accessToken";
+import { IUsersResult } from "../../domain/entities";
+
+/**
+ * signupGoogleController - Handles user sign-up/sign-in using Google OAuth process.
+ * 
+ * This controller:
+ * 1. Decodes the JWT credentials from the request body.
+ * 2. Checks if the user's email already exists using emailExistUseCase.
+ * 3. If the user's email exists:
+ *    - Checks if the user is blocked or deleted by admin and returns an error if true.
+ *    - Generates an access token and sets it in an HTTP-only cookie.
+ *    - Returns a success response with the existing user's details.
+ * 4. If the user's email doesn't exist:
+ *    - Generates a random password for the user.
+ *    - Hashes the generated password.
+ *    - Creates a new user using signupUserUseCase with the provided Google credentials.
+ *    - Returns an error response if failed to hash the password or add the user.
+ *    - Generates an access token for the new user and sets it in an HTTP-only cookie.
+ *    - Returns a success response with the new user's details.
+ * 5. Returns an error response if the user's email is not found in the JWT credentials.
+ */
 
 
 export const signupUserController = (dependencies: IDependencies) => {

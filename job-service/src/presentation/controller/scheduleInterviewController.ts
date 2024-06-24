@@ -1,9 +1,22 @@
-import { NextFunction, Request, Response, response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { IDependencies } from "../../domain/interface";
 import ErrorResponse from "../../utils/error/errorResponse";
 import { scheduleValidation } from "../../utils/validation/scheduleValidation";
 import { ISchedule } from "../../domain/entities/schedule.entity";
 
+/**
+ * scheduleInterviewController - Controller function to handle scheduling interviews using scheduleInterviewUseCase.
+ * 
+ * This controller:
+ * 1. Checks if request body exists, if not, returns a bad request error.
+ * 2. Validates the request body using scheduleValidation.
+ *    - If validation fails, returns a conflict error with details.
+ * 3. Executes scheduleInterviewUseCase to schedule the interview.
+ *    - If scheduling fails due to candidate rejection, returns a bad request error.
+ *    - If scheduling fails due to unavailability of slots, returns a bad request error.
+ *    - If scheduling succeeds, returns a success response with the scheduled interview details.
+ * 4. Passes any errors encountered during the process to the error handling middleware.
+ */
 
 
 export const scheduleInterviewController = (dependencies: IDependencies) => {

@@ -4,6 +4,23 @@ import ErrorResponse from "../../utils/error/errorResponse";
 import { hashPassword } from "../../utils/hash/hashpassword";
 import { passwordValidation } from "../../utils/validation/passwordValidation";
 
+/**
+ * resetPasswordController - Controller function to reset user password.
+ * 
+ * This controller:
+ * 1. Retrieves email and password from the request body.
+ *    - Returns a bad request error if email is missing.
+ * 2. Validates the password using `passwordValidation` utility.
+ *    - Returns a bad request error if validation fails.
+ * 3. Hashes the password using `hashPassword` utility.
+ *    - Returns a forbidden error if hashing fails.
+ * 4. Calls the `resetPasswordUseCase` to execute resetting the user password.
+ *    - Returns a forbidden error if resetting fails.
+ *    - Returns a success response if password is reset successfully.
+ * 5. Handles and logs any caught errors during the execution.
+ */
+
+
 export const resetPasswordController = (dependencies: IDependencies) => {
     const { useCases: { resetPasswordUseCase } } = dependencies
 

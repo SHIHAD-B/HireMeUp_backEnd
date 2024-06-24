@@ -16,6 +16,9 @@ exports.adminSigninController = void 0;
 const loginValidation_1 = require("../../utils/validation/loginValidation");
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const accessToken_1 = require("../../utils/generateToken/accessToken");
+//controller for admin sign in
+//expected input {
+//}
 const adminSigninController = (dependencies) => {
     const { useCases: { adminSigninUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
