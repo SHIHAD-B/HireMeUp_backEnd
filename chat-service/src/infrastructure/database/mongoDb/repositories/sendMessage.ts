@@ -12,8 +12,7 @@ export const sendMessage = async (data: IMessage): Promise<IMessage | null | boo
             sender: data.sender,
             receiver: data.receiver,
             content: data.content,
-            type: data.type,
-            status: "delivered"
+            type: data.type
         };
 
         const newMessage = await Message.create(messageData);
@@ -32,11 +31,15 @@ export const sendMessage = async (data: IMessage): Promise<IMessage | null | boo
         } else {
             const updateChat = await Chat.updateOne(
                 { _id: chat._id },
-                { $push: { message: newMessage._id } }
+                {
+                    $push: { message: newMessage._id },
+                    $set: { lastMessage: new Date() }
+                }
             );
+
             if (updateChat.modifiedCount == 0) return false;
         }
-         
+
         return newMessage;
     } catch (error: any) {
         console.error('Error adding message:', error);

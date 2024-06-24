@@ -2,6 +2,7 @@ import { NextFunction, Request, Response, response } from "express";
 import { IDependencies } from "../../domain/interface";
 import { addApplicantsValidation } from "../../utils/validation/addApplicantsValidation";
 import ErrorResponse from "../../utils/error/errorResponse";
+import { IApplicants } from "../../domain/entities";
 
 
 
@@ -17,7 +18,7 @@ export const addApplicantController = (dependencies: IDependencies) => {
                 return next(ErrorResponse.conflict(String(error)))
             } else {
 
-                const applicant: any = await addApplicantsUseCase(dependencies).execute(value)
+                const applicant: IApplicants | boolean | null = await addApplicantsUseCase(dependencies).execute(value)
                 if (!applicant) {
                     return next(ErrorResponse.badRequest("already applied.."))
                 } else {

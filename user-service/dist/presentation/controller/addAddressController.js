@@ -20,7 +20,6 @@ const addAddressController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const datas = req.body;
-            console.log(datas, "dataasssss");
             if (!datas || !datas.id || !datas.data) {
                 return next(errorResponse_1.default.badRequest("data is required"));
             }

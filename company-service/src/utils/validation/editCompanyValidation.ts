@@ -5,6 +5,9 @@ import { EMAIL } from '../../config/envConfig/config';
 const websiteRegex = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(\/.*)?$/;
 
 export const setProfileOneValidation = Joi.object({
+    _id: Joi.string().required().messages({
+        'any.required': 'id is required',
+    }),
     email: Joi.string().required().messages({
         'any.required': 'Email is required',
     }),

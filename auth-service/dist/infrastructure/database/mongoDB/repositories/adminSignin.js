@@ -23,7 +23,6 @@ const adminSignin = (data) => __awaiter(void 0, void 0, void 0, function* () {
         if (typeof rawResult === 'object' && rawResult !== null) {
             result = rawResult;
             let isMatch = false;
-            console.log(result, "result in admin repo");
             if ('password' in result) {
                 isMatch = yield (0, bcrypt_1.compare)(data.password, result.password);
                 return isMatch ? result : false;

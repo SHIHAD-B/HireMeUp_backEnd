@@ -8,7 +8,10 @@ export const approveRequest = async (data: ICompany): Promise<boolean | null> =>
             return null;
         }
 
-        const request: any = await Requests.findOne({ email: data.email });
+        const request:IRequests | null = await Requests.findOne({ email: data.email });
+      if(request!==null){
+
+      
         const company = await Company.create({
             email: request?.email,
             password: request?.password,
@@ -31,6 +34,7 @@ export const approveRequest = async (data: ICompany): Promise<boolean | null> =>
         if (updateResult.modifiedCount === 1) {
             return true;
         }
+    }
 
         return null;
     } catch (error: any) {

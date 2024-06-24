@@ -14,10 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = __importDefault(require("./presentation/server"));
 const config_1 = require("./config/envConfig/config");
+const dbConnection_1 = __importDefault(require("./infrastructure/database/dbConnection"));
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
         server_1.default;
         console.log(`Server is running on port ${config_1.PORT}`);
+        yield (0, dbConnection_1.default)()
+            .then(() => {
+            console.log("auth-service is connected to the database");
+        })
+            .catch(error => {
+            console.error("Error connecting to the database:", error);
+            throw new Error("Error connecting to the database");
+        });
     }
     catch (error) {
         console.error("Issue in running the server:", error);

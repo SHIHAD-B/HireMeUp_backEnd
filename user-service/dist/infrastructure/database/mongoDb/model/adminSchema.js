@@ -27,9 +27,10 @@ const mongoose_1 = __importStar(require("mongoose"));
 const AdminSchema = new mongoose_1.Schema({
     password: { type: String },
     email: { type: String },
+    name: { type: String },
     access: { type: String, enum: ['can-view', 'can-edit'] },
-    role: { type: String },
-    blocked: { type: Boolean },
+    role: { type: String, default: 'sub-admin' },
+    blocked: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
 });
 const Admin = mongoose_1.default.model('Admin', AdminSchema);

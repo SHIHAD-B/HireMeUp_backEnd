@@ -16,9 +16,7 @@ export interface IApplicants {
     resume: string ;
     answers: object[],
     hiring_info: {
-       date: Date ;
-       interviewer: string ;
+       name: string ;
        notes: string ;
-       status: string ;
     }[];
   }

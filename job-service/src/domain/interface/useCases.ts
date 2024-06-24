@@ -14,9 +14,13 @@ import {
     IListCategoryUseCase,
     IFetchJobJobUseCase,
     IFetchApplicants,
-    IUpdateStatusUseCase
-
-
+    IUpdateStatusUseCase,
+    ISchduleInterviewUseCase,
+    IEditSchedule,
+    IFetchScheduleUseCase,
+    IUpdateScheduleStatusUseCase,
+    IAddNoteUseCase,
+    IPublishUnpublishUseCase
 } from '../useCaseInterface'
 
 export interface IUseCases {
@@ -33,5 +37,11 @@ export interface IUseCases {
     addApplicantsUseCase: (dependencies: IDependencies) => IAddApplicantsUseCase;
     fetchJobsUseCase: (dependencies: IDependencies) => IFetchJobJobUseCase;
     fetchApplicantsUseCase: (dependencies: IDependencies) => IFetchApplicants;
-    updateStatusUseCase: (dependencies: IDependencies) => IUpdateStatusUseCase
+    updateStatusUseCase: (dependencies: IDependencies) => IUpdateStatusUseCase;
+    scheduleInterviewUseCase: (dependencies: IDependencies) => ISchduleInterviewUseCase;
+    fetchScheduleUseCase: (dependencies: IDependencies) => IFetchScheduleUseCase;
+    editScheduleUseCase: (dependencies: IDependencies) => IEditSchedule;
+    updateScheduleStatusUseCase: (dependencies: IDependencies) => IUpdateScheduleStatusUseCase;
+    addNoteUseCase: (dependencies: IDependencies) => IAddNoteUseCase
+    publishUnpublishJobUseCase: (dependencies: IDependencies) => IPublishUnpublishUseCase
 }

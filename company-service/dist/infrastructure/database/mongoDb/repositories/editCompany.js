@@ -19,11 +19,11 @@ const editCompany = (data) => __awaiter(void 0, void 0, void 0, function* () {
         if (!(data === null || data === void 0 ? void 0 : data.email)) {
             return null;
         }
-        const company = yield companySchema_1.default.findOne({ email: data.email });
+        const company = yield companySchema_1.default.findOne({ _id: data._id });
         if (!company) {
             return null;
         }
-        const updateCompany = yield companySchema_1.default.updateOne({ email: data.email }, data, { new: true });
+        const updateCompany = yield companySchema_1.default.updateOne({ _id: data._id }, data, { new: true });
         if (updateCompany.modifiedCount > 0) {
             return yield companySchema_1.default.findOne({ email: data.email });
         }

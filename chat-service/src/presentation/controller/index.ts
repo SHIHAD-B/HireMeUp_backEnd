@@ -4,6 +4,7 @@ import { getMessageController } from "./getMessageController"
 import { getRoomController } from "./getRoomController"
 import { sendMessageController } from "./sendMessageController"
 import { listAllMessageController } from "./listAllMessages"
+import { updateReadStatusController } from "./updateReadUseCase"
 
 
 export const controller = (dependencies: IDependencies) => {
@@ -13,7 +14,8 @@ export const controller = (dependencies: IDependencies) => {
         getRoom: getRoomController(dependencies),
         getMessage: getMessageController(dependencies),
         createRoom: createRoomController(dependencies),
-        listAllMessage: listAllMessageController(dependencies)
+        listAllMessage: listAllMessageController(dependencies),
+        updateReadStatus: updateReadStatusController(dependencies)
     }
 }
 

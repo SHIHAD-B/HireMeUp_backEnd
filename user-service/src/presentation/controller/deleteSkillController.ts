@@ -11,7 +11,7 @@ export const deleteSkillController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const datas = req.body
-            console.log(req.body)
+           
 
             if (!datas || !datas.id || !datas.skill) {
                 return next(ErrorResponse.badRequest("data is required"))

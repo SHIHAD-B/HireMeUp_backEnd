@@ -17,15 +17,13 @@ const generateOtp_1 = require("../../utils/otp/generateOtp");
 const sentOtp_1 = require("../../utils/otp/sentOtp");
 const hashpassword_1 = require("../../utils/hash/hashpassword");
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const config_1 = require("../../config/envConfig/config");
 const signupValidation_1 = require("../../utils/validation/signupValidation");
 const client_1 = __importDefault(require("../../infrastructure/rabbitmq/client"));
+const accessToken_1 = require("../../utils/generateToken/accessToken");
 const signupUserController = (dependencies) => {
     const { useCases: { signupUserUseCase, emailExistUseCase, verifyOtpUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            console.log("reached user signup");
             const { value, error } = signupValidation_1.signupValidation.validate(req.body);
             if (error) {
                 return next(errorResponse_1.default.conflict(String(error)));
@@ -36,13 +34,13 @@ const signupUserController = (dependencies) => {
                     phone: value.phone
                 };
                 const userExist = yield emailExistUseCase(dependencies).execute(data);
-                if (userExist) {
+                if (typeof userExist !== 'boolean' && userExist !== null) {
                     let emailerr = "";
                     let phoneerr = "";
-                    if (userExist.email == value.email) {
+                    if ((userExist === null || userExist === void 0 ? void 0 : userExist.email) == value.email) {
                         emailerr = "user already exists";
                     }
-                    if (userExist.phone == value.phone) {
+                    if ((userExist === null || userExist === void 0 ? void 0 : userExist.phone) == value.phone) {
                         phoneerr = "number already used";
                     }
                     return next(errorResponse_1.default.conflict(emailerr + phoneerr));
@@ -58,7 +56,6 @@ const signupUserController = (dependencies) => {
                         const result = yield client.produce(otpData, "addOtp", "toUser");
                         if (result) {
                             yield (0, sentOtp_1.sendOtp)(data === null || data === void 0 ? void 0 : data.email, otp).then((response) => {
-                                console.log(response);
                                 return res.status(200).send({
                                     success: true,
                                     user: value,
@@ -84,12 +81,7 @@ const signupUserController = (dependencies) => {
                     if (!user) {
                         return next(errorResponse_1.default.notFound('failed to add user'));
                     }
-                    const payload = {
-                        _id: String(user._id),
-                        email: user.email,
-                        role: user.role
-                    };
-                    const accessToken = jsonwebtoken_1.default.sign(payload, String(config_1.JWT_SECRET), { expiresIn: '24h' });
+                    const accessToken = yield (0, accessToken_1.generateAccessToken)(user);
                     res.cookie('user_token', accessToken, {
                         httpOnly: true
                     });

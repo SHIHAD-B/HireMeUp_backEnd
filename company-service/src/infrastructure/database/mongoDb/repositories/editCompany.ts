@@ -9,12 +9,12 @@ export const editCompany = async (data: ICompany): Promise<ICompany | null> => {
             return null
         }
 
-        const company = await Company.findOne({ email: data.email })
+        const company = await Company.findOne({ _id: data._id })
         if (!company) {
             return null
         }
 
-        const updateCompany = await Company.updateOne({ email: data.email }, data, { new: true })
+        const updateCompany = await Company.updateOne({ _id: data._id }, data, { new: true })
 
         if (updateCompany.modifiedCount > 0) {
             return await Company.findOne({ email: data.email })

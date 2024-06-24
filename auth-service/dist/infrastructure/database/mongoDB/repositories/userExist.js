@@ -22,7 +22,7 @@ const emailExist = (_a) => __awaiter(void 0, [_a], void 0, function* ({ email, p
             phone: phone
         };
         const result = yield client.produce(data, "checkEmail", "toUser");
-        return result;
+        return result ? result : null;
     }
     catch (error) {
         throw new Error(error);

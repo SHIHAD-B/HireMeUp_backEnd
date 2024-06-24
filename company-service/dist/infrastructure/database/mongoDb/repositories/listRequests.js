@@ -17,7 +17,6 @@ const requestSchema_1 = __importDefault(require("../model/requestSchema"));
 const listRequest = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const requestList = yield requestSchema_1.default.find();
-        console.log(requestList, "list of requests.");
         if (requestList.length === 0) {
             return null;
         }

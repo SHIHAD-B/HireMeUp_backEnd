@@ -6,7 +6,14 @@ export const addUser = async (data: IUsers): Promise<IUsers | null | boolean> =>
         if (!data) {
             return null
         }
-        console.log(data, "data when add user data")
+        if (data._id=='') {
+            delete data._id;
+            delete data.education
+            delete data.experiences
+            delete data.cv
+            delete data.about
+            delete data.contacts
+        }
 
         data = {
             ...data,

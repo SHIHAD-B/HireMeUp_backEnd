@@ -1,6 +1,7 @@
 import Plans from "../model/planSchema";
 import { ISubscriptions } from "../../../../domain/entities";
 import Subscriptions from "../model/subscriptionSchema";
+import { IPlans } from "../../../../domain/entities/plan.entity";
 
 
 export const upgradeSubscription = async (data: ISubscriptions): Promise<ISubscriptions | boolean | null> => {
@@ -8,10 +9,10 @@ export const upgradeSubscription = async (data: ISubscriptions): Promise<ISubscr
     
         if (!data || !data._id || !data.userId) return null
 
-        const plan: any = await Plans.findOne({ _id: data._id })
+        const plan = await Plans.findOne({ _id: data._id })
         if (!plan) return false
 
-        const durationInMilliseconds = plan.duration * 24 * 60 * 60 * 1000;
+        const durationInMilliseconds = plan?.duration * 24 * 60 * 60 * 1000;
 
         const upSub = {
             userId: data.userId,

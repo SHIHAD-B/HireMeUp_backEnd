@@ -7,7 +7,7 @@ export const companySignin = async (data: ICompanySignin): Promise<ICompany | bo
     try {
         let result: ICompany | null = null;
         const client = await RabbitMQClient.getInstance();
-        const rawResult: any = await client.produce(data, "companySignin", "toCompany");
+        const rawResult:ICompany | unknown = await client.produce(data, "companySignin", "toCompany");
 
         if (typeof rawResult === 'object' && rawResult !== null) {
             result = rawResult as ICompany;

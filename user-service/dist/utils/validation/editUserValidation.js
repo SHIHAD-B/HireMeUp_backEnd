@@ -19,9 +19,11 @@ exports.editUserValidation = joi_1.default.object({
     }).optional(),
     gender: joi_1.default.string().optional(),
     dob: joi_1.default.date().optional(),
+    language: joi_1.default.array().items(joi_1.default.string()).optional(),
     profile: joi_1.default.string().optional(),
     skills: joi_1.default.array().items(joi_1.default.string()).optional(),
     education: joi_1.default.array().items(joi_1.default.object({
+        _id: joi_1.default.string().optional(),
         university: joi_1.default.string().optional(),
         course: joi_1.default.string().optional(),
         description: joi_1.default.string().optional(),
@@ -32,6 +34,7 @@ exports.editUserValidation = joi_1.default.object({
     cv: joi_1.default.string().optional(),
     about: joi_1.default.string().optional(),
     experiences: joi_1.default.array().items(joi_1.default.object({
+        _id: joi_1.default.string().optional(),
         description: joi_1.default.string().optional(),
         company: joi_1.default.string().optional(),
         designation: joi_1.default.string().optional(),

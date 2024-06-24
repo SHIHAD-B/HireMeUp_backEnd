@@ -39,3 +39,7 @@ __exportStar(require("./deleteLanguageUseCase"), exports);
 __exportStar(require("./editSocialLinkUseCase"), exports);
 __exportStar(require("./addResumeUseCase"), exports);
 __exportStar(require("./addAddressUseCase"), exports);
+__exportStar(require("./addAdminUseCase"), exports);
+__exportStar(require("./editAdminUseCase"), exports);
+__exportStar(require("./listAdminUseCase"), exports);
+__exportStar(require("./blockUnblockAdmin"), exports);

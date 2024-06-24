@@ -1,4 +1,4 @@
-import { IUserEntity, IUserExist, IUsersResult,IAdminEntity} from "../entities";
+import { IUserEntity, IUserExist, IUsersResult,IAdminEntity, IRefreshToken} from "../entities";
 
 import { ICompany } from "../entities/company.entity";
 import { ICompanySignin } from "../entities/companySignin.enitity";
@@ -12,4 +12,5 @@ export interface IRepositories {
     companyEmailExist: (email: string) => Promise<boolean | null>
     companySignin: (data: ICompanySignin) => Promise<ICompany | boolean | null>
     adminSignin :(data: IAdminEntity)=> Promise<IAdminEntity | boolean | null>
+    storeRefreshToken:(data: IRefreshToken)=> Promise<IRefreshToken | boolean | null>
 }

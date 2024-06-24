@@ -16,7 +16,6 @@ exports.addSubscription = void 0;
 const userSchema_1 = __importDefault(require("../model/userSchema"));
 const addSubscription = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log(data, "data from the rab");
         if (!data) {
             return null;
         }

@@ -11,11 +11,12 @@ const JobsSchema: Schema = new Schema({
   responsibilities: { type: String },
   questions: { type: [String] },
   required_skills: { type: [String] },
+  publish: { type: Boolean, default: false },
   requirements: { type: String },
   category: { type: Schema.Types.ObjectId },
   salary_to: { type: Number },
   job_title: { type: String },
-  type: { type: String, enum: ['Full-Time','Part-Time', 'Remote', 'Internship', 'Contract'] },
+  type: { type: String, enum: ['Full-Time', 'Part-Time', 'Remote', 'Internship', 'Contract'] },
   benefits: [{
     description: { type: String },
     icon: { type: Number },
@@ -25,7 +26,7 @@ const JobsSchema: Schema = new Schema({
   slot: { type: Number },
   start_date: { type: Date },
   end_date: { type: Date },
-  level: { type: String, enum: ['entry', 'mid', 'director','senior', 'vp or above'] },
+  level: { type: String, enum: ['entry', 'mid', 'director', 'senior', 'vp or above'] },
   createdAt: { type: Date, default: Date.now },
   expires: {
     type: Date, default: function () {

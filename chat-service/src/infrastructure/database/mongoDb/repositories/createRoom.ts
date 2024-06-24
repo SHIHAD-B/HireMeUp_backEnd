@@ -12,7 +12,8 @@ export const addRoom = async (data: IMessage): Promise<IChat | null | boolean> =
 
         const newRoom = await Chat.create({
             Message: [],
-            participants: [data.sender, data.receiver]
+            participants: [data.sender, data.receiver],
+            lastMessage:new Date()
         })
         if (newRoom) {
             return newRoom

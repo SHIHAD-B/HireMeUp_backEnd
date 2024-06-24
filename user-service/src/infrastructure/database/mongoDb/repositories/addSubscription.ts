@@ -4,7 +4,7 @@ import Users from "../model/userSchema";
 
 export const addSubscription = async (data: ISubscription): Promise<IUsers | null | boolean> => {
     try {
-        console.log(data,"data from the rab")
+      
 
         if (!data) {
             return null;

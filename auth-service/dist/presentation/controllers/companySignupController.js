@@ -23,7 +23,6 @@ const companySignupController = (dependencies) => {
     const { useCases: { companySignupUseCase, companyEmailExistUseCase, verifyOtpUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            console.log(req.body, "reached company signup controller");
             const { value, error } = addRequestValidation_1.addRequestValidation.validate(req.body);
             if (error) {
                 return next(errorResponse_1.default.conflict(String(error)));
@@ -31,7 +30,6 @@ const companySignupController = (dependencies) => {
             else {
                 const data = value;
                 const companyExist = yield companyEmailExistUseCase(dependencies).execute(data === null || data === void 0 ? void 0 : data.email);
-                console.log(companyExist, "response from company exist");
                 if (companyExist) {
                     return next(errorResponse_1.default.conflict("company already exists"));
                 }
@@ -46,7 +44,6 @@ const companySignupController = (dependencies) => {
                         const result = yield client.produce(otpData, "addOtp", "toUser");
                         if (result) {
                             yield (0, sentOtp_1.sendOtp)(data === null || data === void 0 ? void 0 : data.email, otp).then((response) => {
-                                console.log(response);
                                 return res.status(200).send({
                                     success: true,
                                     user: data,
@@ -57,9 +54,7 @@ const companySignupController = (dependencies) => {
                     }
                 }
                 else {
-                    console.log('reached ');
                     const otpVerfication = yield verifyOtpUseCase(dependencies).execute(data.email, data === null || data === void 0 ? void 0 : data.otp);
-                    console.log(otpVerfication, "otp verification");
                     if (!otpVerfication) {
                         return next(errorResponse_1.default.unauthorized("incorrect otp"));
                     }
@@ -70,7 +65,6 @@ const companySignupController = (dependencies) => {
                     else {
                         data.password = password;
                     }
-                    console.log(data, "data in the comp signup");
                     const user = yield companySignupUseCase(dependencies).execute(data);
                     if (!user) {
                         return next(errorResponse_1.default.notFound('failed to add company'));

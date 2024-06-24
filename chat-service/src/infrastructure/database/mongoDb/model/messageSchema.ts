@@ -6,7 +6,7 @@ const MessageSchema: Schema = new Schema({
   receiver: { type: Schema.Types.ObjectId },
   content: { type: String },
   type: { type: String, enum: ['text', 'image', 'video', 'file'] },
-  status: { type: String, enum: ['sent', 'delivered', 'read'] },
+  status: { type: String, enum: ['sent', 'delivered', 'read'],default:"sent" },
   createdAt: { type: String, default: Date.now },
 });
 

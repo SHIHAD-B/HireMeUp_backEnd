@@ -19,3 +19,4 @@ __exportStar(require("./createRoomUseCase"), exports);
 __exportStar(require("./getRoomUseCase"), exports);
 __exportStar(require("./getMessageUseCase"), exports);
 __exportStar(require("./listAllMessages"), exports);
+__exportStar(require("./updateReadStatusUseCase"), exports);

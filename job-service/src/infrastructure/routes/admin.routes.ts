@@ -10,7 +10,9 @@ export const adminRoutes = (dependencies: IDependencies) => {
         addCategory,
         categoryList,
         deleteCategory,
-        editCategory
+        editCategory,
+        jobList,
+        applicantList
     } = controller(dependencies)
 
 
@@ -22,6 +24,8 @@ export const adminRoutes = (dependencies: IDependencies) => {
     router.route('/categorylist').get(categoryList)
     router.route('/deletecategory').patch(deleteCategory)
     router.route('/editcategory').patch(editCategory)
+    router.route('/joblist').get(jobList)
+    router.route('/applicanlist').get(applicantList)
 
     return router
 }

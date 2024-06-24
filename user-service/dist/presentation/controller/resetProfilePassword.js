@@ -38,7 +38,6 @@ const resetProfilePasswordController = (dependencies) => {
             }
             const { error } = profilePassworValidation_1.profilePasswordValidation.validate({ password: password, newPassword: newPassword });
             if (error) {
-                console.log(error);
                 return next(errorResponse_1.default.badRequest(error.message));
             }
             const hashedPassword = yield (0, hashpassword_1.hashPassword)(newPassword);

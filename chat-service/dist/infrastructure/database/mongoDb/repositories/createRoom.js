@@ -24,7 +24,8 @@ const addRoom = (data) => __awaiter(void 0, void 0, void 0, function* () {
             return true;
         const newRoom = yield chatSchema_1.default.create({
             Message: [],
-            participants: [data.sender, data.receiver]
+            participants: [data.sender, data.receiver],
+            lastMessage: new Date()
         });
         if (newRoom) {
             return newRoom;

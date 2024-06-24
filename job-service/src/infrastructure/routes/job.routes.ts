@@ -9,7 +9,8 @@ export const jobRoutes = (dependencies: IDependencies) => {
         categoryList,
         addApplicant,
         applicantList,
-        fetchApplicants
+        fetchApplicants,
+        fetchSchedule
     } = controller(dependencies)
 
     const router = Router()
@@ -24,6 +25,9 @@ export const jobRoutes = (dependencies: IDependencies) => {
     router.route('/addapplicant').post(addApplicant)
     router.route('/applicantlist').get(applicantList)
     router.route('/fetchapplicants/:id').get(fetchApplicants)
+    router.route('/fetchschedule/:id').get(fetchSchedule)
+    
+
     
 
 

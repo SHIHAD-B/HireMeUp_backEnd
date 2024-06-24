@@ -18,7 +18,6 @@ const updateStatusController = (dependencies) => {
     const { useCases: { updateStatusUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            console.log(req.body, "reached");
             const eData = req.body;
             if (!eData.status || !eData.id) {
                 return next(errorResponse_1.default.conflict("required data is missing..."));

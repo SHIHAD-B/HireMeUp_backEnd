@@ -10,6 +10,7 @@ const signupGoogleController_1 = require("./signupGoogleController");
 const companySigninController_1 = require("./companySigninController");
 const adminSigninController_1 = require("./adminSigninController");
 const companyForgotController_1 = require("./companyForgotController");
+const tokenRefreshContoller_1 = require("./tokenRefreshContoller");
 const controllers = (dependencies) => {
     return {
         signinUser: (0, signinUserController_1.signinUserController)(dependencies),
@@ -20,7 +21,8 @@ const controllers = (dependencies) => {
         signupWithGoogle: (0, signupGoogleController_1.signupGoogleController)(dependencies),
         companySignin: (0, companySigninController_1.companySigninController)(dependencies),
         adminSignin: (0, adminSigninController_1.adminSigninController)(dependencies),
-        companyForgot: (0, companyForgotController_1.companyForgotController)(dependencies)
+        companyForgot: (0, companyForgotController_1.companyForgotController)(dependencies),
+        tokenRefresh: (0, tokenRefreshContoller_1.tokenRefreshController)(dependencies)
     };
 };
 exports.controllers = controllers;

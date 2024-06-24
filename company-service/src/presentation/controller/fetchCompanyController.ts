@@ -10,7 +10,7 @@ export const fetchCompanyController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { Company_token } = req.cookies;
-            console.log(Company_token,"company token")
+           
             if (!Company_token) {
                 return next(ErrorResponse.badRequest("company token is missing."));
             }
@@ -35,7 +35,7 @@ export const fetchCompanyController = (dependencies: IDependencies) => {
                     message: "company is blocked or deleted"
                 });
             } else {
-                console.log(user,"the company from the back end.....")
+               
                 return res.status(200).json({
                     success: true,
                     user: user,

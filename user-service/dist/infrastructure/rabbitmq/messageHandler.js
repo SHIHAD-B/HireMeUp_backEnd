@@ -31,6 +31,9 @@ class MessageHandler {
                 case "addOtp":
                     response = yield (0, repositories_1.addOtp)(data.email, data.otp);
                     break;
+                case "fetchUser":
+                    response = yield (0, repositories_1.fetchUserWithId)(data.id);
+                    break;
                 case "userSignin":
                     response = yield (0, repositories_1.fetchUser)(data.email);
                     break;

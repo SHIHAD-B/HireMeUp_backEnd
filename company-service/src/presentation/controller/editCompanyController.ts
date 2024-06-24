@@ -13,7 +13,6 @@ export const editCompanyController = (dependencies: IDependencies) => {
             if (!data) {
                 return next(ErrorResponse.badRequest("Company data is missing."));
             }
-            delete data._id
             delete data.status
             delete data.deleted
             delete data.images

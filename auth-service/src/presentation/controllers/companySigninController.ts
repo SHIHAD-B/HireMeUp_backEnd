@@ -4,27 +4,12 @@ import { JWT_SECRET } from "../../config/envConfig/config";
 import Jwt from "jsonwebtoken";
 import { signinValidation } from "../../utils/validation/loginValidation";
 import ErrorResponse from "../../utils/error/errorResponse";
+import { generateAccessToken } from "../../utils/generateToken/accessToken";
 
 
 
 export const companySigninController = (dependencies: IDependencies) => {
     const { useCases: { companySigninUseCase } } = dependencies
-
-
-    const generateAccessToken = (company: any) => {
-        const payload = {
-            _id: String(company?._id),
-            email: company?.email!,
-            role: company?.role!
-        };
-        return Jwt.sign(
-            payload,
-            String(JWT_SECRET),
-            { expiresIn: '24h' }
-        );
-    };
-
-
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
@@ -42,7 +27,10 @@ export const companySigninController = (dependencies: IDependencies) => {
                 } else if (Company == null) {
 
                     return next(ErrorResponse.notFound('Company not found'))
-                } else {
+                } else if(Company!==true&&Company?.deleted==true){
+                    return next(ErrorResponse.notFound('Company Blocked by Admin'))
+
+                }else {
 
                     const accessToken = generateAccessToken(Company)
                     res.cookie('Company_token', accessToken, {

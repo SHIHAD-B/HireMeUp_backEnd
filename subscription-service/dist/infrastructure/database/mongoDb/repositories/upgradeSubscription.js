@@ -22,7 +22,7 @@ const upgradeSubscription = (data) => __awaiter(void 0, void 0, void 0, function
         const plan = yield planSchema_1.default.findOne({ _id: data._id });
         if (!plan)
             return false;
-        const durationInMilliseconds = plan.duration * 24 * 60 * 60 * 1000;
+        const durationInMilliseconds = (plan === null || plan === void 0 ? void 0 : plan.duration) * 24 * 60 * 60 * 1000;
         const upSub = {
             userId: data.userId,
             planId: data._id,

@@ -33,5 +33,9 @@ export interface IRepositories {
     editSocialLink: (id: string, data: ISocialLink) => Promise<IUsers | null>
     addResume: (id: string, resume: string) => Promise<IUsers | null>
     addAddress: (id: string, data: IAddress) => Promise<IUsers | null>
+    editAdmin: (data: IAdmin) => Promise<IAdmin | null>
+    listAdmin: () => Promise<IAdmin[] | null>
+    addAdmin: (data: IAdmin) => Promise<IAdmin | null | boolean>
+    blockUnblockAdmin :(email: string)=> Promise<boolean | null> 
 
 }

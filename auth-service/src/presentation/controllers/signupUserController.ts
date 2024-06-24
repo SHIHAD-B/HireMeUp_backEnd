@@ -8,6 +8,8 @@ import Jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../../config/envConfig/config";
 import { signupValidation } from "../../utils/validation/signupValidation";
 import RabbitMQClient from "../../infrastructure/rabbitmq/client";
+import { IUserEntity, IUsersResult } from "../../domain/entities";
+import { generateAccessToken } from "../../utils/generateToken/accessToken";
 
 
 export const signupUserController = (dependencies: IDependencies) => {
@@ -15,7 +17,7 @@ export const signupUserController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            console.log("reached user signup")
+
             const { value, error } = signupValidation.validate(req.body)
 
             if (error) {
@@ -25,15 +27,15 @@ export const signupUserController = (dependencies: IDependencies) => {
                     email: value.email,
                     phone: value.phone
                 }
-                const userExist: any = await emailExistUseCase(dependencies).execute(data)
-                if (userExist) {
+                const userExist: IUsersResult | boolean | null = await emailExistUseCase(dependencies).execute(data)
+                if (typeof userExist !== 'boolean' && userExist !== null) {
 
                     let emailerr = ""
                     let phoneerr = ""
-                    if (userExist.email == value.email) {
+                    if (userExist?.email == value.email) {
                         emailerr = "user already exists"
                     }
-                    if (userExist.phone == value.phone) {
+                    if (userExist?.phone == value.phone) {
                         phoneerr = "number already used"
                     }
                     return next(ErrorResponse.conflict(emailerr + phoneerr))
@@ -51,7 +53,7 @@ export const signupUserController = (dependencies: IDependencies) => {
                         if (result) {
 
                             await sendOtp(data?.email, otp).then((response) => {
-                                console.log(response)
+
                                 return res.status(200).send({
                                     success: true,
                                     user: value,
@@ -78,12 +80,7 @@ export const signupUserController = (dependencies: IDependencies) => {
                     if (!user) {
                         return next(ErrorResponse.notFound('failed to add user'))
                     }
-                    const payload = {
-                        _id: String(user._id),
-                        email: user.email,
-                        role: user.role!
-                    }
-                    const accessToken = Jwt.sign(payload, String(JWT_SECRET), { expiresIn: '24h' })
+                    const accessToken = await generateAccessToken(user)
                     res.cookie('user_token', accessToken, {
                         httpOnly: true
                     })

@@ -19,6 +19,7 @@ const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = require("../../config/envConfig/config");
 const jwt_decode_1 = require("jwt-decode");
+const accessToken_1 = require("../../utils/generateToken/accessToken");
 const signupGoogleController = (dependencies) => {
     const { useCases: { signupUserUseCase, emailExistUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -36,12 +37,7 @@ const signupGoogleController = (dependencies) => {
                     if (emailExist.blocked == true || emailExist.deleted == true) {
                         return next(errorResponse_1.default.badRequest('user blocked or deleted by admin'));
                     }
-                    const payload = {
-                        _id: String(emailExist._id),
-                        email: emailExist.email,
-                        role: emailExist.role
-                    };
-                    const accessToken = jsonwebtoken_1.default.sign(payload, String(config_1.JWT_SECRET), { expiresIn: '24h' });
+                    const accessToken = yield (0, accessToken_1.generateAccessToken)(emailExist);
                     res.cookie('user_token', accessToken, { httpOnly: true });
                     return res.status(200).send({
                         success: true,

@@ -12,7 +12,7 @@ export const adminSignin = async (data: IAdminEntity): Promise<IAdminEntity | bo
         if (typeof rawResult === 'object' && rawResult !== null) {
             result = rawResult as IAdminEntity;
             let isMatch: boolean = false
-            console.log(result,"result in admin repo")
+         
             if ('password' in result) {
                 isMatch = await compare(data.password, result.password);
                 return isMatch ? result : false

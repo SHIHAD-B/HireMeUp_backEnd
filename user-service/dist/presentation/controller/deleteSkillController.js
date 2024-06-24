@@ -19,7 +19,6 @@ const deleteSkillController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const datas = req.body;
-            console.log(req.body);
             if (!datas || !datas.id || !datas.skill) {
                 return next(errorResponse_1.default.badRequest("data is required"));
             }

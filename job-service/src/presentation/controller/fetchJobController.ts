@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, response } from "express";
 import { IDependencies } from "../../domain/interface";
 import ErrorResponse from "../../utils/error/errorResponse";
+import { IJobs } from "../../domain/entities";
 
 
 
@@ -11,7 +12,6 @@ export const fetchJobController = (dependencies: IDependencies) => {
         try {
 
             const id = req.params.id
-            console.log(typeof id)
             function isValidObjectId(id: string) {
                 const objectIdPattern = /^[0-9a-fA-F]{24}$/;
                 return objectIdPattern.test(id);
@@ -20,9 +20,9 @@ export const fetchJobController = (dependencies: IDependencies) => {
                 return next(ErrorResponse.badRequest("invalid company id..."))
             }
 
-            const job: any = await fetchJobsUseCase(dependencies).execute(id)
+            const job: IJobs[]| boolean | null= await fetchJobsUseCase(dependencies).execute(id)
             if (!job) {
-                console.log("else not job")
+               
                 return next(ErrorResponse.badRequest("failed to fetch job.."))
             } else {
                 return res.status(200).json({

@@ -9,11 +9,13 @@ export const fetchPlansController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
+          
 
             const users = await fetchPlansUseCase(dependencies).execute()
             if (!users) {
                 return next(ErrorResponse.notFound(" unable to list the plans."));
             } else {
+               
                 return res.status(200).json({
                     success: true,
                     user: users,

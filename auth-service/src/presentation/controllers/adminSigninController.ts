@@ -4,26 +4,13 @@ import { JWT_SECRET } from "../../config/envConfig/config";
 import Jwt from "jsonwebtoken";
 import { signinValidation } from "../../utils/validation/loginValidation";
 import ErrorResponse from "../../utils/error/errorResponse";
+import { IAdminEntity } from "../../domain/entities";
+import { generateAccessToken } from "../../utils/generateToken/accessToken";
 
 
 
 export const adminSigninController = (dependencies: IDependencies) => {
     const { useCases: { adminSigninUseCase } } = dependencies
-
-
-    const generateAccessToken = (user: any) => {
-        const payload = {
-            _id: String(user?._id),
-            email: user?.email!,
-            role: user?.role!
-        };
-        return Jwt.sign(
-            payload,
-            String(JWT_SECRET),
-            { expiresIn: '24h' }
-        );
-    };
-
 
 
     return async (req: Request, res: Response, next: NextFunction) => {
@@ -34,14 +21,14 @@ export const adminSigninController = (dependencies: IDependencies) => {
                 return next(ErrorResponse.conflict(String(error)))
             } else {
                 const data = value
-                const admin: any = await adminSigninUseCase(dependencies).execute(data)
+                const admin: IAdminEntity | boolean | null = await adminSigninUseCase(dependencies).execute(data)
                 if (admin == false) {
-
+                    return next(ErrorResponse.badRequest('incorrect password'))
+                }else if(admin==true){
                     return next(ErrorResponse.badRequest('incorrect password'))
                 } else if (admin == null) {
-
                     return next(ErrorResponse.notFound('admin not found'))
-                } else if (admin?.blocked == true || admin.deleted == true) {
+                } else if (admin?.blocked == true ) {
                     return next(ErrorResponse.badRequest('admin blocked or deleted by admin'))
                 } else {
 

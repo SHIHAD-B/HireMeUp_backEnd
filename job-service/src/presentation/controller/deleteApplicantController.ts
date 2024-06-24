@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, response } from "express";
 import { IDependencies } from "../../domain/interface";
 import ErrorResponse from "../../utils/error/errorResponse";
+import { IApplicants } from "../../domain/entities";
 
 
 
@@ -14,7 +15,7 @@ export const deleteApplicantController = (dependencies: IDependencies) => {
                 return next(ErrorResponse.badRequest("credential is missing"))
             } else {
 
-                const applicant: any = await deleteApplicantsUseCase(dependencies).execute(id)
+                const applicant: IApplicants | boolean | null = await deleteApplicantsUseCase(dependencies).execute(id)
                 if (!applicant) {
                     return next(ErrorResponse.forbidden("failed to delete applicant"))
                 } else {

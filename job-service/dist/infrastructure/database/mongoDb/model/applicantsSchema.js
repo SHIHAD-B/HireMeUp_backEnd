@@ -28,23 +28,14 @@ const ApplicantsSchema = new mongoose_1.Schema({
     companyId: { type: mongoose_1.Schema.Types.ObjectId },
     jobId: { type: mongoose_1.Schema.Types.ObjectId },
     deleted: { type: Boolean, default: false },
-    schedule: [{
-            date: { type: Date },
-            feedback: { type: String },
-            status: { type: String, enum: ['re-scheduled', 'completed', 'upcomming', 'cancelled'] },
-            time: { type: String },
-            title: { type: String },
-        }],
     userId: { type: mongoose_1.Schema.Types.ObjectId },
     createdAt: { type: Date, default: Date.now },
     hiring_status: { type: String, enum: ['in-review', 'shortlisted', 'interview', 'hired', 'rejected'], default: 'in-review' },
     resume: { type: String },
     answers: { type: Array },
     hiring_info: [{
-            date: { type: Date },
-            interviewer: { type: String },
+            name: { type: String },
             notes: { type: String },
-            status: { type: String, enum: [] },
         }],
 });
 const Applicants = mongoose_1.default.model('Applicants', ApplicantsSchema);

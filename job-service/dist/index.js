@@ -15,8 +15,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = __importDefault(require("./presentation/server"));
 const config_1 = require("./config/envConfig/config");
 const dbConnection_1 = __importDefault(require("./infrastructure/database/dbConnection"));
+const node_cron_1 = __importDefault(require("node-cron"));
+const remainderMailer_1 = require("./infrastructure/cronJob/remainderMailer");
+const expireInterview_1 = require("./infrastructure/cronJob/expireInterview");
+const expireJobs_1 = require("./infrastructure/cronJob/expireJobs");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        node_cron_1.default.schedule('*/10 * * * *', () => __awaiter(void 0, void 0, void 0, function* () {
+            console.log('Running cron job...');
+            try {
+                yield (0, remainderMailer_1.reminderMailer)();
+                yield (0, expireInterview_1.expireInterview)();
+                yield (0, expireJobs_1.updateExpiredJobs)();
+            }
+            catch (error) {
+                console.error('Error running vron job:', error);
+            }
+        }));
         server_1.default;
         console.log(`job Server is running on port ${config_1.PORT}`);
         yield (0, dbConnection_1.default)()

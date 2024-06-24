@@ -21,23 +21,25 @@ const approveRequest = (data) => __awaiter(void 0, void 0, void 0, function* () 
             return null;
         }
         const request = yield requestSchema_1.default.findOne({ email: data.email });
-        const company = yield companySchema_1.default.create({
-            email: request === null || request === void 0 ? void 0 : request.email,
-            password: request === null || request === void 0 ? void 0 : request.password,
-            status: 'active',
-            approval: 'approved',
-            deleted: false,
-            company_name: request === null || request === void 0 ? void 0 : request.companyname,
-        });
-        if (!company) {
-            return null;
-        }
-        if (!request) {
-            return null;
-        }
-        const updateResult = yield requestSchema_1.default.updateOne({ email: data.email }, { $set: { approval: "approved", status: "completed" } });
-        if (updateResult.modifiedCount === 1) {
-            return true;
+        if (request !== null) {
+            const company = yield companySchema_1.default.create({
+                email: request === null || request === void 0 ? void 0 : request.email,
+                password: request === null || request === void 0 ? void 0 : request.password,
+                status: 'active',
+                approval: 'approved',
+                deleted: false,
+                company_name: request === null || request === void 0 ? void 0 : request.companyname,
+            });
+            if (!company) {
+                return null;
+            }
+            if (!request) {
+                return null;
+            }
+            const updateResult = yield requestSchema_1.default.updateOne({ email: data.email }, { $set: { approval: "approved", status: "completed" } });
+            if (updateResult.modifiedCount === 1) {
+                return true;
+            }
         }
         return null;
     }

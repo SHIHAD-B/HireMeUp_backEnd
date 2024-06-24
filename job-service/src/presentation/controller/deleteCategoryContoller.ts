@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, response } from "express";
 import { IDependencies } from "../../domain/interface";
 import ErrorResponse from "../../utils/error/errorResponse";
+import { ICategory } from "../../domain/entities";
 
 
 
@@ -14,7 +15,7 @@ export const deleteCategoryController = (dependencies: IDependencies) => {
                 return next(ErrorResponse.badRequest("credential is missing"))
             } else {
 
-                const category: any = await deleteCategoryUseCase(dependencies).execute(id)
+                const category: ICategory | boolean | null = await deleteCategoryUseCase(dependencies).execute(id)
                 if (!category) {
                     return next(ErrorResponse.forbidden("failed to delete category"))
                 } else {

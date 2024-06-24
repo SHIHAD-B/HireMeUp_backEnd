@@ -21,7 +21,6 @@ const companyEmailExist = (email) => __awaiter(void 0, void 0, void 0, function*
             email: email
         };
         const result = yield client.produce(data, "checkEmailcompany", "toCompany");
-        console.log(result, "return from result");
         return result ? true : false;
     }
     catch (error) {

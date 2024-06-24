@@ -6,6 +6,8 @@ import { jobRoutes } from "../infrastructure/routes/job.routes";
 import { dependencies } from "../config/dependencies";
 import { companyRoutes } from "../infrastructure/routes/company.routes";
 import { adminRoutes } from "../infrastructure/routes/admin.routes";
+import RabbitMQClient from "../infrastructure/rabbitmq/client";
+
 
 const app: Application = express()
 const PORTNUMBER: number = Number(PORT)
@@ -23,8 +25,9 @@ app.use("*", (req: Request, res: Response, next: NextFunction) => {
 })
 
 app.use(errorHandler)
-app.listen(PORT, () => {
+app.listen(PORT, async() => {
     console.log(`connected to job service at ${PORTNUMBER}`)
+    await RabbitMQClient.getInstance(); 
 
 })
 

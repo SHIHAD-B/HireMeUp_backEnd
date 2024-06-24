@@ -5,7 +5,8 @@ import {
     IGetRoomUseCase,
     ISendMessageUseCase,
     IcreateRoomUseCase,
-    IListAllMessageUseCase
+    IListAllMessageUseCase,
+    IUpdateReadUseCase
 } from '../useCaseInterfaces'
 
 export interface IUseCases {
@@ -14,4 +15,5 @@ export interface IUseCases {
     getMessageUseCase: (dependencies: IDependencies) => IGetMessageUseCase
     createRoomUseCase: (dependencies: IDependencies) => IcreateRoomUseCase
     listAllMessageUseCase: (dependencies: IDependencies) => IListAllMessageUseCase
+    updateReadUseCase: (dependencies: IDependencies) => IUpdateReadUseCase
 }

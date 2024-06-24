@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, response } from "express";
 import { IDependencies } from "../../domain/interface";
 import ErrorResponse from "../../utils/error/errorResponse";
+import { IApplicants } from "../../domain/entities";
 
 
 
@@ -9,13 +10,14 @@ export const fetchApplicantsController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
+         
             const id = req.params.id
-            if (!id) {
+            if (!id || id==undefined) {
 
                 return next(ErrorResponse.badRequest("id is required..."))
             }
 
-            const applicants: any = await fetchApplicantsUseCase(dependencies).execute(id)
+            const applicants: IApplicants[] | boolean | null = await fetchApplicantsUseCase(dependencies).execute(id)
             if (!applicants) {
                 return next(ErrorResponse.badRequest("failed to fetch applicants.."))
             } else {

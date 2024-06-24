@@ -26,6 +26,10 @@ const deleteLanguageController_1 = require("./deleteLanguageController");
 const editSocialLinkController_1 = require("./editSocialLinkController");
 const addResumeController_1 = require("./addResumeController");
 const addAddressController_1 = require("./addAddressController");
+const addAdminController_1 = require("./addAdminController");
+const listAdminController_1 = require("./listAdminController");
+const editAdminController_1 = require("./editAdminController");
+const blockUnblockAdminController_1 = require("./blockUnblockAdminController");
 const controller = (dependencies) => {
     return {
         blockUser: (0, blockUserController_1.blockUserController)(dependencies),
@@ -52,7 +56,11 @@ const controller = (dependencies) => {
         deleteLanguage: (0, deleteLanguageController_1.deleteLanguageController)(dependencies),
         editSocialLink: (0, editSocialLinkController_1.editSocialLinkController)(dependencies),
         addResume: (0, addResumeController_1.addResumeController)(dependencies),
-        addAddress: (0, addAddressController_1.addAddressController)(dependencies)
+        addAddress: (0, addAddressController_1.addAddressController)(dependencies),
+        addAdmin: (0, addAdminController_1.addAdminController)(dependencies),
+        listAdmin: (0, listAdminController_1.listAdminController)(dependencies),
+        editAdmin: (0, editAdminController_1.editAdminController)(dependencies),
+        blockUnblockAdmin: (0, blockUnblockAdminController_1.blockUnblockAdminController)(dependencies)
     };
 };
 exports.controller = controller;

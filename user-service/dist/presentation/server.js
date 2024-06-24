@@ -12,7 +12,6 @@ const dependencies_1 = require("../config/dependencies");
 const client_1 = __importDefault(require("../infrastructure/rabbitmq/client"));
 const admin_routes_1 = require("../infrastructure/routes/admin.routes");
 const company_routes_1 = require("../infrastructure/routes/company.routes");
-// console.log(userRoutes(dependencies))
 const app = (0, express_1.default)();
 const PORTNUMBER = Number(config_1.PORT);
 app.use(express_1.default.json());

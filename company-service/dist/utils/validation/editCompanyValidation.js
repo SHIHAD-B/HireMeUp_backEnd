@@ -7,6 +7,9 @@ exports.setProfileOneValidation = void 0;
 const joi_1 = __importDefault(require("joi"));
 const websiteRegex = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(\/.*)?$/;
 exports.setProfileOneValidation = joi_1.default.object({
+    _id: joi_1.default.string().required().messages({
+        'any.required': 'id is required',
+    }),
     email: joi_1.default.string().required().messages({
         'any.required': 'Email is required',
     }),

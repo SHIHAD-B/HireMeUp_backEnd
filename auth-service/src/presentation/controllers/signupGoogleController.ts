@@ -8,6 +8,7 @@ import { JWT_SECRET } from "../../config/envConfig/config";
 
 
 import { jwtDecode } from "jwt-decode";
+import { generateAccessToken } from "../../utils/generateToken/accessToken";
 
 export const signupGoogleController = (dependencies: IDependencies) => {
     const { useCases: { signupUserUseCase, emailExistUseCase } } = dependencies;
@@ -29,12 +30,7 @@ export const signupGoogleController = (dependencies: IDependencies) => {
                     if (emailExist.blocked == true || emailExist.deleted == true) {
                         return next(ErrorResponse.badRequest('user blocked or deleted by admin'))
                     }
-                    const payload = {
-                        _id: String(emailExist._id),
-                        email: emailExist.email,
-                        role: emailExist.role!
-                    };
-                    const accessToken = Jwt.sign(payload, String(JWT_SECRET), { expiresIn: '24h' });
+                    const accessToken = await generateAccessToken(emailExist)
                     res.cookie('user_token', accessToken, { httpOnly: true });
 
                     return res.status(200).send({

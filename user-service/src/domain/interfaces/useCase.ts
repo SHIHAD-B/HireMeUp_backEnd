@@ -22,7 +22,11 @@ import {
     IDeleteLanguageCase,
     ISoclailLinkUseCase,
     IAddResumeUseCase,
-    IAddAddressUseCase
+    IAddAddressUseCase,
+    IAddAdminUseCase,
+    IEditAdminUseCase,
+    IListAdminUseCase,
+    IBlockUnBlockAdminUseCase
 
 } from '../useCaseInterface'
 import { IDependencies } from './dependencies'
@@ -53,6 +57,10 @@ export interface IUseCases {
     editSocialLinkUseCase: (dependencies: IDependencies) => ISoclailLinkUseCase
     addResumeUseCase: (dependencies: IDependencies) => IAddResumeUseCase;
     addAddressUseCase: (dependencies: IDependencies) => IAddAddressUseCase;
+    listAdminUseCase: (dependencies: IDependencies) => IListAdminUseCase;
+    editAdminUseCase: (dependencies: IDependencies) => IEditAdminUseCase;
+    addAdminUseCase: (dependencies: IDependencies) => IAddAdminUseCase;
+    blockUnblockAdminUserUseCase: (dependencies: IDependencies) => IBlockUnBlockAdminUseCase;
 
 
 }

@@ -32,6 +32,7 @@ const JobsSchema = new mongoose_1.Schema({
     responsibilities: { type: String },
     questions: { type: [String] },
     required_skills: { type: [String] },
+    publish: { type: Boolean, default: false },
     requirements: { type: String },
     category: { type: mongoose_1.Schema.Types.ObjectId },
     salary_to: { type: Number },

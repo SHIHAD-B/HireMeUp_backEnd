@@ -24,6 +24,10 @@ import { deleteLanguageController } from "./deleteLanguageController";
 import { editSocialLinkController } from "./editSocialLinkController";
 import { addResumeController } from "./addResumeController";
 import { addAddressController } from "./addAddressController";
+import { addAdminController } from "./addAdminController";
+import { listAdminController } from "./listAdminController";
+import { editAdminController } from "./editAdminController";
+import { blockUnblockAdminController } from "./blockUnblockAdminController";
 
 export const controller = (dependencies: IDependencies) => {
 
@@ -52,7 +56,11 @@ export const controller = (dependencies: IDependencies) => {
         deleteLanguage: deleteLanguageController(dependencies),
         editSocialLink: editSocialLinkController(dependencies),
         addResume: addResumeController(dependencies),
-        addAddress:addAddressController(dependencies)
+        addAddress: addAddressController(dependencies),
+        addAdmin: addAdminController(dependencies),
+        listAdmin: listAdminController(dependencies),
+        editAdmin: editAdminController(dependencies),
+        blockUnblockAdmin: blockUnblockAdminController(dependencies)
 
     }
 }

@@ -6,8 +6,9 @@ enum Role {
 }
 
 export interface IAdminEntity {
-    _id: Types.ObjectId,
+    _id?: Types.ObjectId,
     email: string,
+    blocked?:boolean,
     password: string
     role?: Role
 }

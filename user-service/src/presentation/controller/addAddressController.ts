@@ -11,7 +11,6 @@ export const addAddressController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const datas = req.body
-            console.log(datas,"dataasssss")
 
             if (!datas || !datas.id || !datas.data) {
                 return next(ErrorResponse.badRequest("data is required"))

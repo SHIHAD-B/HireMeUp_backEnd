@@ -5,11 +5,9 @@ import { errorHandler } from "../utils/error/errorHandler";
 import { userRoutes } from "../infrastructure/routes/user.routes";
 import { dependencies } from "../config/dependencies";
 import RabbitMQClient from "../infrastructure/rabbitmq/client";
-import { controller } from "./controller";
 import { adminRoutes } from "../infrastructure/routes/admin.routes";
 import { companyRoutes } from "../infrastructure/routes/company.routes";
 
-// console.log(userRoutes(dependencies))
 
 const app: Application = express()
 const PORTNUMBER: number = Number(PORT)

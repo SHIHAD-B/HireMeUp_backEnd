@@ -15,9 +15,11 @@ export const editUserValidation = Joi.object({
         }).optional(),
     gender: Joi.string().optional(),
     dob: Joi.date().optional(),
+    language:Joi.array().items(Joi.string()).optional(),
     profile: Joi.string().optional(),
     skills: Joi.array().items(Joi.string()).optional(),
     education: Joi.array().items(Joi.object({
+        _id:Joi.string().optional(),
         university: Joi.string().optional(),
         course: Joi.string().optional(),
         description: Joi.string().optional(),
@@ -28,6 +30,7 @@ export const editUserValidation = Joi.object({
     cv: Joi.string().optional(),
     about: Joi.string().optional(),
     experiences: Joi.array().items(Joi.object({
+        _id:Joi.string().optional(),
         description: Joi.string().optional(),
         company: Joi.string().optional(),
         designation: Joi.string().optional(),

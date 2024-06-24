@@ -19,7 +19,6 @@ const sendMessageController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const data = req.body;
-            console.log(req.body, "rec body...");
             if (!data) {
                 return next(errorResponse_1.default.badRequest("data is required"));
             }

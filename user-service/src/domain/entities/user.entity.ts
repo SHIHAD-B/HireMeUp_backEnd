@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 
 export interface IUsers {
-   _id: Types.ObjectId;
+   _id?: string;
    phone: number;
    username: string;
    gender: string;
@@ -10,7 +10,7 @@ export interface IUsers {
    dob: Date;
    profile: string;
    skills: string[];
-   education: {
+   education?: {
       university: string;
       course: string;
       description: string;
@@ -18,9 +18,9 @@ export interface IUsers {
       grade: string;
       to: string;
    };
-   cv: string;
-   about: string;
-   experiences: [{
+   cv?: string;
+   about?: string;
+   experiences?: [{
       description: string;
       designation: string;
       company: string;
@@ -28,7 +28,7 @@ export interface IUsers {
       location: string;
       to: Date;
    }];
-   contacts: {
+   contacts?: {
       email: string;
       instagram: string;
       linkedin: string;

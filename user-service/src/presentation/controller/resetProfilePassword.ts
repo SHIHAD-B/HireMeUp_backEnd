@@ -40,7 +40,6 @@ export const resetProfilePasswordController = (dependencies: IDependencies) => {
             const { error } = profilePasswordValidation.validate({ password: password,newPassword:newPassword });
 
             if (error) {
-                console.log(error)
                 return next(ErrorResponse.badRequest(error.message));
             }
 

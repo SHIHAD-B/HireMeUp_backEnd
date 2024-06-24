@@ -12,7 +12,7 @@ export const resetProfilePasswordController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
         
-         console.log("reached reset controller")
+        
             const { password, newPassword,email } = req.body;
            
 
@@ -42,7 +42,6 @@ export const resetProfilePasswordController = (dependencies: IDependencies) => {
             const { error } = setProfilePasswordValidation.validate({ password: password,newPassword:newPassword });
 
             if (error) {
-                console.log(error)
                 return next(ErrorResponse.badRequest(error.message));
             }
 

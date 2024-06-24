@@ -21,7 +21,6 @@ const resetProfilePasswordController = (dependencies) => {
     const { useCases: { fetchCompanyUseCase, resetPasswordUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            console.log("reached reset controller");
             const { password, newPassword, email } = req.body;
             if (!email) {
                 return next(errorResponse_1.default.badRequest("company email is missing."));
@@ -39,7 +38,6 @@ const resetProfilePasswordController = (dependencies) => {
             }
             const { error } = profilePassworValidation_1.setProfilePasswordValidation.validate({ password: password, newPassword: newPassword });
             if (error) {
-                console.log(error);
                 return next(errorResponse_1.default.badRequest(error.message));
             }
             const hashedPassword = yield (0, hashpassword_1.hashPassword)(newPassword);

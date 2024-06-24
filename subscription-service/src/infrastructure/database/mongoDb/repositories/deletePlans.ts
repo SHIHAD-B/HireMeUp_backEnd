@@ -5,7 +5,11 @@ export const deletePlans = async (id: string): Promise<boolean | null> => {
         if (!id) {
             return null
         }
-        const plans = await Plans.updateOne({ _id: id }, { deleted: true }, { new: true })
+        const checkplan= await Plans.findOne({_id:id})
+        if(!checkplan){
+            return null
+        }
+        const plans = await Plans.updateOne({ _id: id }, { deleted: !checkplan.deleted }, { new: true })
 
         return plans.modifiedCount > 0 ? true : false;
     } catch (error: any) {

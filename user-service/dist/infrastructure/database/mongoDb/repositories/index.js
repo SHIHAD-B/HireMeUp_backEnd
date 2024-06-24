@@ -43,3 +43,8 @@ __exportStar(require("./deleteLanguage"), exports);
 __exportStar(require("./editSocialLink"), exports);
 __exportStar(require("./addCv"), exports);
 __exportStar(require("./addAddress"), exports);
+__exportStar(require("./listAdmin"), exports);
+__exportStar(require("./addAdmin"), exports);
+__exportStar(require("./editAdmin"), exports);
+__exportStar(require("./adminBlockUnblock"), exports);
+__exportStar(require("./fetchUserwithId"), exports);

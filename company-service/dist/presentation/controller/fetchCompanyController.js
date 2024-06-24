@@ -21,7 +21,6 @@ const fetchCompanyController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const { Company_token } = req.cookies;
-            console.log(Company_token, "company token");
             if (!Company_token) {
                 return next(errorResponse_1.default.badRequest("company token is missing."));
             }
@@ -47,7 +46,6 @@ const fetchCompanyController = (dependencies) => {
                 });
             }
             else {
-                console.log(user, "the company from the back end.....");
                 return res.status(200).json({
                     success: true,
                     user: user,

@@ -7,5 +7,6 @@ export interface IRepositories {
     getMessages: (id: string) => Promise<IChat | null | boolean>
     getRoom: (id: string) => Promise<IChat[] | null | boolean>
     sendMessage: (data: IMessage) => Promise<IMessage | null | boolean>
-    listAllMessage:(id: string)=> Promise<IChat[] | null | boolean> 
+    listAllMessage: (id: string) => Promise<IChat[] | null | boolean>
+    updateReadStatus: (sender: string, receiver: string, status: string) => Promise<IMessage[] | null | boolean>
 }

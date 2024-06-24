@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, response } from "express";
 import { IDependencies } from "../../domain/interface";
 import ErrorResponse from "../../utils/error/errorResponse";
+import { IJobs } from "../../domain/entities";
 
 
 
@@ -14,7 +15,7 @@ export const deleteJobController = (dependencies: IDependencies) => {
                 return next(ErrorResponse.badRequest("credential is missing"))
             } else {
 
-                const job: any = await deleteJobUseCase(dependencies).execute(id)
+                const job: IJobs | boolean | null = await deleteJobUseCase(dependencies).execute(id)
                 if (!job) {
                     return next(ErrorResponse.forbidden("failed to delete job"))
                 } else {

@@ -11,6 +11,7 @@ export const addJobValidation = joi.object({
     requirements: joi.string().min(5).required(),
     category: joi.string().required(),
     job_title: joi.string().required(),
+    location: joi.string().empty('').allow(null).optional(),
     type: joi.string().required(),
     benefits: joi.array().items(joi.object({
         description: joi.string().allow(null).optional(),
@@ -21,5 +22,5 @@ export const addJobValidation = joi.object({
     slot: joi.number().min(1).required(),
     start_date: joi.date().required(),
     end_date: joi.date().required(),
-    level: joi.string().required()
+    level: joi.string().empty('').allow(null).optional()
 });

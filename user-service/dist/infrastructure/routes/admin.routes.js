@@ -5,7 +5,7 @@ const express_1 = require("express");
 const controller_1 = require("../../presentation/controller");
 const adminAuth_1 = require("../../utils/middlewares/adminAuth");
 const adminRoutes = (dependencies) => {
-    const { updateUser, addUser, blockUser, unblockUser, deleteUser, recoverUser, fetchAdmin, listUser } = (0, controller_1.controller)(dependencies);
+    const { updateUser, addUser, blockUser, unblockUser, deleteUser, recoverUser, fetchAdmin, listUser, addAdmin, editAdmin, listAdmin, blockUnblockAdmin } = (0, controller_1.controller)(dependencies);
     const router = (0, express_1.Router)();
     router.use(adminAuth_1.adminAuthMiddleware);
     router.route('/editUser').patch(updateUser);
@@ -16,6 +16,10 @@ const adminRoutes = (dependencies) => {
     router.route('/listusers').get(listUser);
     router.route('/fetchadmin').get(fetchAdmin);
     router.route('/addUser').post(addUser);
+    router.route('/addadmin').post(addAdmin);
+    router.route('/editadmin').patch(editAdmin);
+    router.route('/listadmin').get(listAdmin);
+    router.route('/blockunblockadmin').patch(blockUnblockAdmin);
     return router;
 };
 exports.adminRoutes = adminRoutes;

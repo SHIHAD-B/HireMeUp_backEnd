@@ -1,10 +1,22 @@
 import server from './presentation/server';
 import { PORT } from './config/envConfig/config';
 import dbConnection from './infrastructure/database/dbConnection';
+import cron from 'node-cron'
+import { expireSubscriptions } from './infrastructure/cronjobs/expireSubscription';
 
 
 (async () => {
     try {
+
+        cron.schedule('*/10 * * * *', async () => {
+            console.log('Running cron job...');
+            try {
+                await expireSubscriptions()
+            } catch (error) {
+                console.error('Error running cron job:', error);
+            }
+        });
+
         server;
         console.log(`user Server is running on port ${PORT}`);
     

@@ -12,7 +12,8 @@ export const userRoutes = (dependencies: IDependencies) => {
         getMessage,
         getRoom,
         sendMessage,
-        listAllMessage
+        listAllMessage,
+        updateReadStatus
     } = controller(dependencies)
 
     const router = Router()
@@ -25,6 +26,7 @@ export const userRoutes = (dependencies: IDependencies) => {
     router.route('/getroom').get(getRoom)
     router.route('/createroom').post(createRoom)
     router.route('/listmessages').get(listAllMessage)
+    router.route('/updatereadstatus').patch(updateReadStatus)
 
 
     return router

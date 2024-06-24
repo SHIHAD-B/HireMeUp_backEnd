@@ -13,6 +13,12 @@ import { categoryListController } from "./categoryListController"
 import { fetchJobController } from "./fetchJobController"
 import { fetchApplicantsController } from "./fetchApplicantsController"
 import { updateStatusController } from "./updateStatusController"
+import { scheduleInterviewController } from "./scheduleInterviewController"
+import { editScheduleController } from "./editScheduleController"
+import { fetchScheduleController } from "./fetchSchduleController"
+import { updateScheduleStatusController } from "./updateScheduleStatusController"
+import { addNoteController } from "./addNoteController"
+import { publishUnpublishController } from "./publishUnpublishJobController"
 
 export const controller = (dependencies: IDependencies) => {
     return {
@@ -29,6 +35,12 @@ export const controller = (dependencies: IDependencies) => {
         categoryList: categoryListController(dependencies),
         fetchJob: fetchJobController(dependencies),
         fetchApplicants: fetchApplicantsController(dependencies),
-        updateStatus: updateStatusController(dependencies)
+        updateStatus: updateStatusController(dependencies),
+        scheduleInterview: scheduleInterviewController(dependencies),
+        fetchSchedule: fetchScheduleController(dependencies),
+        editSchedule: editScheduleController(dependencies),
+        updateScheduleStatus: updateScheduleStatusController(dependencies),
+        addNotes: addNoteController(dependencies),
+        publishUnpublishJob: publishUnpublishController(dependencies)
     }
 }

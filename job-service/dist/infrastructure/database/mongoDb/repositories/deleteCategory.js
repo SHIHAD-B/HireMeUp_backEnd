@@ -19,7 +19,11 @@ const deleteCategory = (id) => __awaiter(void 0, void 0, void 0, function* () {
         if (!id) {
             return null;
         }
-        const deletedCategory = yield categorySchema_1.default.updateOne({ _id: id }, { deleted: true });
+        const cate = yield categorySchema_1.default.findOne({ _id: id });
+        if (!cate) {
+            return null;
+        }
+        const deletedCategory = yield categorySchema_1.default.updateOne({ _id: id }, { deleted: !cate.deleted });
         return deletedCategory.modifiedCount > 0 ? true : false;
     }
     catch (error) {

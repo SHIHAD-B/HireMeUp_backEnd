@@ -4,7 +4,7 @@ import Requests from "../model/requestSchema";
 export const listRequest = async (): Promise<IRequests[] | null> => {
     try {
         const requestList = await Requests.find();
-        console.log(requestList, "list of requests.")
+        
         if (requestList.length === 0) {
             return null;
         }

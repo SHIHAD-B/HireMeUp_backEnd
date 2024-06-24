@@ -11,7 +11,7 @@ export const sendMessageController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const data = req.body
-            console.log(req.body,"rec body...")
+
             if (!data) {
                 return next(ErrorResponse.badRequest("data is required"))
             }

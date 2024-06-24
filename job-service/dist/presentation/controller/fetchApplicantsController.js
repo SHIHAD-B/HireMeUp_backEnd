@@ -19,7 +19,7 @@ const fetchApplicantsController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const id = req.params.id;
-            if (!id) {
+            if (!id || id == undefined) {
                 return next(errorResponse_1.default.badRequest("id is required..."));
             }
             const applicants = yield fetchApplicantsUseCase(dependencies).execute(id);

@@ -8,6 +8,7 @@ import { signupGoogleController } from "./signupGoogleController";
 import { companySigninController } from "./companySigninController";
 import { adminSigninController } from "./adminSigninController";
 import { companyForgotController } from "./companyForgotController";
+import { tokenRefreshController } from "./tokenRefreshContoller";
 
 export const controllers = (dependencies: IDependencies) => {
     return {
@@ -19,6 +20,7 @@ export const controllers = (dependencies: IDependencies) => {
         signupWithGoogle: signupGoogleController(dependencies),
         companySignin: companySigninController(dependencies),
         adminSignin: adminSigninController(dependencies),
-        companyForgot: companyForgotController(dependencies)
+        companyForgot: companyForgotController(dependencies),
+        tokenRefresh:tokenRefreshController(dependencies)
     }
 }

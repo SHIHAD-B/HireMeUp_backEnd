@@ -6,7 +6,8 @@ import {
     ICompanySignupUseCase,
     ICompanyEmailExistUseCase,
     ICompanySigninUseCase,
-    IAdminSigninUseCase
+    IAdminSigninUseCase,
+    IStoreRefreshTokenUseCase
 } from "../useCaseInterface";
 
 import { IDependencies } from "./dependencies";
@@ -19,7 +20,8 @@ export interface IUseCases {
     companySignupUseCase: (dependencies: IDependencies) => ICompanySignupUseCase;
     companyEmailExistUseCase: (dependencies: IDependencies) => ICompanyEmailExistUseCase;
     companySigninUseCase: (dependencies: IDependencies) => ICompanySigninUseCase;
-    adminSigninUseCase: (dependencies: IDependencies) => IAdminSigninUseCase
+    adminSigninUseCase: (dependencies: IDependencies) => IAdminSigninUseCase;
+    storeRefreshTokenUseCase: (dependencies: IDependencies) => IStoreRefreshTokenUseCase;
 
 
 }

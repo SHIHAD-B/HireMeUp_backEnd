@@ -18,7 +18,7 @@ const PlanExists = (name) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const plans = yield planSchema_1.default.findOne({ name: name });
         if (plans) {
-            return plans;
+            return plans ? plans : null;
         }
         return null;
     }

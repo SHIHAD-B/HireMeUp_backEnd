@@ -4,10 +4,10 @@ import Plans from "../model/planSchema";
 export const PlanExists = async (name: string): Promise<IPlans[] | null> => {
     try {
 
-        const plans: any = await Plans.findOne({ name: name })
+        const plans: IPlans[] | null = await Plans.findOne({ name: name })
 
         if (plans) {
-            return plans
+            return plans ? plans : null
         }
         return null
     } catch (error: any) {

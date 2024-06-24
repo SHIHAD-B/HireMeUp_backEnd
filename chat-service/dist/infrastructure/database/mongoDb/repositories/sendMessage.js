@@ -24,8 +24,7 @@ const sendMessage = (data) => __awaiter(void 0, void 0, void 0, function* () {
             sender: data.sender,
             receiver: data.receiver,
             content: data.content,
-            type: data.type,
-            status: "delivered"
+            type: data.type
         };
         const newMessage = yield messageSchema_1.default.create(messageData);
         if (!newMessage)
@@ -41,7 +40,10 @@ const sendMessage = (data) => __awaiter(void 0, void 0, void 0, function* () {
             }
         }
         else {
-            const updateChat = yield chatSchema_1.default.updateOne({ _id: chat._id }, { $push: { message: newMessage._id } });
+            const updateChat = yield chatSchema_1.default.updateOne({ _id: chat._id }, {
+                $push: { message: newMessage._id },
+                $set: { lastMessage: new Date() }
+            });
             if (updateChat.modifiedCount == 0)
                 return false;
         }

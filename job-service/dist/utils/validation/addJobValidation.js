@@ -16,6 +16,7 @@ exports.addJobValidation = joi_1.default.object({
     requirements: joi_1.default.string().min(5).required(),
     category: joi_1.default.string().required(),
     job_title: joi_1.default.string().required(),
+    location: joi_1.default.string().empty('').allow(null).optional(),
     type: joi_1.default.string().required(),
     benefits: joi_1.default.array().items(joi_1.default.object({
         description: joi_1.default.string().allow(null).optional(),
@@ -26,5 +27,5 @@ exports.addJobValidation = joi_1.default.object({
     slot: joi_1.default.number().min(1).required(),
     start_date: joi_1.default.date().required(),
     end_date: joi_1.default.date().required(),
-    level: joi_1.default.string().required()
+    level: joi_1.default.string().empty('').allow(null).optional()
 });

@@ -2,6 +2,7 @@ import { Router } from "express";
 import { IDependencies } from "../../domain/interfaces";
 import { controllers } from "../../presentation/controllers";
 
+
 export const authRoutes = (dependencies: IDependencies) => {
     const { signinUser,
         signupUser,
@@ -11,6 +12,7 @@ export const authRoutes = (dependencies: IDependencies) => {
         signupWithGoogle,
         companySignin,
         adminSignin,
+        tokenRefresh,
         companyForgot } = controllers(dependencies)
 
     const router = Router();
@@ -24,5 +26,6 @@ export const authRoutes = (dependencies: IDependencies) => {
     router.route('/companysignin').post(companySignin)
     router.route('/adminsignin').post(adminSignin)
     router.route('/companyforgot').post(companyForgot)
+    router.route('/refreshToken').post(tokenRefresh)
     return router
 }

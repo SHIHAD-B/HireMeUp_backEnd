@@ -2,6 +2,7 @@ import { NextFunction, Request, Response, response } from "express";
 import { IDependencies } from "../../domain/interface";
 import ErrorResponse from "../../utils/error/errorResponse";
 import { editJobValidation } from "../../utils/validation/editJobValidation";
+import { IJobs } from "../../domain/entities";
 
 
 
@@ -10,19 +11,19 @@ export const editJobController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-         const eData=req.body
-         delete eData.deleted
-         delete eData.__v
-         delete eData.createdAt
-         delete eData.expires
-         
+            const eData = req.body
+            delete eData.deleted
+            delete eData.__v
+            delete eData.createdAt
+            delete eData.expires
+
             const { value, error } = editJobValidation.validate(req.body)
 
             if (error) {
                 return next(ErrorResponse.conflict(String(error)))
             } else {
 
-                const job: any = await editJobUseCase(dependencies).execute(value)
+                const job: IJobs | boolean | null = await editJobUseCase(dependencies).execute(value)
                 if (!job) {
                     return next(ErrorResponse.conflict("failed to edit job"))
                 } else {

@@ -6,6 +6,7 @@ export interface ICompany {
     password: string ;
     website?: string | null;
     description?: string | null;
+    deleted?:boolean| null;
     status?: string | null;
     tech_stack?: string[] | null;
     images?: string[] | null;

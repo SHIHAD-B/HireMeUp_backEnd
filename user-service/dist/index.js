@@ -15,8 +15,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = __importDefault(require("./presentation/server"));
 const config_1 = require("./config/envConfig/config");
 const dbConnection_1 = __importDefault(require("./infrastructure/database/dbConnection"));
+const node_cron_1 = __importDefault(require("node-cron"));
+const expireSubscription_1 = require("./infrastructure/cronjobs/expireSubscription");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        node_cron_1.default.schedule('*/10 * * * *', () => __awaiter(void 0, void 0, void 0, function* () {
+            console.log('Running cron job...');
+            try {
+                yield (0, expireSubscription_1.expireSubscriptions)();
+            }
+            catch (error) {
+                console.error('Error running cron job:', error);
+            }
+        }));
         server_1.default;
         console.log(`user Server is running on port ${config_1.PORT}`);
         yield (0, dbConnection_1.default)()

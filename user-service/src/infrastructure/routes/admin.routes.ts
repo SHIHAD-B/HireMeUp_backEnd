@@ -16,13 +16,17 @@ export const adminRoutes = (dependencies: IDependencies) => {
         deleteUser,
         recoverUser,
         fetchAdmin,
-        listUser
+        listUser,
+        addAdmin,
+        editAdmin,
+        listAdmin,
+        blockUnblockAdmin
     } = controller(dependencies)
 
     const router = Router()
 
     router.use(adminAuthMiddleware)
-    
+
     router.route('/editUser').patch(updateUser)
     router.route('/blockUser').patch(blockUser)
     router.route('/unblockUser').patch(unblockUser)
@@ -31,6 +35,10 @@ export const adminRoutes = (dependencies: IDependencies) => {
     router.route('/listusers').get(listUser)
     router.route('/fetchadmin').get(fetchAdmin)
     router.route('/addUser').post(addUser)
+    router.route('/addadmin').post(addAdmin)
+    router.route('/editadmin').patch(editAdmin)
+    router.route('/listadmin').get(listAdmin)
+    router.route('/blockunblockadmin').patch(blockUnblockAdmin)
     return router
 
 }

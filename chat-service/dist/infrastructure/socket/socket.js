@@ -1,6 +1,16 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = require("../../config/envConfig/config");
+const repositories_1 = require("../database/mongoDb/repositories");
 const socket = require("socket.io");
 const connectSocketIo = (server) => {
     const io = socket(server, {
@@ -19,12 +29,20 @@ const connectSocketIo = (server) => {
         io.emit("getOnlineUsers", Object.keys(userSocketMap));
         socket.on('join chat', (room) => {
             socket.join(room);
-            console.log('user joined hte room', room);
         });
+        socket.on('read message', (data) => __awaiter(void 0, void 0, void 0, function* () {
+            const updated = yield (0, repositories_1.updateReadStatus)(data.sender, data.receiver, data.status);
+            console.log(updated);
+            io.emit('updated message', data.id);
+        }));
         socket.on('new message', (data) => {
             const chat = data.chatId;
-            console.log("socket.on", chat);
             io.to(chat).emit("message recieved", data.data);
+        });
+        socket.on('join_video', (data) => {
+            const senderId = userSocketMap[data.id];
+            console.log("socket.on", senderId);
+            io.to(senderId).emit("video received", data);
         });
         socket.on("disconnect", () => {
             delete userSocketMap[userId];

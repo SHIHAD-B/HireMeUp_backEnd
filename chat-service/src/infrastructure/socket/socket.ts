@@ -1,6 +1,7 @@
 import { Server as SocketIoServer, Socket } from "socket.io";
 import { Server } from 'http'
 import { Fron_End_Ip } from "../../config/envConfig/config";
+import { updateReadStatus } from "../database/mongoDb/repositories";
 const socket = require("socket.io")
 
 const connectSocketIo = (server: Server) => {
@@ -22,13 +23,23 @@ const connectSocketIo = (server: Server) => {
         io.emit("getOnlineUsers", Object.keys(userSocketMap));
         socket.on('join chat', (room) => {
             socket.join(room);
-            console.log('user joined hte room', room)
+        })
+
+        socket.on('read message',async(data) => {
+            const updated = await updateReadStatus(data.sender, data.receiver, data.status)
+            console.log(updated)
+            io.emit('updated message', data.id)
         })
 
         socket.on('new message', (data) => {
             const chat = data.chatId
-            console.log("socket.on", chat)
             io.to(chat).emit("message recieved", data.data)
+        });
+        socket.on('join_video', (data) => {
+            const senderId = userSocketMap[data.id]
+            console.log("socket.on", senderId)
+
+            io.to(senderId).emit("video received", data)
         });
         socket.on("disconnect", () => {
             delete userSocketMap[userId]

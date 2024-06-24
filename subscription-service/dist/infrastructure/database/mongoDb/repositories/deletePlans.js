@@ -19,7 +19,11 @@ const deletePlans = (id) => __awaiter(void 0, void 0, void 0, function* () {
         if (!id) {
             return null;
         }
-        const plans = yield planSchema_1.default.updateOne({ _id: id }, { deleted: true }, { new: true });
+        const checkplan = yield planSchema_1.default.findOne({ _id: id });
+        if (!checkplan) {
+            return null;
+        }
+        const plans = yield planSchema_1.default.updateOne({ _id: id }, { deleted: !checkplan.deleted }, { new: true });
         return plans.modifiedCount > 0 ? true : false;
     }
     catch (error) {

@@ -1,5 +1,5 @@
 import RabbitMQClient from "../../../rabbitmq/client"
-import { IUserExist, IUsersResult } from "../../../../domain/entities";
+import { IUserEntity, IUserExist, IUsersResult } from "../../../../domain/entities";
 
 
 export const emailExist = async ({ email, phone }: IUserExist): Promise<IUsersResult | boolean | null> => {
@@ -10,9 +10,9 @@ export const emailExist = async ({ email, phone }: IUserExist): Promise<IUsersRe
             email: email,
             phone: phone
         }
-     
-        const result: any = await client.produce(data, "checkEmail", "toUser");
-        return result;
+
+        const result: IUserEntity | unknown = await client.produce(data, "checkEmail", "toUser");
+        return result ? result : null;
     } catch (error: any) {
         throw new Error(error)
     }

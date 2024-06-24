@@ -2,6 +2,7 @@ import { NextFunction, Request, Response, response } from "express";
 import { IDependencies } from "../../domain/interface";
 import { editCategoryValidation } from "../../utils/validation/editCategoryValidation";
 import ErrorResponse from "../../utils/error/errorResponse";
+import { ICategory } from "../../domain/entities";
 
 
 
@@ -16,7 +17,7 @@ export const editCategoryController = (dependencies: IDependencies) => {
                 return next(ErrorResponse.conflict(String(error)))
             } else {
 
-                const category: any = await editCategoryUseCase(dependencies).execute(value)
+                const category: ICategory | boolean |null = await editCategoryUseCase(dependencies).execute(value)
                 if (category == false) {
                     return next(ErrorResponse.conflict("Category already exists"))
                 } else if (!category) {

@@ -16,6 +16,9 @@ exports.fetchApplicants = void 0;
 const applicantsSchema_1 = __importDefault(require("../model/applicantsSchema"));
 const fetchApplicants = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        if (!id || id == undefined) {
+            return null;
+        }
         const applicantsListCompany = yield applicantsSchema_1.default.find({ companyId: id });
         if (!applicantsListCompany.length) {
             const applicantListUser = yield applicantsSchema_1.default.find({ userId: id });
@@ -24,8 +27,8 @@ const fetchApplicants = (id) => __awaiter(void 0, void 0, void 0, function* () {
         return applicantsListCompany ? applicantsListCompany : null;
     }
     catch (error) {
-        console.error('error in listing the application', error);
-        throw new Error('Failed to list the applicants..');
+        console.error('error in fetching the application', error);
+        throw new Error('Failed to fetching the applicants..');
     }
 });
 exports.fetchApplicants = fetchApplicants;
