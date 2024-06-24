@@ -16,6 +16,19 @@ exports.editAdminController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const hashpassword_1 = require("../../utils/hash/hashpassword");
 const editAdminValidation_1 = require("../../utils/validation/editAdminValidation");
+/**
+ * editAdminController - Controller function to handle editing an admin's details.
+ *
+ * This controller:
+ * 1. Extracts and validates the incoming request body (`data`) using `editAdminValidation`.
+ *    - Deletes the `__v` field from the `data`.
+ *    - If `data` is missing or validation fails, returns a bad request error.
+ * 2. Hashes the `password` field of `value` if present using `hashPassword`.
+ *    - If hashing fails, returns a forbidden error.
+ * 3. Calls the `editAdminUseCase` to execute the edit operation.
+ *    - If the operation fails, returns a forbidden error.
+ * 4. Returns a success response with the edited admin's details upon successful edit.
+ */
 const editAdminController = (dependencies) => {
     const { useCases: { editAdminUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

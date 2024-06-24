@@ -15,6 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.rejectRequestController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const sentRej_1 = require("../../utils/otp/sentRej");
+/**
+ * rejectRequestController - Controller function to reject requests using the rejectRequestUseCase.
+ *
+ * This controller:
+ * 1. Retrieves request data from the request body.
+ * 2. Executes the rejectRequestUseCase to handle the rejection based on the provided data.
+ * 3. Returns a not found error if the rejection operation fails.
+ * 4. Sends a rejection notification via sendRejectionNotification utility function.
+ * 5. Returns a success response with details of the rejected requests upon successful rejection.
+ * 6. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
 const rejectRequestController = (dependencies) => {
     const { useCases: { rejectRequestUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

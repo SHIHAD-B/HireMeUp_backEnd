@@ -14,6 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateScheduleStatusController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * updateScheduleStatusController - Controller function to handle updating schedule status using updateScheduleStatusUseCase.
+ *
+ * This controller:
+ * 1. Checks if status and id are present in the request body, if not, returns a conflict error.
+ * 2. Executes updateScheduleStatusUseCase to update the status of the schedule.
+ *    - If updating fails, returns a conflict error with details.
+ *    - If updating succeeds, returns a success response with the updated schedule details.
+ * 3. Passes any errors encountered during the process to the error handling middleware.
+ */
 const updateScheduleStatusController = (dependencies) => {
     const { useCases: { updateScheduleStatusUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

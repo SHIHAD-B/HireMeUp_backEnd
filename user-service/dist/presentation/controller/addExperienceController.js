@@ -15,6 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addExperienceController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const addExperinceValidation_1 = require("../../utils/validation/addExperinceValidation");
+/**
+ * addExperienceController - Controller function to handle adding experience details for a user.
+ *
+ * This controller:
+ * 1. Validates the incoming request body for required fields (`id` and `data`).
+ *    - If validation fails, returns a bad request error.
+ * 2. Validates the experience data using `experienceValidation`.
+ *    - If validation fails, returns a bad request error with the validation message.
+ * 3. Calls the `addExperienceUseCase` to add experience details for the user.
+ *    - If adding experience fails, returns a forbidden error.
+ * 4. Returns a success response with the updated user object containing experience details upon successful addition.
+ */
 const addExperienceController = (dependencies) => {
     const { useCases: { addExperienceUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

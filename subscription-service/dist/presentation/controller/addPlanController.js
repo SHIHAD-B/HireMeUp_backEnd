@@ -15,6 +15,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addPlansController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const planValidation_1 = require("../../utils/validation/planValidation");
+/**
+ * addPlansController - Controller function to handle adding plans.
+ *
+ * This controller:
+ * 1. Validates the incoming request data using addPlanValidation.
+ *    - If validation fails, returns a bad request error with details.
+ * 2. Checks if the plan already exists using PlanExistsUseCase.
+ *    - If the plan already exists, returns a conflict error indicating the plan already exists.
+ * 3. Executes addPlansUseCase to add the plan.
+ *    - If adding the plan fails, returns a not found error indicating failure to add the plan.
+ *    - If adding the plan succeeds, returns a success response with the added plan details.
+ * 4. Handles any errors encountered during the process and passes them to the error handling middleware.
+ */
 const addPlansController = (dependencies) => {
     const { useCases: { addPlansUseCase, PlanExistsUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

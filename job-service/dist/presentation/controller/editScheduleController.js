@@ -15,6 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.editScheduleController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const scheduleValidation_1 = require("../../utils/validation/scheduleValidation");
+/**
+ * editScheduleController - Controller function to handle editing a schedule using editScheduleUseCase.
+ *
+ * This controller:
+ * 1. Modifies the request body by deleting unnecessary fields (deleted, __v, createdAt, expires).
+ * 2. Validates the modified request body using scheduleValidation.
+ *    - If validation fails, returns a conflict error.
+ * 3. Executes editScheduleUseCase to edit the schedule based on the validated data.
+ *    - If editing fails, returns a conflict error.
+ * 4. Returns a success response with the edited schedule if editing is successful.
+ * 5. Passes any errors encountered during the process to the error handling middleware.
+ */
 const editScheduleController = (dependencies) => {
     const { useCases: { editScheduleUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

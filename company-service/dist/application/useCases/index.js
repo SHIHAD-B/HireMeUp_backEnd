@@ -32,3 +32,4 @@ __exportStar(require("./deleteEmployeeUseCase"), exports);
 __exportStar(require("./editEmployeeUseCase"), exports);
 __exportStar(require("./listEmployeeUseCase"), exports);
 __exportStar(require("./addCompanyUseCase"), exports);
+__exportStar(require("./addContactLinksUseCase"), exports);

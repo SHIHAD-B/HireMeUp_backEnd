@@ -15,6 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addEducationController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const educationValidation_1 = require("../../utils/validation/educationValidation");
+/**
+ * addEducationController - Controller function to handle adding education details for a user.
+ *
+ * This controller:
+ * 1. Validates the incoming request body for required fields (`id` and `data`).
+ *    - If validation fails, returns a bad request error.
+ * 2. Validates the education data using `educationValidation`.
+ *    - If validation fails, returns a bad request error with the validation message.
+ * 3. Calls the `addEducationUseCase` to add education details for the user.
+ *    - If adding education fails, returns a forbidden error.
+ * 4. Returns a success response with the updated user object containing education details upon successful addition.
+ */
 const addEducationController = (dependencies) => {
     const { useCases: { addEducationUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

@@ -14,6 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.recoverUserController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * recoverUserController - Controller function to recover a user.
+ *
+ * This controller:
+ * 1. Retrieves the email of the user from the request body.
+ *    - Returns a bad request error if the email is missing.
+ * 2. Calls the `recoverUserUseCase` to execute recovering the user.
+ *    - Returns a not found error if the user is not found or unable to recover.
+ *    - Returns a success response with the recovered user data if successful.
+ * 3. Handles and logs any caught errors during the execution.
+ */
 const recoverUserController = (dependencies) => {
     const { useCases: { recoverUserUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

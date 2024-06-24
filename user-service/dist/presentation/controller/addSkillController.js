@@ -14,6 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addSkillController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * addSkillController - Controller function to handle adding a skill for a user.
+ *
+ * This controller:
+ * 1. Validates the incoming request body for required fields (`id` and `skill`).
+ *    - If validation fails (missing data), returns a bad request error.
+ * 2. Calls the `addSkillUseCase` to add the skill for the user identified by `id`.
+ *    - If adding skill fails, returns a forbidden error.
+ * 3. Returns a success response with the updated user object containing the added skill upon successful addition.
+ */
 const addSkillController = (dependencies) => {
     const { useCases: { addSkillUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

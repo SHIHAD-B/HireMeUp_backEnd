@@ -5,7 +5,7 @@ const express_1 = require("express");
 const controller_1 = require("../../presentation/controller");
 const companyAuth_1 = require("../../utils/middlewares/companyAuth");
 const companyRoutes = (dependencies) => {
-    const { fetchCompany, resetPassword, editCompany, resetProfilePassword, addEmployee, deleteEmployee, editEmployee, listEmployee, } = (0, controller_1.controller)(dependencies);
+    const { fetchCompany, resetPassword, editCompany, resetProfilePassword, addEmployee, deleteEmployee, editEmployee, listEmployee, addContactLinks } = (0, controller_1.controller)(dependencies);
     const router = (0, express_1.Router)();
     router.route('/resetprofilepassword').patch(companyAuth_1.companyAuthMiddleware, resetProfilePassword);
     router.route('/fetchcompany').get(fetchCompany);
@@ -15,6 +15,7 @@ const companyRoutes = (dependencies) => {
     router.route('/addemployee').post(companyAuth_1.companyAuthMiddleware, addEmployee);
     router.route('/editemployee').patch(companyAuth_1.companyAuthMiddleware, editEmployee);
     router.route('/deleteemployee').patch(companyAuth_1.companyAuthMiddleware, deleteEmployee);
+    router.route('/addcontactlinks').patch(companyAuth_1.companyAuthMiddleware, addContactLinks);
     return router;
 };
 exports.companyRoutes = companyRoutes;

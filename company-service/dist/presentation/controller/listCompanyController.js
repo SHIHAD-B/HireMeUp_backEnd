@@ -14,6 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.listCompanyController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * listCompanyController - Controller function to list all companies using the listCompanyUseCase.
+ *
+ * Steps:
+ * 1. Executes the listCompanyUseCase to retrieve the list of companies.
+ * 2. Returns a not found error if the list of companies is empty or cannot be retrieved.
+ * 3. Returns a success response with the list of companies upon successful retrieval.
+ * 4. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
 const listCompanyController = (dependencies) => {
     const { useCases: { listCompanyUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

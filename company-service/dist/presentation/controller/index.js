@@ -20,6 +20,7 @@ const listEmployeeContoller_1 = require("./listEmployeeContoller");
 const deleteEmployee_1 = require("./deleteEmployee");
 const addCompanyController_1 = require("./addCompanyController");
 const editAdCompanyContolroller_1 = require("./editAdCompanyContolroller");
+const addContactLinkController_1 = require("./addContactLinkController");
 const controller = (dependencies) => {
     return {
         listRequests: (0, listRequestController_1.listRequestController)(dependencies),
@@ -40,7 +41,8 @@ const controller = (dependencies) => {
         listEmployee: (0, listEmployeeContoller_1.listEmployeeController)(dependencies),
         deleteEmployee: (0, deleteEmployee_1.deleteEmployeeController)(dependencies),
         addCompany: (0, addCompanyController_1.addCompanyController)(dependencies),
-        editAdCompany: (0, editAdCompanyContolroller_1.editAdCompanyController)(dependencies)
+        editAdCompany: (0, editAdCompanyContolroller_1.editAdCompanyController)(dependencies),
+        addContactLinks: (0, addContactLinkController_1.addContactLinksController)(dependencies)
     };
 };
 exports.controller = controller;

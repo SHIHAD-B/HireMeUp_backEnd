@@ -15,6 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.editJobController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const editJobValidation_1 = require("../../utils/validation/editJobValidation");
+/**
+ * editJobController - Controller function to handle editing a job using editJobUseCase.
+ *
+ * This controller:
+ * 1. Modifies the request body by deleting unnecessary fields (deleted, __v, createdAt, expires).
+ * 2. Validates the modified request body using editJobValidation.
+ *    - If validation fails, returns a conflict error.
+ * 3. Executes editJobUseCase to edit the job based on the validated data.
+ *    - If editing fails, returns a conflict error.
+ * 4. Returns a success response with the edited job if editing is successful.
+ * 5. Passes any errors encountered during the process to the error handling middleware.
+ */
 const editJobController = (dependencies) => {
     const { useCases: { editJobUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

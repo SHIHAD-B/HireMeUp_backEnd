@@ -11,15 +11,11 @@ export interface ICompany {
     images?: string[] ;
     titile?: string ;
     approval?: string ;
-    noOfEmployees?: Number ;
+    noOfEmployees?: number ;
     contact?: {
-       email: string ;
-       facebook: string ;
        instagram: string ;
-       linkedin: string ;
-       phone: Number ;
+       linkedIn: string ;
        twitter: string ;
-       youtube: string ;
     };
     industry?: string ;
     benefits?: {

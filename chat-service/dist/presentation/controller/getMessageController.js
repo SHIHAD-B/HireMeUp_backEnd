@@ -14,6 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getMessageController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * getMessageController - Handles fetching messages for a given room ID.
+ *
+ * This controller:
+ * 1. Retrieves the room ID from the request query parameters.
+ * 2. Validates if the room ID is provided.
+ * 3. Executes the getMessageUseCase to fetch messages associated with the provided room ID.
+ * 4. Returns an error response if the room ID is missing or if fetching messages fails.
+ * 5. Returns a success response with the fetched messages if successful.
+ * 6. Passes any caught errors to the error handler middleware.
+ */
 const getMessageController = (dependencies) => {
     const { useCases: { getMessageUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

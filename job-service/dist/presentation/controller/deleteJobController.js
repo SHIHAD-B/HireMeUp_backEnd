@@ -14,6 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteJobController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * deleteJobController - Controller function to handle deleting a job using deleteJobUseCase.
+ *
+ * This controller:
+ * 1. Extracts the job ID from the request body.
+ *    - If ID is missing, returns a bad request error.
+ * 2. Executes deleteJobUseCase to delete the job based on the ID.
+ *    - If deletion fails or job is not found, returns a forbidden error.
+ * 3. Returns a success response with the deleted job if deletion is successful.
+ * 4. Passes any errors encountered during the process to the error handling middleware.
+ */
 const deleteJobController = (dependencies) => {
     const { useCases: { deleteJobUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

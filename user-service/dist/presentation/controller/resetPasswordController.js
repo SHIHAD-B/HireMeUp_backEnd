@@ -16,6 +16,21 @@ exports.resetPasswordController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const hashpassword_1 = require("../../utils/hash/hashpassword");
 const passwordValidation_1 = require("../../utils/validation/passwordValidation");
+/**
+ * resetPasswordController - Controller function to reset user password.
+ *
+ * This controller:
+ * 1. Retrieves email and password from the request body.
+ *    - Returns a bad request error if email is missing.
+ * 2. Validates the password using `passwordValidation` utility.
+ *    - Returns a bad request error if validation fails.
+ * 3. Hashes the password using `hashPassword` utility.
+ *    - Returns a forbidden error if hashing fails.
+ * 4. Calls the `resetPasswordUseCase` to execute resetting the user password.
+ *    - Returns a forbidden error if resetting fails.
+ *    - Returns a success response if password is reset successfully.
+ * 5. Handles and logs any caught errors during the execution.
+ */
 const resetPasswordController = (dependencies) => {
     const { useCases: { resetPasswordUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

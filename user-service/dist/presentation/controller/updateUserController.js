@@ -16,6 +16,20 @@ exports.updateUserController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const editUserValidation_1 = require("../../utils/validation/editUserValidation");
 const hashpassword_1 = require("../../utils/hash/hashpassword");
+/**
+ * updateUserController - Controller function to update user details.
+ *
+ * This controller:
+ * 1. Deletes the `__v` field from the request body `data` if present.
+ * 2. Validates the request body `data` to ensure required fields are present and valid using `editUserValidation`.
+ *    - Returns a bad request error if validation fails.
+ * 3. Hashes the password field in `data` if present using `hashPassword`.
+ *    - Returns a forbidden error if hashing fails.
+ * 4. Calls the `updateUserUseCase` to execute updating the user details based on the validated and hashed `value`.
+ *    - Returns a forbidden error if updating the user details fails.
+ * 5. Returns a success response with the updated user's details upon successful update.
+ * 6. Handles and logs any caught errors during the execution.
+ */
 const updateUserController = (dependencies) => {
     const { useCases: { updateUserUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

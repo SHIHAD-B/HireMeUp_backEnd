@@ -14,6 +14,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchJobController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * fetchJobController - Controller function to handle fetching a job by ID using fetchJobsUseCase.
+ *
+ * This controller:
+ * 1. Validates the ID parameter to ensure it matches the expected format.
+ *    - Uses isValidObjectId function to check if the ID is a valid ObjectId.
+ *    - If ID is invalid, returns a bad request error.
+ * 2. Executes fetchJobsUseCase to retrieve the job based on the validated ID.
+ *    - If fetching fails, returns a bad request error.
+ * 3. Returns a success response with the fetched job if successful.
+ * 4. Passes any errors encountered during the process to the error handling middleware.
+ */
 const fetchJobController = (dependencies) => {
     const { useCases: { fetchJobsUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

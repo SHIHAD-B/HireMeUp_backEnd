@@ -15,6 +15,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.scheduleInterviewController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const scheduleValidation_1 = require("../../utils/validation/scheduleValidation");
+/**
+ * scheduleInterviewController - Controller function to handle scheduling interviews using scheduleInterviewUseCase.
+ *
+ * This controller:
+ * 1. Checks if request body exists, if not, returns a bad request error.
+ * 2. Validates the request body using scheduleValidation.
+ *    - If validation fails, returns a conflict error with details.
+ * 3. Executes scheduleInterviewUseCase to schedule the interview.
+ *    - If scheduling fails due to candidate rejection, returns a bad request error.
+ *    - If scheduling fails due to unavailability of slots, returns a bad request error.
+ *    - If scheduling succeeds, returns a success response with the scheduled interview details.
+ * 4. Passes any errors encountered during the process to the error handling middleware.
+ */
 const scheduleInterviewController = (dependencies) => {
     const { useCases: { scheduleInterviewUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

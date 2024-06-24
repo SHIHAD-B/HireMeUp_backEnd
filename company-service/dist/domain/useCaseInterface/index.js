@@ -32,3 +32,4 @@ __exportStar(require("./deleteEmployee"), exports);
 __exportStar(require("./listEmployee"), exports);
 __exportStar(require("./editEmployee"), exports);
 __exportStar(require("./addCompany"), exports);
+__exportStar(require("./addContactLinks"), exports);

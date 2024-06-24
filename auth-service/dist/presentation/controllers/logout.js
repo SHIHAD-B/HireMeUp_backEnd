@@ -10,6 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logout = void 0;
+/**
+ * logout - Handles user logout process.
+ *
+ * This controller:
+ * 1. Clears the cookies for 'user_token', 'Company_token', and 'admin_token'.
+ * 2. Returns a success response indicating the user has logged out successfully.
+ * 3. Catches any errors during the process and passes them to the next middleware.
+ */
 const logout = () => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {

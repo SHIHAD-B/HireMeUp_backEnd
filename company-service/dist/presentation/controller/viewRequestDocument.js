@@ -14,6 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.viewRequestDocumentController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * viewRequestDocumentController - Controller function to view a request document using the viewRequestDocumentUseCase.
+ *
+ * This controller:
+ * 1. Retrieves the request document ID from the request body.
+ * 2. Validates that the ID is provided; otherwise, returns a bad request error.
+ * 3. Executes the viewRequestDocumentUseCase to fetch and view the request document based on the provided ID.
+ *    - If the document is not found, returns a not found error.
+ * 4. Returns a success response with a message indicating that the request document was viewed successfully.
+ * 5. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
 const viewRequestDocumentController = (dependencies) => {
     const { useCases: { viewRequestDocumentUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

@@ -14,6 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.blockUserController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * blockUserController - Controller function to handle blocking a user.
+ *
+ * This controller:
+ * 1. Validates the incoming request body for the `email` of the user.
+ *    - If validation fails (missing `email`), returns a bad request error.
+ * 2. Calls the `blockUserUseCase` to perform the blocking operation.
+ *    - If the operation fails (user not found or unable to block user), returns a not found or internal error.
+ * 3. Returns a success response with the blocked user object upon successful operation.
+ */
 const blockUserController = (dependencies) => {
     const { useCases: { blockUserUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

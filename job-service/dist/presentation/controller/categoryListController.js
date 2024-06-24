@@ -14,6 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.categoryListController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * categoryListController - Controller function to handle listing categories using the listCategoryUseCase.
+ *
+ * This controller:
+ * 1. Executes the listCategoryUseCase to retrieve a list of categories.
+ *    - If listing categories fails, returns a bad request error.
+ * 2. Returns a success response with the list of categories if successful.
+ * 3. Passes any errors encountered during the process to the error handling middleware.
+ */
 const categoryListController = (dependencies) => {
     const { useCases: { listCategoryUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

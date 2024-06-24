@@ -21,7 +21,7 @@ const companyAuthMiddleware = (req, res, next) => {
         next();
     }
     catch (err) {
-        return next(errorResponse_1.default.unauthorized("Invalid or expired admin token."));
+        return next(errorResponse_1.default.unauthorized("Invalid or expired company token."));
     }
 };
 exports.companyAuthMiddleware = companyAuthMiddleware;

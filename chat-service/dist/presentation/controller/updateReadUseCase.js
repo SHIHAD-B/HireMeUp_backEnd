@@ -14,6 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateReadStatusController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * updateReadStatusController - Updates read status using the updateReadUseCase.
+ *
+ * This controller:
+ * 1. Retrieves sender, receiver, and status from the request body.
+ * 2. Validates if all required fields are provided.
+ * 3. Executes the updateReadUseCase to update the read status based on the provided data.
+ * 4. Returns an error response if any required data is missing or if updating the status fails.
+ * 5. Returns a success response with the updated status details if successful.
+ * 6. Passes any caught errors to the error handler middleware.
+ */
 const updateReadStatusController = (dependencies) => {
     const { useCases: { updateReadUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

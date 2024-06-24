@@ -15,6 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addNotificationController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const addNotificationValidation_1 = require("../../utils/error/validation/addNotificationValidation");
+/**
+ * addNotificationController - Controller function to handle adding notifications using addNotificationUseCase.
+ *
+ * This controller:
+ * 1. Checks if request body contains required data; if not, returns a bad request error.
+ * 2. Validates the structure of the notification data using addNotificationValidation.
+ *    - If validation fails, returns a bad request error with details.
+ * 3. Executes addNotificationUseCase to add the notification.
+ *    - If adding notification fails, returns a forbidden error with details.
+ *    - If adding notification succeeds, returns a success response with the added notification details.
+ * 4. Passes any errors encountered during the process to the error handling middleware.
+ */
 const addNotificationController = (dependencies) => {
     const { useCases: { addNotificationUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

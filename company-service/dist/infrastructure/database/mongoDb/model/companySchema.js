@@ -37,7 +37,6 @@ const CompanySchema = new mongoose_1.Schema({
     approval: { type: String, enum: ['approved', 'rejected'] },
     employees: { type: String },
     contact: {
-        email: { type: String },
         instagram: { type: String },
         linkedIn: { type: String },
         twitter: { type: String }

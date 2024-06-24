@@ -17,6 +17,24 @@ const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse
 const stripe_1 = __importDefault(require("stripe"));
 const config_1 = require("../../config/envConfig/config");
 const crypto_js_1 = __importDefault(require("crypto-js"));
+/**
+ * checkoutSubscriptionController - Controller function to handle checkout process for subscription upgrade.
+ *
+ * This controller:
+ * 1. Validates the incoming request data (`data` object containing `planId`).
+ *    - If data is missing, returns a bad request error.
+ * 2. Fetches plans using fetchPlansUseCase.
+ *    - If fetching plans fails, returns an internal server error.
+ * 3. Finds the selected plan based on the `planId` from the fetched plans.
+ *    - If the selected plan is not found, returns a bad request error indicating plan not found.
+ * 4. Calculates the discounted price based on the selected plan's price and discount percentage.
+ * 5. Converts the final price to cents for Stripe compatibility and sets a minimum unit amount of 50 cents.
+ * 6. Constructs a line item object for Stripe checkout session with the selected plan details.
+ * 7. Creates a Stripe checkout session using `stripe.checkout.sessions.create` method.
+ *    - Defines payment method types, line items, mode, success URL (redirects on success), and cancel URL (redirects on failure).
+ * 8. Encrypts the success and cancel URLs using AES encryption before encoding them as query parameters.
+ * 9. Returns a success response with the created session ID upon successful completion.
+ */
 function encrypt(text, key) {
     return crypto_js_1.default.AES.encrypt(text, key).toString();
 }

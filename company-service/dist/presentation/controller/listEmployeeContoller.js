@@ -14,6 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.listEmployeeController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * listEmployeeController - Controller function to list all employees using the listEmployeeUseCase.
+ *
+ * Steps:
+ * 1. Executes the listEmployeeUseCase to retrieve the list of employees.
+ * 2. Returns a not found error if the list of employees is empty or cannot be retrieved.
+ * 3. Returns a success response with the list of employees upon successful retrieval.
+ * 4. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
 const listEmployeeController = (dependencies) => {
     const { useCases: { listEmployeeUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

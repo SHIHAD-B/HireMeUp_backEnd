@@ -18,6 +18,7 @@ import { listEmployeeController } from "./listEmployeeContoller";
 import { deleteEmployeeController } from "./deleteEmployee";
 import { addCompanyController } from "./addCompanyController";
 import { editAdCompanyController } from "./editAdCompanyContolroller";
+import { addContactLinksController } from "./addContactLinkController";
 
 export const controller = (dependencies: IDependencies) => {
     return {
@@ -39,6 +40,7 @@ export const controller = (dependencies: IDependencies) => {
         listEmployee: listEmployeeController(dependencies),
         deleteEmployee: deleteEmployeeController(dependencies),
         addCompany: addCompanyController(dependencies),
-        editAdCompany:editAdCompanyController(dependencies)
+        editAdCompany: editAdCompanyController(dependencies),
+        addContactLinks: addContactLinksController(dependencies)
     }
 }

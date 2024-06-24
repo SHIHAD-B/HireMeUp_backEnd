@@ -41,11 +41,28 @@ const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse
 const accessToken_1 = require("../../utils/generateToken/accessToken");
 const config_1 = require("../../config/envConfig/config");
 const refreshTokenSchema_1 = __importDefault(require("../../infrastructure/database/mongoDB/model/refreshTokenSchema"));
+/**
+ * tokenRefreshController - Handles access token refresh process.
+ *
+ * This controller:
+ * 1. Determines the type of token (user, company, or admin) based on the cookie present in the request.
+ * 2. Verifies the validity of the access token using JWT_SECRET.
+ * 3. If the access token is valid:
+ *    - Returns a success response indicating the access token is still valid.
+ * 4. If the access token is expired or invalid:
+ *    - Handles TokenExpiredError and JsonWebTokenError appropriately and returns corresponding error responses.
+ *    - Decodes the access token to extract user information if verification fails.
+ *    - Retrieves refresh token data from the database using the user's ID.
+ *    - Checks if the refresh token exists and is not expired.
+ *    - Generates a new access token and stores it in an HTTP-only cookie.
+ *    - Returns a success response with the refreshed access token and user details.
+ * 5. Catches and forwards any errors that occur during the process to the error handler middleware.
+ */
 const tokenRefreshController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const tokenName = req.cookies['user_token'] ? 'user_token' :
-                req.cookies['company_token'] ? 'company_token' :
+                req.cookies['Company_token'] ? 'Company_token' :
                     req.cookies['admin_token'] ? 'admin_token' : null;
             if (!tokenName) {
                 return next(errorResponse_1.default.unauthorized('Cannot find token'));

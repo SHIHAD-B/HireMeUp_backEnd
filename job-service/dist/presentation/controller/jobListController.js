@@ -14,6 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.jobListController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * jobListController - Controller function to handle listing jobs using listJobsUseCase.
+ *
+ * This controller:
+ * 1. Executes listJobsUseCase to retrieve a list of jobs.
+ *    - If fetching fails or no jobs found, returns a bad request error.
+ * 2. Returns a success response with the list of jobs if retrieval is successful.
+ * 3. Passes any errors encountered during the process to the error handling middleware.
+ */
 const jobListController = (dependencies) => {
     const { useCases: { listJobsUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

@@ -15,6 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addCategoryController = void 0;
 const addCategoryValidation_1 = require("../../utils/validation/addCategoryValidation");
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * addCategoryController - Controller function to handle adding categories using the addCategoryUseCase.
+ *
+ * This controller:
+ * 1. Validates the incoming request body using addCategoryValidation.
+ *    - If validation fails, returns a conflict error with the validation message.
+ * 2. Executes the addCategoryUseCase to add the category based on the validated data.
+ *    - If the category already exists, returns a conflict error.
+ * 3. Returns a success response with the added category data if successful.
+ * 4. Passes any errors encountered during the process to the error handling middleware.
+ */
 const addCategoryController = (dependencies) => {
     const { useCases: { addCategoryUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

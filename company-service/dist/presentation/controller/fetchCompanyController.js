@@ -16,6 +16,21 @@ exports.fetchCompanyController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = require("../../config/envConfig/config");
+/**
+ * fetchCompanyController - Controller function to fetch company details based on the provided company token.
+ *
+ * Steps:
+ * 1. Retrieves the company token from the request cookies.
+ * 2. Validates that the company token is provided; otherwise, returns a bad request error.
+ * 3. Verifies the validity of the company token using jwt.verify and retrieves the decoded email.
+ *    - Returns null if there's an error during token verification.
+ * 4. Validates that the decoded email is present; otherwise, returns a bad request error.
+ * 5. Executes the fetchCompanyUseCase to retrieve company details based on the decoded email.
+ * 6. Returns a not found error if the company is not found or unable to be fetched.
+ * 7. Checks if the fetched company is blocked or deleted; returns a failure response if true.
+ * 8. Returns a success response with the fetched company details upon successful retrieval.
+ * 9. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
 const fetchCompanyController = (dependencies) => {
     const { useCases: { fetchCompanyUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

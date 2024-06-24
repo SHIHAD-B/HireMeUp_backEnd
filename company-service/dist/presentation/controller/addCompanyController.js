@@ -16,6 +16,18 @@ exports.addCompanyController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const sentAck_1 = require("../../utils/otp/sentAck");
 const addCompanyValidation_1 = require("../../utils/validation/addCompanyValidation");
+/**
+ * addCompanyController - Handles the addition of a company using the addCompanyUseCase.
+ *
+ * This controller:
+ * 1. Validates the incoming request body data using addCompanyValidation.
+ * 2. Returns a bad request error if validation fails, including all validation errors.
+ * 3. Executes the addCompanyUseCase to add a new company based on the provided data.
+ * 4. Returns a not found error if adding the company fails.
+ * 5. Sends an approval notification email using sendApprovalNotification if successful.
+ * 6. Returns a success response with the added company details upon successful addition.
+ * 7. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
 const addCompanyController = (dependencies) => {
     const { useCases: { addCompanyUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

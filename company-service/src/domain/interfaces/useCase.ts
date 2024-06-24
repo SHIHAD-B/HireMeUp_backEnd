@@ -16,7 +16,8 @@ import {
     IDeleteEmployeeUseCase,
     IListEmployee,
     IEditEmployeeUseCase,
-    IAddCompany
+    IAddCompany,
+    IAddContactLinks
 } from '../useCaseInterface'
 
 import { IDependencies } from './dependencies'
@@ -40,4 +41,5 @@ export interface IUseCase {
     deleteEmployeeUseCase: (dependencies: IDependencies) => IDeleteEmployeeUseCase
     addEmployeeUseCase: (dependencies: IDependencies) => IAddEmployee
     addCompanyUseCase: (dependencies: IDependencies) => IAddCompany
+    addContactLinksUseCase :(dependencies: IDependencies) =>IAddContactLinks
 }

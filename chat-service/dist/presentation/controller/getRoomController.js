@@ -14,6 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getRoomController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * getRoomController - Retrieves details of a chat room by its ID.
+ *
+ * This controller:
+ * 1. Retrieves the room ID from the request query parameters.
+ * 2. Validates if the room ID is provided.
+ * 3. Executes the getRoomUseCase to fetch details of the room with the provided ID.
+ * 4. Returns an error response if the room ID is missing or if fetching room details fails.
+ * 5. Returns a success response with the fetched room details if successful.
+ * 6. Passes any caught errors to the error handler middleware.
+ */
 const getRoomController = (dependencies) => {
     const { useCases: { getRoomUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

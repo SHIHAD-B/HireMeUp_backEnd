@@ -14,6 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletePlanController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * deletePlanController - Controller function to handle deletion of a plan.
+ *
+ * This controller:
+ * 1. Validates the incoming request for `id`.
+ *    - If `id` is missing, returns a bad request error.
+ * 2. Calls the deletePlansUseCase to delete the plan with the provided `id`.
+ *    - If deletion fails or the plan is not found, returns a not found error.
+ * 3. Returns a success response with the deleted plan upon successful deletion.
+ */
 const deletePlanController = (dependencies) => {
     const { useCases: { deletePlansUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

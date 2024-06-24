@@ -15,6 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.editEducationController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const educationValidation_1 = require("../../utils/validation/educationValidation");
+/**
+ * editEducationController - Controller function to handle editing a user's education details.
+ *
+ * This controller:
+ * 1. Extracts and validates the incoming request body (`datas`).
+ *    - Checks if `datas` contains `id` and `data`.
+ *    - Validates `datas.data` using `educationValidation`.
+ *    - Returns a bad request error if `datas` or its fields are missing, or validation fails.
+ * 2. Calls the `editEducationUseCase` to execute the edit operation using `id` and `data`.
+ *    - If the operation fails, returns a forbidden error.
+ * 3. Returns a success response with the edited user's education details upon successful edit.
+ */
 const editEducationController = (dependencies) => {
     const { useCases: { editEducationUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

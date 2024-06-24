@@ -13,6 +13,7 @@ export const companyRoutes = (dependencies: IDependencies) => {
         deleteEmployee,
         editEmployee,
         listEmployee,
+        addContactLinks
     } = controller(dependencies)
 
     const router = Router()
@@ -25,6 +26,8 @@ export const companyRoutes = (dependencies: IDependencies) => {
     router.route('/addemployee').post(companyAuthMiddleware, addEmployee)
     router.route('/editemployee').patch(companyAuthMiddleware, editEmployee)
     router.route('/deleteemployee').patch(companyAuthMiddleware, deleteEmployee)
+    router.route('/addcontactlinks').patch(companyAuthMiddleware, addContactLinks)
+
 
     return router
 }

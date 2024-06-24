@@ -16,6 +16,20 @@ exports.companySigninController = void 0;
 const loginValidation_1 = require("../../utils/validation/loginValidation");
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const accessToken_1 = require("../../utils/generateToken/accessToken");
+/**
+ * companySigninController - Handles company sign-in process.
+ *
+ * This controller:
+ * 1. Validates the request data using signinValidation.
+ * 2. Checks if the company exists and the credentials are correct using companySigninUseCase.
+ * 3. If the password is incorrect or the company is not found:
+ *    - Returns appropriate error responses.
+ * 4. If the company is blocked:
+ *    - Returns an error response indicating the company is blocked by admin.
+ * 5. If the credentials are correct:
+ *    - Generates an access token and sets it in an HTTP-only cookie.
+ *    - Returns a success response with the company details.
+ */
 const companySigninController = (dependencies) => {
     const { useCases: { companySigninUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

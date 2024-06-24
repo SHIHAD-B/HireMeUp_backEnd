@@ -17,6 +17,22 @@ const loginValidation_1 = require("../../utils/validation/loginValidation");
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const accessToken_1 = require("../../utils/generateToken/accessToken");
 const refreshToken_1 = require("../../utils/generateToken/refreshToken");
+/**
+ * signinUserController - Handles user sign-in process.
+ *
+ * This controller:
+ * 1. Validates the request data using signinValidation.
+ * 2. Checks if the user exists and the credentials are correct using signinUserUseCase.
+ * 3. If the credentials are incorrect or the user is not found:
+ *    - Returns appropriate error responses.
+ * 4. If the user is blocked or deleted:
+ *    - Returns an error response indicating the user is blocked or deleted by admin.
+ * 5. If the credentials are correct:
+ *    - Generates an access token and a refresh token.
+ *    - Stores the refresh token using storeRefreshTokenUseCase.
+ *    - Sets the access token in an HTTP-only cookie.
+ *    - Returns a success response with the user details, access token, and refresh token.
+ */
 const signinUserController = (dependencies) => {
     const { useCases: { signinUserUseCase, storeRefreshTokenUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

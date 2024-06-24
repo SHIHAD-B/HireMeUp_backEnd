@@ -35,9 +35,9 @@ class RabbitMQClient {
                 this.connection = yield (0, amqplib_1.connect)(rabbitmq_config_1.default.rabbitMQ.url);
                 this.producerChannel = yield this.connection.createChannel();
                 this.consumerChannel = yield this.connection.createChannel();
-                const { queue: authQueue } = yield this.consumerChannel.assertQueue(rabbitmq_config_1.default.rabbitMQ.queues.companyQueue, { exclusive: true });
+                const { queue: companyQueue } = yield this.consumerChannel.assertQueue(rabbitmq_config_1.default.rabbitMQ.queues.companyQueue, { exclusive: true });
                 this.producer = new producer_1.default(this.producerChannel);
-                this.consumer = new consumer_1.default(this.consumerChannel, authQueue);
+                this.consumer = new consumer_1.default(this.consumerChannel, companyQueue);
                 this.consumer.consumeMessages();
                 this.isInitialized = true;
             }

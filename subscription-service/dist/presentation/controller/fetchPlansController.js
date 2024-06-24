@@ -14,6 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchPlansController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * fetchPlansController - Controller function to handle fetching and listing plans.
+ *
+ * This controller:
+ * 1. Calls the `fetchPlansUseCase` to retrieve a list of plans from the database.
+ *    - If no plans are found, returns a not found error.
+ * 2. Returns a success response with the fetched plans upon successful retrieval.
+ */
 const fetchPlansController = (dependencies) => {
     const { useCases: { fetchPlansUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

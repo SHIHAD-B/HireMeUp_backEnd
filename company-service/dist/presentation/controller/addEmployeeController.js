@@ -15,6 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addEmployeeController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const addEmployeeValidation_1 = require("../../utils/validation/addEmployeeValidation");
+/**
+ * addEmployeeController - Handles the addition of an employee using the addEmployeeUseCase.
+ *
+ * This controller:
+ * 1. Validates the incoming request body data using addEmployeeValidation.
+ * 2. Returns a bad request error if validation fails, including all validation errors.
+ * 3. Executes the addEmployeeUseCase to add a new employee based on the provided data.
+ * 4. Returns a bad request error if the employee already exists.
+ * 5. Returns an internal server error if adding the employee fails.
+ * 6. Returns a success response with the added employee details upon successful addition.
+ * 7. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
 const addEmployeeController = (dependencies) => {
     const { useCases: { addEmployeeUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

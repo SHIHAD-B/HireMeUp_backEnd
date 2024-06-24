@@ -32,13 +32,13 @@ class RabbitMQClient {
       this.producerChannel = await this.connection.createChannel();
       this.consumerChannel = await this.connection.createChannel();
 
-      const { queue: authQueue } = await this.consumerChannel.assertQueue(
+      const { queue: companyQueue } = await this.consumerChannel.assertQueue(
         config.rabbitMQ.queues.companyQueue,
         { exclusive: true }
       );
 
       this.producer = new Producer(this.producerChannel);
-      this.consumer = new Consumer(this.consumerChannel, authQueue);
+      this.consumer = new Consumer(this.consumerChannel, companyQueue);
 
       this.consumer.consumeMessages();
 

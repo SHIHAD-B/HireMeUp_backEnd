@@ -14,6 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addResumeController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * addResumeController - Controller function to handle adding resume details for a user.
+ *
+ * This controller:
+ * 1. Validates the incoming request body for required fields (`id` and `resume`) and ensures they are not empty strings.
+ *    - If validation fails, returns a bad request error.
+ * 2. Calls the `addResumeUseCase` to add resume details for the user.
+ *    - If adding resume fails, returns a forbidden error.
+ * 3. Returns a success response with the updated user object containing resume details upon successful addition.
+ */
 const addResumeController = (dependencies) => {
     const { useCases: { addResumeUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

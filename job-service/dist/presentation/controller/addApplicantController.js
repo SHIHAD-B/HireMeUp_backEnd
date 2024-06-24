@@ -15,6 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addApplicantController = void 0;
 const addApplicantsValidation_1 = require("../../utils/validation/addApplicantsValidation");
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * addApplicantController - Controller function to handle adding applicants using the addApplicantsUseCase.
+ *
+ * This controller:
+ * 1. Validates the incoming request body using addApplicantsValidation.
+ *    - If validation fails, returns a conflict error with the validation message.
+ * 2. Executes the addApplicantsUseCase to add the applicant based on the validated data.
+ *    - If the applicant is already applied, returns a bad request error.
+ * 3. Returns a success response with the added applicant data if successful.
+ * 4. Passes any errors encountered during the process to the error handling middleware.
+ */
 const addApplicantController = (dependencies) => {
     const { useCases: { addApplicantsUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

@@ -14,6 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.listRequestController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * listRequestController - Controller function to list all requests using the listRequestUseCase.
+ *
+ * Steps:
+ * 1. Executes the listRequestUseCase to retrieve the list of requests.
+ * 2. Returns a not found error if the list of requests is empty or cannot be retrieved.
+ * 3. Returns a success response with the list of requests upon successful retrieval.
+ * 4. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
 const listRequestController = (dependencies) => {
     const { useCases: { listRequestUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

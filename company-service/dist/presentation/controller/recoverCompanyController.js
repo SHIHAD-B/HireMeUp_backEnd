@@ -14,6 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.recoverCompanyController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * recoverCompanyController - Controller function to recover a company using the recoverCompanyUseCase.
+ *
+ * Steps:
+ * 1. Retrieves the company email from the request body.
+ * 2. Validates that the company email is provided; otherwise, returns a bad request error.
+ * 3. Executes the recoverCompanyUseCase to attempt to recover the company based on the provided email.
+ * 4. Returns a not found error if the company is not found or unable to be recovered.
+ * 5. Returns a success response with the recovered company details upon successful recovery.
+ * 6. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
 const recoverCompanyController = (dependencies) => {
     const { useCases: { recoverCompanyUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

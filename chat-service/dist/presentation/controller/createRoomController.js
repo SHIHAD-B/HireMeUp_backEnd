@@ -14,6 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createRoomController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * createRoomController - Handles the creation of a chat room between users.
+ *
+ * This controller:
+ * 1. Receives data from the request body containing sender and receiver information.
+ * 2. Validates if the required data (sender and receiver) are present.
+ * 3. Executes the createRoomUseCase to create a room with the provided sender and receiver.
+ * 4. Returns an error response if the required data is missing or if the room creation fails.
+ * 5. Returns a success response with the created room details if successful.
+ * 6. Passes any caught errors to the error handler middleware.
+ */
 const createRoomController = (dependencies) => {
     const { useCases: { createRoomUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

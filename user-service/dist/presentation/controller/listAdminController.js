@@ -14,6 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.listAdminController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * listAdminController - Controller function to list all admins.
+ *
+ * This controller:
+ * 1. Calls the `listAdminUseCase` to execute fetching the list of admins.
+ *    - Returns a not found error if no admins are found or unable to list.
+ *    - Returns a success response with the list of admins if available.
+ * 2. Handles and logs any caught errors during the execution.
+ */
 const listAdminController = (dependencies) => {
     const { useCases: { listAdminUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

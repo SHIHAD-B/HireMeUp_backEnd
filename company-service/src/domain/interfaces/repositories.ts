@@ -1,4 +1,4 @@
-import { ICompany, IEmployee } from "../entities";
+import { ICompany, IContact, IEmployee } from "../entities";
 import { IRequests } from "../entities";
 
 export interface IRepositories {
@@ -20,5 +20,6 @@ export interface IRepositories {
     deleteEmployee: (id: string) => Promise<boolean | null>
     addEmployee: (data: IEmployee) => Promise<IEmployee | null | boolean>
     addCompany: (data: ICompany) => Promise<ICompany | null | boolean>
+    addContactLinks: (data: IContact) => Promise<ICompany | null | false>
 
 }

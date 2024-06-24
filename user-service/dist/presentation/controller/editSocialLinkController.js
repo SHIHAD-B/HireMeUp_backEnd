@@ -15,6 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.editSocialLinkController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const socialLinkValidation_1 = require("../../utils/validation/socialLinkValidation");
+/**
+ * editSocialLinkController - Controller function to handle editing a user's social links.
+ *
+ * This controller:
+ * 1. Extracts and validates the incoming request body (`datas`).
+ *    - Checks if `datas` contains `id` and `data`.
+ *    - Validates `datas.data` using `socialLinkValidation`.
+ *    - Returns a bad request error if `datas` or its fields are missing, or validation fails.
+ * 2. Calls the `editSocialLinkUseCase` to execute the edit operation using `id` and `data`.
+ *    - If the operation fails, returns a forbidden error.
+ * 3. Returns a success response with the edited user's social links upon successful edit.
+ */
 const editSocialLinkController = (dependencies) => {
     const { useCases: { editSocialLinkUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

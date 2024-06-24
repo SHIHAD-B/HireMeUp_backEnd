@@ -14,6 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteEducationController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * deleteEducationController - Controller function to handle deleting education of a user.
+ *
+ * This controller:
+ * 1. Validates the incoming request body for `id` (education ID) and `userId`.
+ *    - If validation fails (missing `id` or `userId`), returns a bad request error.
+ * 2. Calls the `deleteEducationUseCase` to perform the deletion operation.
+ *    - If the operation fails (education not found or unable to delete education), returns a forbidden error.
+ * 3. Returns a success response with the updated user object upon successful deletion.
+ */
 const deleteEducationController = (dependencies) => {
     const { useCases: { deleteEducationUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

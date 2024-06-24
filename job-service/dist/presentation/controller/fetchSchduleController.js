@@ -14,6 +14,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchScheduleController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * fetchScheduleController - Controller function to handle fetching a schedule by ID using fetchScheduleUseCase.
+ *
+ * This controller:
+ * 1. Validates the ID parameter to ensure it matches the expected format.
+ *    - Uses isValidObjectId function to check if the ID is a valid ObjectId.
+ *    - If ID is invalid, returns a bad request error.
+ * 2. Executes fetchScheduleUseCase to retrieve the schedule based on the validated ID.
+ *    - If fetching fails, returns a bad request error.
+ * 3. Returns a success response with the fetched schedule if successful.
+ * 4. Passes any errors encountered during the process to the error handling middleware.
+ */
 const fetchScheduleController = (dependencies) => {
     const { useCases: { fetchScheduleUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

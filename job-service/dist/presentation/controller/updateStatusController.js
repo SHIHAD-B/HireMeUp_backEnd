@@ -14,6 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateStatusController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * updateStatusController - Controller function to handle updating applicant status using updateStatusUseCase.
+ *
+ * This controller:
+ * 1. Checks if status and id are present in the request body, if not, returns a conflict error.
+ * 2. Executes updateStatusUseCase to update the status of the applicant.
+ *    - If updating fails, returns a conflict error with details.
+ *    - If updating succeeds, returns a success response with the updated applicant details.
+ * 3. Passes any errors encountered during the process to the error handling middleware.
+ */
 const updateStatusController = (dependencies) => {
     const { useCases: { updateStatusUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

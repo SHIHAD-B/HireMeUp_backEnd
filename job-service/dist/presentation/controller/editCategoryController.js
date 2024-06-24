@@ -15,6 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.editCategoryController = void 0;
 const editCategoryValidation_1 = require("../../utils/validation/editCategoryValidation");
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * editCategoryController - Controller function to handle editing a category using editCategoryUseCase.
+ *
+ * This controller:
+ * 1. Validates the request body using editCategoryValidation.
+ *    - If validation fails, returns a conflict error.
+ * 2. Executes editCategoryUseCase to edit the category based on the validated data.
+ *    - If the category already exists, returns a conflict error.
+ *    - If editing fails for any reason, returns a conflict error.
+ * 3. Returns a success response with the edited category if editing is successful.
+ * 4. Passes any errors encountered during the process to the error handling middleware.
+ */
 const editCategoryController = (dependencies) => {
     const { useCases: { editCategoryUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

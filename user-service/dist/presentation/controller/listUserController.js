@@ -14,6 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.listUserController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * listUserController - Controller function to list all users.
+ *
+ * This controller:
+ * 1. Calls the `listUserUseCase` to execute fetching the list of users.
+ *    - Returns a not found error if no users are found or unable to list.
+ *    - Returns a success response with the list of users if available.
+ * 2. Handles and logs any caught errors during the execution.
+ */
 const listUserController = (dependencies) => {
     const { useCases: { listUserUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

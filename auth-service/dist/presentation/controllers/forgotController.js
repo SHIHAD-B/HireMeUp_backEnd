@@ -18,6 +18,23 @@ const sentOtp_1 = require("../../utils/otp/sentOtp");
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const emailValidation_1 = require("../../utils/validation/emailValidation");
 const client_1 = __importDefault(require("../../infrastructure/rabbitmq/client"));
+/**
+ * forgotController - Handles the forgot password process.
+ *
+ * This controller:
+ * 1. Validates the request data using emailValidation.
+ * 2. Checks if the user exists using emailExistUseCase.
+ * 3. If the user does not exist:
+ *    - Returns an error response indicating the user is not found.
+ * 4. If no OTP is provided:
+ *    - Generates an OTP.
+ *    - Sends the OTP to the user's email via RabbitMQ.
+ *    - Returns a success response indicating the OTP was sent.
+ * 5. If an OTP is provided:
+ *    - Verifies the OTP using verifyOtpUseCase.
+ *    - Returns a success response if the OTP is verified.
+ *    - Returns an error response if the OTP is incorrect.
+ */
 const forgotController = (dependencies) => {
     const { useCases: { emailExistUseCase, verifyOtpUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

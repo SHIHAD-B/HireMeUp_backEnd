@@ -30,7 +30,7 @@ export const tokenRefreshController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const tokenName = req.cookies['user_token'] ? 'user_token' :
-                req.cookies['company_token'] ? 'company_token' :
+                req.cookies['Company_token'] ? 'Company_token' :
                     req.cookies['admin_token'] ? 'admin_token' : null;
 
             if (!tokenName) {

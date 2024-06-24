@@ -15,6 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateProfileController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const updateProfileValidation_1 = require("../../utils/validation/updateProfileValidation");
+/**
+ * updateProfileController - Controller function to update user profile data.
+ *
+ * This controller:
+ * 1. Validates the request body `datas` to ensure required fields are present and valid using `updateProfileValidation`.
+ *    - Returns a bad request error if validation fails.
+ * 2. Calls the `updateProfielUseCase` to execute updating the user profile based on the provided `id`, `data`, and `field`.
+ *    - Returns a forbidden error if updating the user profile fails.
+ * 3. Returns a success response with the updated user's details upon successful profile update.
+ * 4. Handles and logs any caught errors during the execution.
+ */
 const updateProfileController = (dependencies) => {
     const { useCases: { updateProfielUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

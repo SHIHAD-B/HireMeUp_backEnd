@@ -19,3 +19,4 @@ __exportStar(require("./complaints.entity"), exports);
 __exportStar(require("./rating.entity"), exports);
 __exportStar(require("./request.entity"), exports);
 __exportStar(require("./employee.entity"), exports);
+__exportStar(require("./contact.entity"), exports);

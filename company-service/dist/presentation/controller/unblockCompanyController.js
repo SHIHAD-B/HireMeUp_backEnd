@@ -14,6 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.unblockCompanyController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
+/**
+ * unblockCompanyController - Controller function to unblock a company using the unblockCompanyUseCase.
+ *
+ * This controller:
+ * 1. Retrieves the company email from the request body.
+ * 2. Validates that the company email is provided; otherwise, returns a bad request error.
+ * 3. Executes the unblockCompanyUseCase to unblock the company using the provided email.
+ *    - If the operation fails or the company is not found, returns a not found error.
+ * 4. Returns a success response with the unblocked company data and a success message.
+ * 5. Logs any errors encountered during the process and passes them to the error handler middleware.
+ */
 const unblockCompanyController = (dependencies) => {
     const { useCases: { unblockCompanyUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

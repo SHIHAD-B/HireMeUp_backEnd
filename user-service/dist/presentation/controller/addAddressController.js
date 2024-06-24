@@ -15,6 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addAddressController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const addressValidation_1 = require("../../utils/validation/addressValidation");
+/**
+ * addAddressController - Controller function to handle adding an address to a user.
+ *
+ * This controller:
+ * 1. Validates the incoming request body for required fields (`id` and `data`).
+ *    - If validation fails, returns a bad request error.
+ * 2. Validates the address data using `addressValidation`.
+ *    - If validation fails, returns a bad request error with the validation message.
+ * 3. Calls the `addAddressUseCase` to add the address to the user identified by `id`.
+ *    - If the address addition fails, returns a forbidden error.
+ * 4. Returns a success response with the updated user object upon successful address addition.
+ */
 const addAddressController = (dependencies) => {
     const { useCases: { addAddressUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

@@ -19,6 +19,20 @@ const hashpassword_1 = require("../../utils/hash/hashpassword");
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const addRequestValidation_1 = require("../../utils/validation/addRequestValidation");
 const client_1 = __importDefault(require("../../infrastructure/rabbitmq/client"));
+/**
+ * companySignupController - Handles the company sign-up process.
+ *
+ * This controller:
+ * 1. Validates the request data.
+ * 2. Checks if the company email already exists.
+ * 3. If no OTP is provided:
+ *    - Generates and sends an OTP via email.
+ *    - Returns a success response indicating the OTP was sent.
+ * 4. If an OTP is provided:
+ *    - Verifies the OTP.
+ *    - Hashes the password and saves the company details.
+ *    - Returns a success response upon successful registration.
+ */
 const companySignupController = (dependencies) => {
     const { useCases: { companySignupUseCase, companyEmailExistUseCase, verifyOtpUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
