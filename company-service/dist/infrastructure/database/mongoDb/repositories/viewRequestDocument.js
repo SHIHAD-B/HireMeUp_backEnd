@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.viewRequestDocument = void 0;
 const requestSchema_1 = __importDefault(require("../model/requestSchema"));
-const viewRequestDocument = (id) => __awaiter(void 0, void 0, void 0, function* () {
+const viewRequestDocument = (id, document) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         console.log(id, "id from the front end");
         if (!id) {
@@ -25,15 +25,15 @@ const viewRequestDocument = (id) => __awaiter(void 0, void 0, void 0, function* 
         if (!request) {
             return null;
         }
-        const updateResult = yield requestSchema_1.default.updateOne({ _id: id }, { $set: { viewdocument: true } });
+        const updateResult = yield requestSchema_1.default.updateOne({ _id: id }, { $set: { [`viewdocument.${document}`]: true } });
         if (updateResult.modifiedCount === 1) {
             return true;
         }
         return null;
     }
     catch (error) {
-        console.error('Error approving request:', error.message);
-        throw new Error('Failed to approve request.');
+        console.error('Error updating request:', error.message);
+        throw new Error('Failed to update request.');
     }
 });
 exports.viewRequestDocument = viewRequestDocument;

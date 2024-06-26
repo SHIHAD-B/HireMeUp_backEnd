@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi, { string } from 'joi';
 import { EMAIL } from '../../config/envConfig/config';
 
 
@@ -14,6 +14,11 @@ export const setProfileOneValidation = Joi.object({
     icon: Joi.string().required().messages({
         'any.required': 'icon is required',
     }),
+    contact: Joi.object({
+        instagram: Joi.string().allow(null).allow("").optional(),
+        linkedIn: Joi.string().allow(null).allow("").optional(),
+        twitter: Joi.string().allow(null).allow("").optional()
+    }).allow(null).optional(),
     company_name: Joi.string().required().messages({
         'any.required': 'Company name is required',
     }),

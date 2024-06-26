@@ -30,7 +30,19 @@ exports.addRequestValidation = joi_1.default.object({
         'string.pattern.base': 'Password is too weak',
         'string.empty': 'password is required',
     }),
-    document: joi_1.default.any().required().messages({
+    registration: joi_1.default.any().required().messages({
+        'any.required': 'Document is required',
+    }),
+    license: joi_1.default.any().required().messages({
+        'any.required': 'Document is required',
+    }),
+    tin: joi_1.default.any().required().messages({
+        'any.required': 'Document is required',
+    }),
+    financialStatements: joi_1.default.any().required().messages({
+        'any.required': 'Document is required',
+    }),
+    references: joi_1.default.any().required().messages({
         'any.required': 'Document is required',
     }),
 }).options({ abortEarly: false }).unknown(true);

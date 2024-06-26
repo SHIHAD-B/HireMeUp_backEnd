@@ -16,6 +16,11 @@ exports.setProfileOneValidation = joi_1.default.object({
     icon: joi_1.default.string().required().messages({
         'any.required': 'icon is required',
     }),
+    contact: joi_1.default.object({
+        instagram: joi_1.default.string().allow(null).allow("").optional(),
+        linkedIn: joi_1.default.string().allow(null).allow("").optional(),
+        twitter: joi_1.default.string().allow(null).allow("").optional()
+    }).allow(null).optional(),
     company_name: joi_1.default.string().required().messages({
         'any.required': 'Company name is required',
     }),

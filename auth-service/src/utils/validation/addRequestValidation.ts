@@ -25,9 +25,21 @@ export const addRequestValidation = Joi.object({
             'string.pattern.base': 'Password is too weak',
             'string.empty': 'password is required',
         }),
-        document: Joi.any().required().messages({
-            'any.required': 'Document is required',
-        }),
+    registration: Joi.any().required().messages({
+        'any.required': 'Document is required',
+    }),
+    license: Joi.any().required().messages({
+        'any.required': 'Document is required',
+    }),
+    tin: Joi.any().required().messages({
+        'any.required': 'Document is required',
+    }),
+    financialStatements: Joi.any().required().messages({
+        'any.required': 'Document is required',
+    }),
+    references: Joi.any().required().messages({
+        'any.required': 'Document is required',
+    }),
 
 }).options({ abortEarly: false }).unknown(true);
 

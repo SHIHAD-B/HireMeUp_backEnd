@@ -21,9 +21,10 @@ export const viewRequestDocumentController = (dependencies: IDependencies) => {
 
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const id = req.body.id
+            const {id,document} = req.body
+            console.log(id,"id from front end",document,"document from the front end")
 
-            const approveRequests = await viewRequestDocumentUseCase(dependencies).execute(id)
+            const approveRequests = await viewRequestDocumentUseCase(dependencies).execute(id,document)
             if (!approveRequests) {
                 return next(ErrorResponse.notFound("failed to view the requests"));
             } else {

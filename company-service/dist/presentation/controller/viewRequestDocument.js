@@ -29,8 +29,9 @@ const viewRequestDocumentController = (dependencies) => {
     const { useCases: { viewRequestDocumentUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const id = req.body.id;
-            const approveRequests = yield viewRequestDocumentUseCase(dependencies).execute(id);
+            const { id, document } = req.body;
+            console.log(id, "id from front end", document, "document from the front end");
+            const approveRequests = yield viewRequestDocumentUseCase(dependencies).execute(id, document);
             if (!approveRequests) {
                 return next(errorResponse_1.default.notFound("failed to view the requests"));
             }

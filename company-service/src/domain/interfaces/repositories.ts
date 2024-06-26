@@ -14,7 +14,7 @@ export interface IRepositories {
     fetchCompany: (email: string) => Promise<ICompany | null>
     resetPassword: (email: string, password: string) => Promise<boolean | null>
     editCompany: (data: ICompany) => Promise<ICompany | null>
-    viewRequestDocument: (id: string) => Promise<boolean | null>
+    viewRequestDocument: (id: string,document:string) => Promise<boolean | null>
     listEmployee: () => Promise<IEmployee[] | null>
     editEmployee: (data: IEmployee) => Promise<IEmployee | null | boolean>
     deleteEmployee: (id: string) => Promise<boolean | null>

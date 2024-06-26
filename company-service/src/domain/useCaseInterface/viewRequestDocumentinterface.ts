@@ -1,4 +1,4 @@
 
 export interface IViewRequestDocument {
-    execute(id: string): Promise<boolean | null>
+    execute(id: string,document:string): Promise<boolean | null>
 }

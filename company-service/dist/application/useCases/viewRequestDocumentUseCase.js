@@ -13,9 +13,9 @@ exports.viewRequestDocumentUseCase = void 0;
 const viewRequestDocumentUseCase = (dependencies) => {
     const { repositories: { viewRequestDocument } } = dependencies;
     return {
-        execute: (id) => __awaiter(void 0, void 0, void 0, function* () {
+        execute: (id, document) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                return yield viewRequestDocument(id);
+                return yield viewRequestDocument(id, document);
             }
             catch (error) {
                 throw new Error(error);

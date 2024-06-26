@@ -26,18 +26,17 @@ const connectSocketIo = (server) => {
         if (userId != "undefined") {
             userSocketMap[userId] = socket.id;
         }
-        io.emit("getOnlineUsers", Object.keys(userSocketMap));
+        socket.emit("getOnlineUsers", Object.keys(userSocketMap));
         socket.on('join chat', (room) => {
             socket.join(room);
         });
         socket.on('read message', (data) => __awaiter(void 0, void 0, void 0, function* () {
-            const updated = yield (0, repositories_1.updateReadStatus)(data.sender, data.receiver, data.status);
-            console.log(updated);
-            io.emit('updated message', data.id);
+            yield (0, repositories_1.updateReadStatus)(data.sender, data.receiver, data.status);
+            io.to(data.chatId).emit('updated message', data.id, data.receiver, data.sender);
         }));
         socket.on('new message', (data) => {
             const chat = data.chatId;
-            io.to(chat).emit("message recieved", data.data);
+            socket.to(chat).emit("message recieved", data.data);
         });
         socket.on('join_video', (data) => {
             const senderId = userSocketMap[data.id];
