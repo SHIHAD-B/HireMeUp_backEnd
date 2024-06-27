@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { IDependencies } from "../../domain/interfaces";
 import { generatePassword } from "../../utils/password/generatePassword";
 import { hashPassword } from "../../utils/hash/hashpassword";

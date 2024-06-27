@@ -1,4 +1,4 @@
-import { hash, genSalt } from "bcrypt";
+import { hash, genSalt } from "bcryptjs";
 
 export const hashPassword = async (password: string): Promise<string | Error> => {
     try {

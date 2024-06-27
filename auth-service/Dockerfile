@@ -6,8 +6,12 @@ COPY package.json .
 
 RUN npm install
 
-EXPOSE 4001
+RUN npm install typescript -g
 
 COPY . .
 
-CMD [ "npm", "run", "start:dev" ]
+RUN npm run build
+
+EXPOSE 4001
+
+CMD [ "npm", "start" ]

@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { IDependencies } from "../../domain/interfaces";
 import { generateOtp } from "../../utils/otp/generateOtp";
 import { sendOtp } from "../../utils/otp/sentOtp";

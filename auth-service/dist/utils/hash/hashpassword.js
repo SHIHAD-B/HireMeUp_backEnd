@@ -10,10 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hashPassword = void 0;
-const bcrypt_1 = require("bcrypt");
+const bcryptjs_1 = require("bcryptjs");
 const hashPassword = (password) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const hashedPassword = yield (0, bcrypt_1.hash)(password, yield (0, bcrypt_1.genSalt)(10));
+        const hashedPassword = yield (0, bcryptjs_1.hash)(password, yield (0, bcryptjs_1.genSalt)(10));
         return hashedPassword ? hashedPassword : new Error("Error occurred in hashing the password");
     }
     catch (error) {
