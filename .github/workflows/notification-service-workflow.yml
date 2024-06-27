@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'notification-service/**'
+  workflow_dispatch:    
 
 jobs:
   push_to_registry:
