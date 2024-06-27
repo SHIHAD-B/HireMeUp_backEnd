@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hiremeup-auth-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hiremeup-auth-service
+  template:
+    metadata:
+      labels:
+        app: hiremeup-auth-service
+    spec:
+      containers:
+      - name: hiremeup-auth-service
+        image: shihadb/hiremeup-auth-service:latest
+        envFrom:
+        - configMapRef:
+            name: auth-config 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hiremeup-auth-service
+spec:
+  selector:
+    app: hiremeup-auth-service
+  ports:
+  - protocol: TCP
+    port: 4001
+    targetPort: 4001

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hiremeup-user-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hiremeup-user-service
+  template:
+    metadata:
+      labels:
+        app: hiremeup-user-service
+    spec:
+      containers:
+      - name: hiremeup-user-service
+        image: shihadb/hiremeup-user-service:latest
+        envFrom:
+        - configMapRef:
+            name: user-config 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hiremeup-user-service
+spec:
+  selector:
+    app: hiremeup-user-service
+  ports:
+  - protocol: TCP
+    port: 4002
+    targetPort: 4002

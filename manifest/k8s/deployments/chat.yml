@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hiremeup-chat-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hiremeup-chat-service
+  template:
+    metadata:
+      labels:
+        app: hiremeup-chat-service
+    spec:
+      containers:
+      - name: hiremeup-chat-service
+        image: shihadb/hiremeup-chat-service:latest
+        envFrom:
+        - configMapRef:
+            name: chat-config 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hiremeup-chat-service
+spec:
+  selector:
+    app: hiremeup-chat-service
+  ports:
+  - protocol: TCP
+    port: 4003
+    targetPort: 4003

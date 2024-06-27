@@ -1,0 +1,3 @@
+
+#ignoring all the yml files in the configMaps
+/manifest/k8s/configMaps

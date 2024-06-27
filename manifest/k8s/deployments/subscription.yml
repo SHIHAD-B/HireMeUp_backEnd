@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hiremeup-subscription-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hiremeup-subscription-service
+  template:
+    metadata:
+      labels:
+        app: hiremeup-subscription-service
+    spec:
+      containers:
+      - name: hiremeup-subscription-service
+        image: shihadb/hiremeup-subscription-service:latest
+        envFrom:
+        - configMapRef:
+            name: subscription-config 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hiremeup-subscription-service
+spec:
+  selector:
+    app: hiremeup-subscription-service
+  ports:
+  - protocol: TCP
+    port: 4007
+    targetPort: 4007

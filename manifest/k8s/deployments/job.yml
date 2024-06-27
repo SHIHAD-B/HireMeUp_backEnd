@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hiremeup-job-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hiremeup-job-service
+  template:
+    metadata:
+      labels:
+        app: hiremeup-job-service
+    spec:
+      containers:
+      - name: hiremeup-job-service
+        image: shihadb/hiremeup-job-service:latest
+        envFrom:
+        - configMapRef:
+            name: job-config 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hiremeup-job-service
+spec:
+  selector:
+    app: hiremeup-job-service
+  ports:
+  - protocol: TCP
+    port: 4005
+    targetPort: 4005
