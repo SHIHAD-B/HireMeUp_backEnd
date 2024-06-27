@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.resetProfilePasswordController = void 0;
 const errorResponse_1 = __importDefault(require("../../utils/error/errorResponse"));
 const hashpassword_1 = require("../../utils/hash/hashpassword");
-const bcrypt_1 = require("bcrypt");
+const bcryptjs_1 = require("bcryptjs");
 const profilePassworValidation_1 = require("../../utils/validation/profilePassworValidation");
 /**
  * resetProfilePasswordController - Handles the resetting of a company's password using the resetPasswordUseCase.
@@ -52,7 +52,7 @@ const resetProfilePasswordController = (dependencies) => {
             if (!password || !newPassword) {
                 return next(errorResponse_1.default.badRequest("Current or new password is missing."));
             }
-            const passwordMatch = (0, bcrypt_1.compare)(password, user === null || user === void 0 ? void 0 : user.password);
+            const passwordMatch = (0, bcryptjs_1.compare)(password, user === null || user === void 0 ? void 0 : user.password);
             if (!passwordMatch) {
                 return next(errorResponse_1.default.badRequest("Incorrect current password."));
             }

@@ -2,7 +2,7 @@ import { Response, Request, NextFunction } from "express";
 import { IDependencies } from "../../domain/interfaces";
 import ErrorResponse from "../../utils/error/errorResponse";
 import { hashPassword } from "../../utils/hash/hashpassword";
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs";
 import { setProfilePasswordValidation } from "../../utils/validation/profilePassworValidation";
 
 /**
