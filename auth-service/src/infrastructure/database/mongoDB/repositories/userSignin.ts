@@ -1,6 +1,6 @@
 import { IUserEntity } from "../../../../domain/entities";
 import RabbitMQClient from "../../../rabbitmq/client";
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs";
 
 export const userSignin = async (data: IUserEntity): Promise<IUserEntity | boolean | null> => {
     try {

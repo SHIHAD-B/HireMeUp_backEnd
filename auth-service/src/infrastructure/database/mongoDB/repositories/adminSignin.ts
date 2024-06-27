@@ -1,7 +1,7 @@
 
 import { IAdminEntity } from "../../../../domain/entities";
 import RabbitMQClient from "../../../rabbitmq/client";
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs";
 
 export const adminSignin = async (data: IAdminEntity): Promise<IAdminEntity | boolean | null> => {
     try {

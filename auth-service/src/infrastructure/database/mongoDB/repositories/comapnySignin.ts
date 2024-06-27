@@ -1,7 +1,7 @@
 import { ICompany } from "../../../../domain/entities";
 import { ICompanySignin } from "../../../../domain/entities/companySignin.enitity";
 import RabbitMQClient from "../../../rabbitmq/client";
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs";
 
 export const companySignin = async (data: ICompanySignin): Promise<ICompany | boolean | null> => {
     try {
