@@ -6,7 +6,7 @@ COPY package.json .
 
 RUN npm install
 
-EXPOSE 4006
+EXPOSE 4003
 
 COPY . .
 
