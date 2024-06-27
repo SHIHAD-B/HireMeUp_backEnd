@@ -34,7 +34,7 @@ export const addCompanyController = (dependencies: IDependencies) => {
 
             const approveRequests = await addCompanyUseCase(dependencies).execute(data)
             if (!approveRequests) {
-                return next(ErrorResponse.notFound("failed to add the company"));
+                return next(ErrorResponse.notFound("failed to add the company."));
             } else {
                 sendApprovalNotification(data.email)
                 return res.status(200).json({

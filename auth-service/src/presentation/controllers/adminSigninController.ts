@@ -36,7 +36,7 @@ export const adminSigninController = (dependencies: IDependencies) => {
                 const data = value
                 const admin: IAdminEntity | boolean | null = await adminSigninUseCase(dependencies).execute(data)
                 if (admin == false) {
-                    return next(ErrorResponse.badRequest('incorrect password'))
+                    return next(ErrorResponse.badRequest('incorrect password.'))
                 }else if(admin==true){
                     return next(ErrorResponse.badRequest('incorrect password'))
                 } else if (admin == null) {

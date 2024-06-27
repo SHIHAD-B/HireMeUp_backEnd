@@ -24,7 +24,7 @@ export const createRoomController = (dependencies: IDependencies) => {
             const data = req.body
     
             if (!data || !data.sender || !data.receiver)  {
-                return next(ErrorResponse.badRequest("data is required"))
+                return next(ErrorResponse.badRequest("data is required."))
             }
             
             const sendMessage=await createRoomUseCase(dependencies).execute(data)

@@ -25,7 +25,7 @@ export const addAddressController = (dependencies: IDependencies) => {
             const datas = req.body
 
             if (!datas || !datas.id || !datas.data) {
-                return next(ErrorResponse.badRequest("data is required"))
+                return next(ErrorResponse.badRequest("data is required."))
             }
 
             const { value, error } = addressValidation.validate(datas.data)

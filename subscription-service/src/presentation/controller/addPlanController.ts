@@ -24,7 +24,6 @@ export const addPlansController = (dependencies: IDependencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const data = req.body
-            console.log(data,"data in the back end of add plan")
             const { error, value } = addPlanValidation.validate(data)
             if (error) {
                 return next(ErrorResponse.badRequest(String(error)));

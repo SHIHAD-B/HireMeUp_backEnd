@@ -26,7 +26,7 @@ export const addNotificationController = (dependencies: IDependencies) => {
             const datas = req.body
 
             if (!datas ) {
-                return next(ErrorResponse.badRequest("data is required"))
+                return next(ErrorResponse.badRequest("data is required."))
             }
 
             const { value, error } = addNotificationValidation.validate(datas.data)
