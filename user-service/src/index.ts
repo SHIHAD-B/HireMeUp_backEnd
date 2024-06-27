@@ -4,7 +4,7 @@ import dbConnection from './infrastructure/database/dbConnection';
 import cron from 'node-cron'
 import { expireSubscriptions } from './infrastructure/cronjobs/expireSubscription';
 
-
+// user service
 (async () => {
     try {
 
