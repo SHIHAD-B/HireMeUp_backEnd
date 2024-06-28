@@ -31,7 +31,7 @@ export const addPlansController = (dependencies: IDependencies) => {
             }
             const exist = await PlanExistsUseCase(dependencies).execute(value.name)
             if (exist) {
-                return next(ErrorResponse.conflict("plan already exists"));
+                return next(ErrorResponse.conflict("plan already exists."));
 
             }
 

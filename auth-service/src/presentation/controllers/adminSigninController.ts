@@ -42,7 +42,7 @@ export const adminSigninController = (dependencies: IDependencies) => {
                 } else if (admin == null) {
                     return next(ErrorResponse.notFound('admin not found'))
                 } else if (admin?.blocked == true ) {
-                    return next(ErrorResponse.badRequest('admin blocked or deleted by admin'))
+                    return next(ErrorResponse.badRequest('admin blocked or deleted by admin..'))
                 } else {
 
                     const accessToken = generateAccessToken(admin)

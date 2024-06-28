@@ -31,7 +31,7 @@ export const addCategoryController = (dependencies: IDependencies) => {
 
                 const category: ICategory | boolean | null = await addCategoryUseCase(dependencies).execute(value)
                 if (!category) {
-                    return next(ErrorResponse.conflict("already Exists."))
+                    return next(ErrorResponse.conflict("already Exists.."))
                 } else {
                     return res.status(200).json({
                         success: true,

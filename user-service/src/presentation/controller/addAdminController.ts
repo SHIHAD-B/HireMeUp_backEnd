@@ -28,7 +28,7 @@ export const addAdminController = (dependencies: IDependencies) => {
         try {
             const data = req.body
             if (!data || !data.email || !data.password) {
-                return next(ErrorResponse.badRequest("data is required"))
+                return next(ErrorResponse.badRequest("data is required."))
             }
 
             const { value, error } = addAdminValidation.validate(data)

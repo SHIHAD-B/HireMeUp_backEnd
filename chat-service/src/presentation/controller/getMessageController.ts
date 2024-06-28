@@ -24,7 +24,7 @@ export const getMessageController = (dependencies: IDependencies) => {
             const data = req.query.id
 
             if (!data) {
-                return next(ErrorResponse.badRequest("data is required"))
+                return next(ErrorResponse.badRequest("data is required."))
             }
             
             const messages=await getMessageUseCase(dependencies).execute(String(data))

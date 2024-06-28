@@ -35,7 +35,7 @@ export const addContactLinksController = (dependencies: IDependencies) => {
 
                 return next(ErrorResponse.notFound("user not found"));
             } else if (!updateLink) {
-                return next(ErrorResponse.notFound("failed to add the contact links"));
+                return next(ErrorResponse.notFound("failed to add the contact links."));
             }
 
             return res.status(200).json({
