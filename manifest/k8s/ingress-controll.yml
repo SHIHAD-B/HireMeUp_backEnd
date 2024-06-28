@@ -80,23 +80,3 @@ spec:
             name: hiremeup-user-service
             port:
               number: 4002
-
-
-
-
-
-
-
-        
-        
-
-
-
-        
-        - path: /user
-          pathType: Prefix
-          backend:
-            service:
-              name: hiremeup-user-service
-              port:
-                number: 4002
