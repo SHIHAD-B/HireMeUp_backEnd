@@ -1,75 +1,98 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hiremeup-ingress
+  name: ingress-controller
   annotations:
-    kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/cors-allow-methods: GET,POST,PUT,DELETE,OPTIONS
-    alb.ingress.kubernetes.io/cors-allow-headers: '*'
-    alb.ingress.kubernetes.io/cors-allow-origin: ''
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/enable-cors: "true" 
+    nginx.ingress.kubernetes.io/cors-allow-origin: "http://hiremeup.online"
 spec:
-  ingressClassName: alb
+  ingressClassName: webapprouting.kubernetes.azure.com
+  tls:
+  - hosts:
+    - hiremeup.online
+    secretName: webhobecoshop-tls
   rules:
-   - http:
+  - host: hiremeup.online
+    http:
       paths:
-        - path: /*
-          pathType: Prefix
-          backend:
-            service:
-              name: hiremeupfrontend-service
-              port:
-                number: 5173
-        - path: /chat
-          pathType: Prefix
-          backend:
-            service:
-              name: hiremeup-chat-service
-              port:
-                number: 4003
-        - path: /socket.io
-          pathType: Prefix
-          backend:
-            service:
-              name: hiremeup-chat-service
-              port:
-                number: 4003
-        - path: /auth
-          pathType: Prefix
-          backend:
-            service:
-              name: hiremeup-auth-service
-              port:
-                number: 4001
-        - path: /company
-          pathType: Prefix
-          backend:
-            service:
-              name: hiremeup-company-service
-              port:
-                number: 4006
-        - path: /job
-          pathType: Prefix
-          backend:
-            service:
-              name: hiremeup-job-service
-              port:
-                number: 4005
-        - path: /notification
-          pathType: Prefix
-          backend:
-            service:
-              name: hiremeup-notification-service
-              port:
-                number: 4004
-        - path: /subscription
-          pathType: Prefix
-          backend:
-            service:
-              name: hiremeup-subscription-service
-              port:
-                number: 4007
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: hiremeupfrontend-service
+            port:
+              number: 5173
+      - path: /chat
+        pathType: Prefix
+        backend:
+          service:
+            name: hiremeup-chat-service
+            port:
+              number: 4003
+      - path: /socket.io  
+        pathType: Prefix
+        backend:
+          service:
+            name: hiremeup-chat-service
+            port:
+              number: 4003
+      - path: /auth
+        pathType: Prefix
+        backend:
+          service:
+            name: hiremeup-auth-service
+            port:
+              number: 4001
+      - path: /company
+        pathType: Prefix
+        backend:
+          service:
+            name: hiremeup-company-service
+            port:
+              number: 4006
+      - path: /job
+        pathType: Prefix
+        backend:
+          service:
+            name: hiremeup-job-service
+            port:
+              number: 4005
+      - path: /notification
+        pathType: Prefix
+        backend:
+          service:
+            name: hiremeup-notification-service
+            port:
+              number: 4004
+      - path: /subscription
+        pathType: Prefix
+        backend:
+          service:
+            name: hiremeup-subscription-service
+            port:
+              number: 4007
+      - path: /user
+        pathType: Prefix
+        backend:
+          service:
+            name: hiremeup-user-service
+            port:
+              number: 4002
+
+
+
+
+
+
+
+        
+        
+
+
+
+        
         - path: /user
           pathType: Prefix
           backend:
