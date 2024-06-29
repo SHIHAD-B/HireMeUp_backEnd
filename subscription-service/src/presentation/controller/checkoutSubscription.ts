@@ -82,8 +82,8 @@ export const checkoutSubscriptionController = (dependencies: IDependencies) => {
                 payment_method_types: ["card"],
                 line_items: [lineItem],
                 mode: "payment",
-                success_url: `http://localhost:5173/subscription?data=${encodeURIComponent(encrypt(JSON.stringify({ planId: data.planId }), ENCRYPTION_KEY))}`,
-                cancel_url: `http://localhost:5173/subscription?data=${encodeURIComponent(encrypt('Failed to process payment', ENCRYPTION_KEY))}`,
+                success_url: `http://hiremeup.online/subscription?data=${encodeURIComponent(encrypt(JSON.stringify({ planId: data.planId }), ENCRYPTION_KEY))}`,
+                cancel_url: `http://hiremeup.online/subscription?data=${encodeURIComponent(encrypt('Failed to process payment', ENCRYPTION_KEY))}`,
 
             });
 
