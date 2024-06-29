@@ -17,13 +17,11 @@ const server = http.createServer(app);
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
-// app.use("/connect", (req, res) => {
-//     connectSocketIo(server);
-//   });
 
 
-app.use('/chat/user', userRoutes(dependencies))
-app.use('/chat/company', companyRoutes(dependencies))
+
+app.use(' /api/v1/chat/user', userRoutes(dependencies))
+app.use('/api/v1/chat/company', companyRoutes(dependencies))
 connectSocketIo(server)
 
 
