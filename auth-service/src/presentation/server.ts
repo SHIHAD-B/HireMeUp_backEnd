@@ -17,8 +17,9 @@ app.use(cookieParser())
 app.use('/api/v1/auth/cus', authRoutes(dependencies))
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
-    res.status(404).send("api not found ")
+    res.status(404).send("api not found: auth service")
 })
+
 
 app.use(errorHandler)
 
