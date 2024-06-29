@@ -19,8 +19,8 @@ app.use(cookieParser())
 
 
 app.use(express.static(path.join(__dirname, '../public')));
-app.use('/user', subscriptionRoutes(dependencies))
-app.use('/admin', adminRoutes(dependencies))
+app.use('/subscription/user', subscriptionRoutes(dependencies))
+app.use('/subscription/admin', adminRoutes(dependencies))
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
     res.status(404).send("api not found : subscription service")
@@ -29,7 +29,7 @@ app.use("*", (req: Request, res: Response, next: NextFunction) => {
 app.use(errorHandler)
 app.listen(PORT, async () => {
     console.log(`connected to subscription service at ${PORTNUMBER}`);
-    await RabbitMQClient.getInstance(); 
+    await RabbitMQClient.getInstance();
 });
 
 export default app; 

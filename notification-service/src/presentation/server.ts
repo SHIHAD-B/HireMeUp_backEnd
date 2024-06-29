@@ -16,9 +16,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
 
-app.use('/user', userRoutes(dependencies))
-app.use('/company',companyRoutes(dependencies))
-// app.use('/admin', adminRoutes(dependencies))
+app.use('/notification/user', userRoutes(dependencies))
+app.use('/notification/company',companyRoutes(dependencies))
+
 
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {

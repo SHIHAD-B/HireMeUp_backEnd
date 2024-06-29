@@ -22,8 +22,8 @@ app.use(cookieParser())
 //   });
 
 
-app.use('/user', userRoutes(dependencies))
-app.use('/company', companyRoutes(dependencies))
+app.use('/chat/user', userRoutes(dependencies))
+app.use('/chat/company', companyRoutes(dependencies))
 connectSocketIo(server)
 
 

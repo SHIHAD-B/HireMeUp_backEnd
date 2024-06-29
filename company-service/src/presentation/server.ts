@@ -12,15 +12,15 @@ import { userRoutes } from "../infrastructure/routes/user.routes";
 const app: Application = express()
 const PORTNUMBER: number = Number(PORT)
 
-app.use(express.json({limit:'150mb'}))
-app.use(express.urlencoded({limit:'150mb', extended: true }))
+app.use(express.json({ limit: '150mb' }))
+app.use(express.urlencoded({ limit: '150mb', extended: true }))
 app.use(cookieParser())
 
 
 
-app.use('/company', companyRoutes(dependencies))
-app.use('/admin', adminRoutes(dependencies))
-app.use('/user', userRoutes(dependencies))
+app.use('/company/company', companyRoutes(dependencies))
+app.use('/company/admin', adminRoutes(dependencies))
+app.use('/company/user', userRoutes(dependencies))
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
     res.status(404).send("api not found: company service")

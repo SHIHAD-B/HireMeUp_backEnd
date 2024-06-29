@@ -16,9 +16,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
-app.use('/user', jobRoutes(dependencies))
-app.use('/company', companyRoutes(dependencies))
-app.use('/admin', adminRoutes(dependencies))
+app.use('/job/user', jobRoutes(dependencies))
+app.use('/job/company', companyRoutes(dependencies))
+app.use('/job/admin', adminRoutes(dependencies))
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
     res.status(404).send("api not found : job service")
