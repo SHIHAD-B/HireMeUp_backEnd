@@ -34,14 +34,14 @@ spec:
                 name: hiremeup-chat-service
                 port:
                   number: 4003
-          - path:  /api/v1/auth
+          - path: /api/v1/auth
             pathType: Prefix
             backend:
               service:
                 name: hiremeup-auth-service
                 port:
                   number: 4001
-          - path:  /api/v1/company
+          - path: /api/v1/company
             pathType: Prefix
             backend:
               service:
@@ -76,10 +76,4 @@ spec:
                 name: hiremeup-user-service
                 port:
                   number: 4002
-          - path: /api/v1/user/company
-            pathType: Prefix
-            backend:
-              service:
-                name: hiremeup-user-service
-                port:
-                  number: 4002
+
