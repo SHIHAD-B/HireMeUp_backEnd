@@ -10,7 +10,7 @@ export const generateAccessToken = (user: any) => {
     return Jwt.sign(
         payload,
         String(JWT_SECRET),
-        { expiresIn: '10m' }
+        { expiresIn: '30m' }
     );
 };
 
