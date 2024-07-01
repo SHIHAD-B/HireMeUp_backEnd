@@ -31,6 +31,11 @@ const connectSocketIo = (server: Server) => {
             io.to(data.chatId).emit('updated message', data.id,data.receiver,data.sender)
         })
 
+        socket.on('clickView',async(data)=>{
+            await updateReadStatus(data.view,data.click,"read")
+            socket.to(data.view).emit('click read', data.chatIds,data.click,data.view)
+        })
+
         socket.on('new message', (data) => {
             const chat = data.chatId
             socket.to(chat).emit("message recieved", data.data)

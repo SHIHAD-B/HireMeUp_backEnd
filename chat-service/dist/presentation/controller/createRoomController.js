@@ -31,7 +31,7 @@ const createRoomController = (dependencies) => {
         try {
             const data = req.body;
             if (!data || !data.sender || !data.receiver) {
-                return next(errorResponse_1.default.badRequest("data is required"));
+                return next(errorResponse_1.default.badRequest("data is required."));
             }
             const sendMessage = yield createRoomUseCase(dependencies).execute(data);
             if (!sendMessage) {

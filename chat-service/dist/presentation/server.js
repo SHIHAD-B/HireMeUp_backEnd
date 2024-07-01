@@ -18,11 +18,8 @@ const server = http_1.default.createServer(app);
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
-// app.use("/connect", (req, res) => {
-//     connectSocketIo(server);
-//   });
-app.use('/user', (0, user_routes_1.userRoutes)(dependencies_1.dependencies));
-app.use('/company', (0, company_routes_1.companyRoutes)(dependencies_1.dependencies));
+app.use('/api/v1/chat/user', (0, user_routes_1.userRoutes)(dependencies_1.dependencies));
+app.use('/api/v1/chat/company', (0, company_routes_1.companyRoutes)(dependencies_1.dependencies));
 (0, socket_1.default)(server);
 app.use("*", (req, res, next) => {
     res.status(404).send("api not found : chat service");

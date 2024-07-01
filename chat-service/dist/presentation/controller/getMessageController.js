@@ -31,7 +31,7 @@ const getMessageController = (dependencies) => {
         try {
             const data = req.query.id;
             if (!data) {
-                return next(errorResponse_1.default.badRequest("data is required"));
+                return next(errorResponse_1.default.badRequest("data is required."));
             }
             const messages = yield getMessageUseCase(dependencies).execute(String(data));
             if (!messages) {
