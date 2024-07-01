@@ -44,15 +44,14 @@ export const educationValidation = Joi.object({
             'date.max': `"from" cannot be in the future`,
             'any.required': `"from" is required`,
         }),
-    to: Joi.date()
+        to: Joi.date()
         .min(Joi.ref('from'))
-        .max(today)
+        .max('now') 
         .required()
         .messages({
-            'date.base': `"to" should be a valid date`,
-            'date.min': `"to" cannot be before "from"`,
-            'date.max': `"to" cannot be in the future`,
-            'any.required': `"to" is required`,
+          'date.min': 'To date cannot be before the from date',
+          'date.max': 'To date cannot be in the future',
+          'any.required': 'To date is required'
         }),
     description: Joi.string()
         .min(5)
