@@ -34,9 +34,9 @@ export const experienceValidation = joi.object({
       'date.max': 'From date cannot be in the future',
       'any.required': 'From date is required'
     }),
-  to: joi.date()
+    to: joi.date()
     .min(joi.ref('from'))
-    .max(today.toISOString().split('T')[0])
+    .max('now') 
     .required()
     .messages({
       'date.min': 'To date cannot be before the from date',
