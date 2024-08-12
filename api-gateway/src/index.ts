@@ -20,13 +20,13 @@ app.use(cookieParser());
 
 //redirecting the api calls to the respective services
 
-app.use('/auth', proxy(process.env.IP + "4001"))
-app.use('/user', proxy(process.env.IP + "4002"))
-app.use('/chat', proxy(process.env.IP + "4003"))
-app.use('/notification', proxy(process.env.IP + "4004"))
-app.use('/job', proxy(process.env.IP + "4005"))
-app.use('/company', proxy(process.env.IP + "4006"))
-app.use('/subscription', proxy(process.env.IP + "4007"))
+app.use('/auth', proxy(process.env.AUTH_IP + "4001"))
+app.use('/user', proxy(process.env.USER_IP + "4002"))
+app.use('/chat', proxy(process.env.CHAT_IP + "4003"))
+app.use('/notification', proxy(process.env.NOTIFICATION_IP + "4004"))
+app.use('/job', proxy(process.env.JOB_IP + "4005"))
+app.use('/company', proxy(process.env.COMPANY_IP + "4006"))
+app.use('/subscription', proxy(process.env.SUBSCRIPTION_IP + "4007"))
 
 
 
