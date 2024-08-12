@@ -12,6 +12,6 @@ const generateAccessToken = (user) => {
         email: user === null || user === void 0 ? void 0 : user.email,
         role: user === null || user === void 0 ? void 0 : user.role
     };
-    return jsonwebtoken_1.default.sign(payload, String(config_1.JWT_SECRET), { expiresIn: '10m' });
+    return jsonwebtoken_1.default.sign(payload, String(config_1.JWT_SECRET), { expiresIn: '30m' });
 };
 exports.generateAccessToken = generateAccessToken;

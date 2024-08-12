@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userSignin = void 0;
 const client_1 = __importDefault(require("../../../rabbitmq/client"));
-const bcrypt_1 = require("bcrypt");
+const bcryptjs_1 = require("bcryptjs");
 const userSignin = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let result = null;
@@ -24,7 +24,7 @@ const userSignin = (data) => __awaiter(void 0, void 0, void 0, function* () {
             result = rawResult;
             let isMatch = false;
             if ('password' in result) {
-                isMatch = yield (0, bcrypt_1.compare)(data.password, result.password);
+                isMatch = yield (0, bcryptjs_1.compare)(data.password, result.password);
                 return isMatch ? result : false;
             }
             else {

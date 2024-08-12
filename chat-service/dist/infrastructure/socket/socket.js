@@ -34,6 +34,10 @@ const connectSocketIo = (server) => {
             yield (0, repositories_1.updateReadStatus)(data.sender, data.receiver, data.status);
             io.to(data.chatId).emit('updated message', data.id, data.receiver, data.sender);
         }));
+        socket.on('clickView', (data) => __awaiter(void 0, void 0, void 0, function* () {
+            yield (0, repositories_1.updateReadStatus)(data.view, data.click, "read");
+            socket.to(data.view).emit('click read', data.chatIds, data.click, data.view);
+        }));
         socket.on('new message', (data) => {
             const chat = data.chatId;
             socket.to(chat).emit("message recieved", data.data);

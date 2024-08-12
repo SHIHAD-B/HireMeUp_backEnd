@@ -42,7 +42,7 @@ const adminSigninController = (dependencies) => {
                 const data = value;
                 const admin = yield adminSigninUseCase(dependencies).execute(data);
                 if (admin == false) {
-                    return next(errorResponse_1.default.badRequest('incorrect password'));
+                    return next(errorResponse_1.default.badRequest('incorrect password.'));
                 }
                 else if (admin == true) {
                     return next(errorResponse_1.default.badRequest('incorrect password'));
@@ -51,7 +51,7 @@ const adminSigninController = (dependencies) => {
                     return next(errorResponse_1.default.notFound('admin not found'));
                 }
                 else if ((admin === null || admin === void 0 ? void 0 : admin.blocked) == true) {
-                    return next(errorResponse_1.default.badRequest('admin blocked or deleted by admin'));
+                    return next(errorResponse_1.default.badRequest('admin blocked or deleted by admin..'));
                 }
                 else {
                     const accessToken = (0, accessToken_1.generateAccessToken)(admin);

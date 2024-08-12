@@ -24,9 +24,9 @@ const PORTNUMBER = Number(config_1.PORT);
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
-app.use('/', (0, auth_routes_1.authRoutes)(dependencies_1.dependencies));
+app.use('/api/v1/auth/cus', (0, auth_routes_1.authRoutes)(dependencies_1.dependencies));
 app.use("*", (req, res, next) => {
-    res.status(404).send("api not found ");
+    res.status(404).send("api not found: auth service");
 });
 app.use(errorHandler_1.errorHandler);
 app.listen(config_1.PORT, () => __awaiter(void 0, void 0, void 0, function* () {
