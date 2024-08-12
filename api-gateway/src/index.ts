@@ -8,7 +8,7 @@ env.config();
 const app: Application = express();
 const PORT: number = Number(process.env.PORT || 3000);
 const corsOptions = {
-    origin: process.env.ORIGIN_URL || 'http://localhost:5173', 
+    origin: process.env.ORIGIN_URL || 'https://hire-me-up-front-end-shihad-bs-projects.vercel.app', 
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true
 };
