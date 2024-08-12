@@ -37,17 +37,19 @@ export const adminSigninController = (dependencies: IDependencies) => {
                 const admin: IAdminEntity | boolean | null = await adminSigninUseCase(dependencies).execute(data)
                 if (admin == false) {
                     return next(ErrorResponse.badRequest('incorrect password.'))
-                }else if(admin==true){
+                } else if (admin == true) {
                     return next(ErrorResponse.badRequest('incorrect password'))
                 } else if (admin == null) {
                     return next(ErrorResponse.notFound('admin not found'))
-                } else if (admin?.blocked == true ) {
+                } else if (admin?.blocked == true) {
                     return next(ErrorResponse.badRequest('admin blocked or deleted by admin..'))
                 } else {
 
                     const accessToken = generateAccessToken(admin)
                     res.cookie('admin_token', accessToken, {
-                        httpOnly: true
+                        httpOnly: true,
+                        sameSite: "none",
+                        secure: true
                     })
 
                     res.status(200).json({

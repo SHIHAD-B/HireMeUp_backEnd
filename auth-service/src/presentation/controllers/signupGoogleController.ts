@@ -50,7 +50,11 @@ export const signupGoogleController = (dependencies: IDependencies) => {
                         return next(ErrorResponse.badRequest('user blocked or deleted by admin'))
                     }
                     const accessToken = await generateAccessToken(emailExist)
-                    res.cookie('user_token', accessToken, { httpOnly: true });
+                    res.cookie('user_token', accessToken, {
+                        httpOnly: true,
+                        sameSite: "none",
+                        secure: true
+                    });
 
                     return res.status(200).send({
                         success: true,
@@ -78,7 +82,9 @@ export const signupGoogleController = (dependencies: IDependencies) => {
                         }
                         const accessToken = Jwt.sign(payload, String(JWT_SECRET), { expiresIn: '24h' })
                         res.cookie('user_token', accessToken, {
-                            httpOnly: true
+                            httpOnly: true,
+                            sameSite: "none",
+                            secure: true
                         })
 
                         return res.status(200).send({

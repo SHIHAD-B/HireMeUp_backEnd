@@ -47,7 +47,9 @@ export const companySigninController = (dependencies: IDependencies) => {
 
                     const accessToken = generateAccessToken(Company)
                     res.cookie('Company_token', accessToken, {
-                        httpOnly: true
+                        httpOnly: true,
+                        sameSite:"none",
+                        secure:true
                     })
 
                     res.status(200).json({

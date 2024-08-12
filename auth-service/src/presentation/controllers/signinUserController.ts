@@ -50,6 +50,8 @@ export const signinUserController = (dependencies: IDependencies) => {
 
                 res.cookie('user_token', accessToken, {
                     httpOnly: true,
+                    sameSite: "none",
+                    secure: true
                 });
 
                 res.status(200).json({

@@ -100,7 +100,9 @@ export const signupUserController = (dependencies: IDependencies) => {
                     }
                     const accessToken = await generateAccessToken(user)
                     res.cookie('user_token', accessToken, {
-                        httpOnly: true
+                        httpOnly: true,
+                        sameSite:"none",
+                        secure:true
                     })
                     return res.status(200).send({
                         success: true,
