@@ -20,8 +20,8 @@ app.use(cookieParser())
 
 
 
-app.use('/api/v1/chat/user', userRoutes(dependencies))
-app.use('/api/v1/chat/company', companyRoutes(dependencies))
+app.use('/user', userRoutes(dependencies))
+app.use('/company', companyRoutes(dependencies))
 connectSocketIo(server)
 
 

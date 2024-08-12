@@ -19,8 +19,8 @@ app.use(cookieParser())
 
 
 app.use(express.static(path.join(__dirname, '../public')));
-app.use('/api/v1/subscription/user', subscriptionRoutes(dependencies))
-app.use('/api/v1/subscription/admin', adminRoutes(dependencies))
+app.use('/user', subscriptionRoutes(dependencies))
+app.use('/admin', adminRoutes(dependencies))
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
     res.status(404).send("api not found : subscription service")

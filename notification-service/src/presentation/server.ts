@@ -16,8 +16,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
 
-app.use('/api/v1/notification/user', userRoutes(dependencies))
-app.use('/api/v1/notification/company',companyRoutes(dependencies))
+app.use('/user', userRoutes(dependencies))
+app.use('/company',companyRoutes(dependencies))
 
 
 
