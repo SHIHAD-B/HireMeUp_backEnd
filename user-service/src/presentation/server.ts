@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
 
-app.use('/', userRoutes(dependencies))
+app.use('/user', userRoutes(dependencies))
 app.use('/company', companyRoutes(dependencies))
 app.use('/admin', adminRoutes(dependencies))
 
